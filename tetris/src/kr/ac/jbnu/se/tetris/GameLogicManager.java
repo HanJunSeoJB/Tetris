@@ -1,9 +1,30 @@
 package kr.ac.jbnu.se.tetris;
 
+import java.util.Timer;
+
 public class GameLogicManager {
+
+    //* 변수 초기화
+    private boolean isStarted = false;
+    private boolean isPaused = false;
+    private int numLinesRemoved = 0;
+    private int curX = 0;
+    private int curY = 0;
+    private Shape curPiece;
+    private boolean isFallingFinished = false;
+    //*
+
+    //* 객체 초기화
     private final Board board;
+    private final TimerManager timerManager;
+    private final UIManager uiManager;
+    private final ShapeAndTetrominoesManager shapeAndTetrominoesManager;
+    private final EventManager eventManager;
+    private final ConfigurationManager configurationManager;
 
+    //*
 
+    //* 게터&세터 메소드
     public int getCurX() {
         return curX;
     }
@@ -41,22 +62,25 @@ public class GameLogicManager {
         return numLinesRemoved;
     }
 
+    public boolean isStarted() {
+        return isStarted;
+    }
+    //*
 
-
-    private int curX = 0;
-    private int curY = 0;
-    private Shape curPiece;
-    private boolean isFallingFinished = false;
-    private boolean isStarted = false;
-    private boolean isPaused = false;
-    private int numLinesRemoved = 0;
-
+    //* 클래스 초기화
     public GameLogicManager(Board board) {
         this.board = board;
         this.curPiece = new Shape();
+        this.uiManager = board.getUIManager();
+        this.shapeAndTetrominoesManager = new ShapeAndTetrominoesManager();
+        this.timerManager = board.getTimerManager();
+        this.eventManager = new EventManager(this);
+        this.configurationManager = new ConfigurationManager();
 
     }
+    //*
 
+    //* 블럭이 떨어지게 하는 함수
     public void dropDown() {
         int newY = curY;
         while (newY > 0) {
@@ -66,40 +90,51 @@ public class GameLogicManager {
         }
         pieceDropped();
     }
+    //*
 
+    // 블럭이 바닥에 닿았나 확인하는 함수
     public void pieceDropped() {
         int BoardWidth = board.getBoardWidth();
         Tetrominoes[] boardArray = board.getBoardArray();
         for (int i = 0; i < 4; ++i) {
             int x = curX + curPiece.x(i);
-            int y = curY - curPiece.y(i);
+            int y =curY - curPiece.y(i);
             boardArray[(y * BoardWidth) + x] = curPiece.getShape();
         }
 
         removeFullLines();
 
-        if (!isFallingFinished)
+        if (!isFallingFinished) {
             newPiece();
+        } else {
+            isFallingFinished = false;
+        }
     }
+    //*
+
+    //* 새 조각 생성 함수
     public void newPiece() {
-        int BoardWidth = board.getBoardWidth();
-        int BoardHeight = board.getBoardHeight();
-        curPiece.setRandomShape();
+        int BoardWidth = configurationManager.getBoardWidth();
+        int BoardHeight = configurationManager.getBoardHeight();
+        shapeAndTetrominoesManager.generateNewShape();
+        curPiece = shapeAndTetrominoesManager.getCurrentShape();
         curX = BoardWidth / 2 + 1;
         curY = BoardHeight - 1 + curPiece.minY();
 
         if (!tryMove(curPiece, curX, curY)) {
             curPiece.setShape(Tetrominoes.NoShape);
-            board.stopTimer();
+            timerManager.stopTimer();
             isStarted = false;
-           board.updateStatusbar("game over");
+           uiManager.updateStatusbar("game over");
         }
     }
+    //*
 
+    //* 줄 제거 함수
     public void removeFullLines() {
         int numFullLines = 0;
-        int BoardWidth = board.getBoardWidth();
-        int BoardHeight = board.getBoardHeight();
+        int BoardWidth = configurationManager.getBoardWidth();
+        int BoardHeight = configurationManager.getBoardHeight();
         Tetrominoes[] boardArray = board.getBoardArray();
 
         for (int i = BoardHeight - 1; i >= 0; --i) {
@@ -119,27 +154,31 @@ public class GameLogicManager {
                         boardArray[(k * BoardWidth) + j] = shapeAt(j, k + 1);
                 }
             }
+
         }
 
         if (numFullLines > 0) {
             numLinesRemoved += numFullLines;
-           board.updateStatusbar(String.valueOf(numLinesRemoved));
+            uiManager.updateScore(numLinesRemoved);
             isFallingFinished = true;
-            curPiece.setShape(Tetrominoes.NoShape);
             board.repaint();
         }
     }
+    //*
 
+
+    //* ?
     public Tetrominoes shapeAt(int x, int y) {
         Tetrominoes[] boardArray = board.getBoardArray();
-        int BoardWidth = board.getBoardWidth();
+        int BoardWidth = configurationManager.getBoardWidth();
         return boardArray[(y * BoardWidth) + x];
     }
+//*
 
-
+    //* 블럭 좌,우 이동 함수
     public boolean tryMove(Shape newPiece, int newX, int newY) {
-        int BoardWidth = board.getBoardWidth();
-        int BoardHeight = board.getBoardHeight();
+        int BoardWidth = configurationManager.getBoardWidth();
+        int BoardHeight = configurationManager.getBoardHeight();
         for (int i = 0; i < 4; ++i) {
             int x = newX + newPiece.x(i);
             int y = newY - newPiece.y(i);
@@ -155,57 +194,40 @@ public class GameLogicManager {
         board.repaint();
         return true;
     }
+    //*
 
+    //* 블럭이 한 줄 떨어지게 하는 함수
     public void oneLineDown() {
         if (!tryMove(curPiece, curX, curY - 1))
             pieceDropped();
     }
+    //*
 
+    //* 오른쪽 회전 함수
+    public void rotateRight() {
+        tryMove(shapeAndTetrominoesManager.rotateRight(), curX, curY);
+    }
+
+    //* 왼쪽 회전 함수
+    public void rotateLeft() {
+        tryMove(shapeAndTetrominoesManager.rotateLeft(), curX, curY);
+    }
+    //*
+
+    //* 게임 정지 기능
     public void pause() {
         if (!isStarted)
             return;
 
         isPaused = !isPaused;
         if (isPaused) {
-            board.stopTimer();
-            board.updateStatusbar("paused");
+            timerManager.stopTimer();
+            uiManager.updateStatusbar("paused");
         } else {
-            board.startTimer();
-            board.updateStatusbar(String.valueOf(numLinesRemoved));
+            timerManager.startTimer();
+            uiManager.updateStatusbar(String.valueOf(numLinesRemoved));
         }
         board.repaint();
     }
-
-    public void handleKeyAction(String action) {
-
-        if (!isStarted || curPiece.getShape() == Tetrominoes.NoShape) {
-            return;
-        }
-
-        switch (action) {
-            case "pause":
-                pause();
-                break;
-            case "left":
-                tryMove(curPiece, curX - 1, curY);
-                break;
-            case "right":
-                tryMove(curPiece, curX + 1, curY);
-                break;
-            case "rotateRight":
-                tryMove(curPiece.rotateRight(), curX, curY);
-                break;
-            case "rotateLeft":
-                tryMove(curPiece.rotateLeft(), curX, curY);
-                break;
-            case "dropDown":
-                dropDown();
-                break;
-            case "oneLineDown":
-                oneLineDown();
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown action: " + action);
-        }
-    }
+    //*
 }

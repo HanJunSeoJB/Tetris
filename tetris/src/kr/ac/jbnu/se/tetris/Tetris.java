@@ -5,7 +5,11 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+// 메인 함수 클래스
 public class Tetris extends JFrame {
+
+	final int gameWidth = 200;
+	final int gameHeight = 400;
 
 	JLabel statusbar;
 
@@ -17,7 +21,7 @@ public class Tetris extends JFrame {
 		add(board);
 		board.start();
 
-		setSize(200, 400);
+		setSize(gameWidth, gameHeight);
 		setTitle("Tetris");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}

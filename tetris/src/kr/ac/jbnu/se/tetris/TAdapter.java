@@ -3,6 +3,7 @@ package kr.ac.jbnu.se.tetris;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+//키보드 액션 처리 클래스
 public class TAdapter extends KeyAdapter {
     private final Board board;
 
@@ -10,6 +11,7 @@ public class TAdapter extends KeyAdapter {
         this.board = board;
     }
 
+    //* 키보드 액션 처리 함수
     public void keyPressed(KeyEvent e) {
         int keycode = e.getKeyCode();
 
@@ -43,4 +45,5 @@ public class TAdapter extends KeyAdapter {
                 break;
         }
     }
+    //*
 }

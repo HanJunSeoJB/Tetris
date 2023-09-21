@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class Shape {
 
+	//* 객체 초기화
 	private Tetrominoes pieceShape;
 	private int coords[][];
 	private int[][][] coordsTable;
@@ -12,7 +13,9 @@ public class Shape {
 		coords = new int[4][2];
 		setShape(Tetrominoes.NoShape);
 	}
+	//*
 
+	//* 도형 생성 함수
 	public void setShape(Tetrominoes shape) {
 
 		coordsTable = new int[][][] { { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } },
@@ -29,34 +32,44 @@ public class Shape {
 		pieceShape = shape;
 
 	}
+	//*
 
-	private void setX(int index, int x) {
+	//* 좌표 설정 함수
+	public void setX(int index, int x) {
 		coords[index][0] = x;
 	}
 
-	private void setY(int index, int y) {
+	public void setY(int index, int y) {
 		coords[index][1] = y;
 	}
 
 	public int x(int index) {
+		if (index < 0 || index >= coords.length) {
+			throw new ArrayIndexOutOfBoundsException("Index out of bounds: " + index);
+		}
 		return coords[index][0];
 	}
 
 	public int y(int index) {
 		return coords[index][1];
 	}
+	//*
 
+	// 게터 함수
 	public Tetrominoes getShape() {
 		return pieceShape;
 	}
 
+	//* 랜덤 블록 생성 함수
 	public void setRandomShape() {
 		Random r = new Random();
 		int x = Math.abs(r.nextInt()) % 7 + 1;
 		Tetrominoes[] values = Tetrominoes.values();
 		setShape(values[x]);
 	}
+	//*
 
+	//* 좌표 관련 함수
 	public int minX() {
 		int m = coords[0][0];
 		for (int i = 0; i < 4; i++) {
@@ -64,7 +77,6 @@ public class Shape {
 		}
 		return m;
 	}
-
 	public int minY() {
 		int m = coords[0][1];
 		for (int i = 0; i < 4; i++) {
@@ -72,34 +84,6 @@ public class Shape {
 		}
 		return m;
 	}
-
-	public Shape rotateLeft() {
-		if (pieceShape == Tetrominoes.SquareShape)
-			return this;
-
-		Shape result = new Shape();
-		result.pieceShape = pieceShape;
-
-		for (int i = 0; i < 4; ++i) {
-			result.setX(i, y(i));
-			result.setY(i, -x(i));
-		}
-		return result;
-	}
-
-	public Shape rotateRight() {
-		if (pieceShape == Tetrominoes.SquareShape)
-			return this;
-
-		Shape result = new Shape();
-		result.pieceShape = pieceShape;
-
-		for (int i = 0; i < 4; ++i) {
-			result.setX(i, -y(i));
-			result.setY(i, x(i));
-		}
-		return result;
-	}
-
+	//*
 
 }

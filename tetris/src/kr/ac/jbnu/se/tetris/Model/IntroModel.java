@@ -2,9 +2,14 @@ package kr.ac.jbnu.se.tetris.Model;
 
 public class IntroModel {
     /***************************************************************/
-    // ¸â¹öº¯¼ö
+    // 변수 초기화
     private int introWidth = 800;
     private int introHeight = 800;
+    private int playWidth = 400;
+    private int playHeight = 400;
+    private int playX = 200;
+
+    private int playY = 200;
     private int menuWidth = 450;
     private int menuHeight = 69;
     private int menuX = 154;
@@ -42,4 +47,21 @@ public class IntroModel {
     }
     public int getCheckMulti() { return checkMulti; }
     public void setCheckMulti(int checkMulti) { this.checkMulti = checkMulti; }
+    public int getPlayWidth() {        return playWidth;    }
+
+    public void setPlayWidth(int playWidth) {        this.playWidth = playWidth;    }
+
+    public int getPlayHeight() {
+        return playHeight;
+    }
+
+    public void setPlayHeight(int playHeight) { this.playHeight = playHeight;    }
+
+    public int getPlayX() { return playX;    }
+
+    public void setPlayX(int playX) {        this.playX = playX;    }
+
+    public int getPlayY() {        return playY;    }
+
+    public void setPlayY(int playY) {        this.playY = playY;    }
 }

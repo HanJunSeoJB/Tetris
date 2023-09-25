@@ -17,7 +17,7 @@ import kr.ac.jbnu.se.tetris.View.IntroView;
 
 public class IntroController implements MouseListener, MouseMotionListener {
     /***************************************************************/
-    // �������
+    // 멤버 변수
     IntroModel introModel;
     IntroView introView;
     JFrame frame;
@@ -30,10 +30,10 @@ public class IntroController implements MouseListener, MouseMotionListener {
     MultiView multiView;*/
     Socket socket;
     PrintWriter writer;
-    //SoundModel soundModel;
+    SoundModel soundModel;
     String name;
     /***************************************************************/
-    // IntroController ������
+    // IntroController 생성자
     public IntroController(IntroModel introModel, IntroView introView, JFrame frame, Container contentPane, SoundModel soundModel) {
         this.introModel = introModel;
         this.introView = introView;
@@ -44,8 +44,8 @@ public class IntroController implements MouseListener, MouseMotionListener {
         singleView = new SingleView(singleModel);
         singleController = new SingleController(singleModel, singleView, frame, contentPane, soundModel);*/
         name = "ClientA";
-        /*this.soundModel = soundModel;
-        multiModel = new MultiModel(soundModel);
+        this.soundModel = soundModel;
+        /*multiModel = new MultiModel(soundModel);
         multiView = new MultiView(multiModel, name);*/
         /*try {
             socket = new Socket("192.168.0.9", 8050);
@@ -55,7 +55,7 @@ public class IntroController implements MouseListener, MouseMotionListener {
         }*/
     }
     /***************************************************************/
-    // MouseListner, MouseMotionListener �������̵�
+    // MouseListner, MouseMotionListener 오버라이딩
     @Override
     public void mouseClicked(MouseEvent e) {
         // TODO Auto-generated method stub
@@ -102,7 +102,7 @@ public class IntroController implements MouseListener, MouseMotionListener {
         /***************************************************************/
         // HOW TO PLAY
         if((x >= introModel.getMenuX() && x <= introModel.getMenuX() + introModel.getMenuWidth()) && (y >= introModel.getMenuY() + introModel.getMenuHeight() && y <= introModel.getMenuY() + introModel.getMenuHeight() + introModel.getMenuInterval())) {
-
+            introModel.setCheckClicked(4);
         }
         /***************************************************************/
         // RANKING
@@ -131,7 +131,7 @@ public class IntroController implements MouseListener, MouseMotionListener {
         int x = e.getX();
         int y = e.getY();
         /***************************************************************/
-        // Menu�� ���� �� ǥ��
+        // Menu에 마우스 갖다 댈 시 효과
         if((x >= introModel.getMenuX() && x <= introModel.getMenuX() + introModel.getMenuWidth()) && (y >= introModel.getMenuY() && y <= introModel.getMenuY() + (4 * introModel.getMenuHeight()) + (3 * introModel.getMenuInterval()))) {
             if((x >= introModel.getMenuX() && x <= introModel.getMenuX() + introModel.getMenuWidth()) && (y >= introModel.getMenuY() && y <= introModel.getMenuY() + introModel.getMenuHeight()))
                 introModel.setCheckEntered(1);
@@ -149,8 +149,8 @@ public class IntroController implements MouseListener, MouseMotionListener {
             ;
         else introModel.setCheckEntered(0);
         /***************************************************************/
-        // SINGLE PLAY & MULTI PLAY ��ĥ
-        if(introModel.getCheckClicked() > 0) {
+        // SINGLE PLAY & MULTI PLAY
+        if(introModel.getCheckClicked() == 1) {
             if((x >= introModel.getSelect_gameX() && x <= introModel.getSelect_gameX() + introModel.getSelect_gameWidth()) && (y >= introModel.getSelect_gameY() && y <= introModel.getSelect_gameY() + introModel.getSelect_gameHeight()))
                 introModel.setCheckClicked(2);
             else if((x >= introModel.getSelect_gameX() && x <= introModel.getSelect_gameX() + introModel.getSelect_gameWidth()) && (y >= introModel.getSelect_gameY() + introModel.getSelect_gameHeight() + introModel.getSelect_gameInterval() && y <= introModel.getSelect_gameY() + (introModel.getSelect_gameHeight() * 2) + introModel.getSelect_gameInterval()))

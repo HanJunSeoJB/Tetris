@@ -1,6 +1,6 @@
 package kr.ac.jbnu.se.tetris.View;
 
-import java.awt.Graphics;
+import java.awt.*;
 import javax.swing.*;
 
 import kr.ac.jbnu.se.tetris.Model.IntroModel;
@@ -9,7 +9,7 @@ public class IntroView extends JPanel {
     /***************************************************************/
     // 멤버변수
     IntroModel introModel;
-    ImageIcon intro, multi_start;
+    ImageIcon intro, multi_start, how_to_start;
     ImageIcon[] menu = new ImageIcon[4];
     ImageIcon[] menu_click = new ImageIcon[4];
     ImageIcon[] select_game = new ImageIcon[3];
@@ -20,6 +20,7 @@ public class IntroView extends JPanel {
         this.introModel = introModel;
         intro = new ImageIcon("src/image/intro.png");
         multi_start = new ImageIcon("src/image/multi_start.png");
+        how_to_start = new ImageIcon("src/image/how_to_play.png");
         menu[0] = new ImageIcon("src/image/menu1.png");
         menu[1] = new ImageIcon("src/image/menu2.png");
         menu[2] = new ImageIcon("src/image/menu3.png");
@@ -61,6 +62,9 @@ public class IntroView extends JPanel {
                 break;
             case 3:
                 g.drawImage(select_game[2].getImage(), introModel.getMenuX(), introModel.getMenuY(), introModel.getMenuWidth(), introModel.getMenuHeight() * 3, null);
+                break;
+            case 4:
+                g.drawImage(how_to_start.getImage(), introModel.getPlayX(), introModel.getPlayY(), introModel.getPlayWidth(), introModel.getPlayHeight(), null);
                 break;
         }
         if (introModel.getCheckMulti() == 1)

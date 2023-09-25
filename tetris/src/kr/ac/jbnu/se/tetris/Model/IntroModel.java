@@ -5,10 +5,10 @@ public class IntroModel {
     // ¸â¹öº¯¼ö
     private int introWidth = 800;
     private int introHeight = 800;
-    private int menuWidth = 175;
+    private int menuWidth = 450;
     private int menuHeight = 69;
-    private int menuX = 295;
-    private int menuY = 232;
+    private int menuX = 154;
+    private int menuY = 200;
     private int menuInterval = 100;
     private int select_gameX = 240;
     private int select_gameY = 325;

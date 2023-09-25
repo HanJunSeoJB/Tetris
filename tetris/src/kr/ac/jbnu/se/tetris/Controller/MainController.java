@@ -11,7 +11,7 @@ import kr.ac.jbnu.se.tetris.View.IntroView;
 
 public class MainController {
     /***************************************************************/
-    // �������
+    // 객체 초기화
     IntroModel introModel;
     IntroView introView;
     JFrame frame;
@@ -19,7 +19,7 @@ public class MainController {
     IntroController introController;
     SoundModel soundModel;
     /***************************************************************/
-    // MainController ������
+    // MainController 생성자
     public MainController() {
         introModel = new IntroModel();
         introView = new IntroView(introModel);
@@ -29,7 +29,7 @@ public class MainController {
         introController = new IntroController(introModel, introView, frame, contentPane, soundModel);
     }
     /***************************************************************/
-    // run �޼ҵ� : ���� ����
+    // run 메소드: 게임 실행
     public void run() {
         contentPane.add(introView);
         soundModel.introBgmPlay();

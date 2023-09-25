@@ -8,7 +8,7 @@ import javax.sound.sampled.Clip;
 
 public class SoundModel {
     /***************************************************************/
-    // �������
+    // 객체 초기화
     AudioInputStream ais;
     Clip clip;
     /***************************************************************/

@@ -75,17 +75,4 @@ public class IntroView extends JPanel {
         drawMenu(g, introModel);
         setOpaque(false);
     }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Tetris Intro");
-        IntroModel model = new IntroModel();
-        IntroView view = new IntroView(model);
-
-        frame.add(view);
-        frame.setSize(800, 800);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
-
 }

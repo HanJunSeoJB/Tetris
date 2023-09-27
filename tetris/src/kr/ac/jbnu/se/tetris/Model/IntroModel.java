@@ -1,5 +1,7 @@
 package kr.ac.jbnu.se.tetris.Model;
 
+import kr.ac.jbnu.se.tetris.MenuState;
+
 public class IntroModel {
     /***************************************************************/
     // 변수 초기화
@@ -16,13 +18,14 @@ public class IntroModel {
     private int menuY = 200;
     private int menuInterval = 100;
     private int select_gameX = 240;
-    private int select_gameY = 325;
+    private int select_gameY = 229;
     private int select_gameWidth = 320;
     private int select_gameHeight = 85;
     private int select_gameInterval = 40;
     private int checkEntered = 0;
     private int checkClicked = 0;
     private int checkMulti = 0;
+    private MenuState menuState = MenuState.NONE;
     /***************************************************************/
     // getter & setter
     public int getIntroWidth() { return introWidth; }
@@ -51,9 +54,7 @@ public class IntroModel {
 
     public void setPlayWidth(int playWidth) {        this.playWidth = playWidth;    }
 
-    public int getPlayHeight() {
-        return playHeight;
-    }
+    public int getPlayHeight() {        return playHeight;    }
 
     public void setPlayHeight(int playHeight) { this.playHeight = playHeight;    }
 
@@ -64,4 +65,11 @@ public class IntroModel {
     public int getPlayY() {        return playY;    }
 
     public void setPlayY(int playY) {        this.playY = playY;    }
+    public MenuState getMenuState() {
+        return menuState;
+    }
+
+    public void setMenuState(MenuState menuState) {
+        this.menuState = menuState;
+    }
 }

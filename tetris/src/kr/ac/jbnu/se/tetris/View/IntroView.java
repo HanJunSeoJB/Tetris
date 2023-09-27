@@ -53,17 +53,17 @@ public class IntroView extends JPanel {
                 g.drawImage(menu_click[3].getImage(), introModel.getMenuX(), introModel.getMenuY() + (3 * introModel.getMenuInterval()), introModel.getMenuWidth(), introModel.getMenuHeight(), null);
                 break;
         }
-        switch (introModel.getCheckClicked()) {
-            case 1:
+        switch (introModel.getMenuState()) {
+            case GAME_START:
                 g.drawImage(select_game[0].getImage(), introModel.getMenuX(), introModel.getMenuY(), introModel.getMenuWidth(), introModel.getMenuHeight() * 3, null);
                 break;
-            case 2:
+            case SINGLE_PLAY:
                 g.drawImage(select_game[1].getImage(), introModel.getMenuX(), introModel.getMenuY(), introModel.getMenuWidth(), introModel.getMenuHeight() * 3, null);
                 break;
-            case 3:
+            case MULTI_PLAY:
                 g.drawImage(select_game[2].getImage(), introModel.getMenuX(), introModel.getMenuY(), introModel.getMenuWidth(), introModel.getMenuHeight() * 3, null);
                 break;
-            case 4:
+            case HOW_TO_PLAY:
                 g.drawImage(how_to_start.getImage(), introModel.getPlayX(), introModel.getPlayY(), introModel.getPlayWidth(), introModel.getPlayHeight(), null);
                 break;
         }

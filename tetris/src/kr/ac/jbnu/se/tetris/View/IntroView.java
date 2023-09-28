@@ -3,6 +3,7 @@ package kr.ac.jbnu.se.tetris.View;
 import java.awt.*;
 import javax.swing.*;
 
+import kr.ac.jbnu.se.tetris.Board;
 import kr.ac.jbnu.se.tetris.Model.IntroModel;
 
 public class IntroView extends JPanel {

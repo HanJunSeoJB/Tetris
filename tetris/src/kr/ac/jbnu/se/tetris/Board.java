@@ -117,6 +117,7 @@ public class Board extends JPanel implements ActionListener {
 	}
 	// 보드에 그리는 함수
 	public void paint(Graphics g) {
+		g.clearRect(0, 0, getWidth(), getHeight());
 		super.paint(g);
 		Shape curPiece = gameLogicManager.getCurPiece();
 		Dimension size = getSize();

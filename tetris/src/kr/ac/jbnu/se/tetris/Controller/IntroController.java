@@ -1,3 +1,4 @@
+
 package kr.ac.jbnu.se.tetris.Controller;
 
 import java.awt.Container;
@@ -11,10 +12,15 @@ import java.net.Socket;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
+import kr.ac.jbnu.se.tetris.Board;
+import kr.ac.jbnu.se.tetris.Model.SingleModel;
 import kr.ac.jbnu.se.tetris.Model.SoundModel;
 import kr.ac.jbnu.se.tetris.Model.IntroModel;
+import kr.ac.jbnu.se.tetris.TAdapter;
+import kr.ac.jbnu.se.tetris.Tetris;
 import kr.ac.jbnu.se.tetris.View.IntroView;
 import kr.ac.jbnu.se.tetris.MenuState;
+import kr.ac.jbnu.se.tetris.View.SingleView;
 
 public class IntroController implements MouseListener, MouseMotionListener {
     /***************************************************************/
@@ -25,10 +31,13 @@ public class IntroController implements MouseListener, MouseMotionListener {
     JTextField nameField;
     Container contentPane;
 
-    /*SingleModel singleModel;
+    SingleModel singleModel;
     SingleView singleView;
     SingleController singleController;
-    MultiModel multiModel;
+    Tetris tetrisInstance = new Tetris();
+    Board board = new Board(tetrisInstance);
+
+    /*MultiModel multiModel;
     MultiView multiView;*/
     Socket socket;
     PrintWriter writer;
@@ -42,9 +51,9 @@ public class IntroController implements MouseListener, MouseMotionListener {
         this.frame = frame;
         this.contentPane = contentPane;
         nameField = new JTextField(" 게임시작 대기중 ");
-        /*singleModel = new SingleModel(soundModel);
+        singleModel = new SingleModel(soundModel);
         singleView = new SingleView(singleModel);
-        singleController = new SingleController(singleModel, singleView, frame, contentPane, soundModel);*/
+        singleController = new SingleController(singleModel, singleView, frame, contentPane, soundModel);
         name = "ClientA";
         this.soundModel = soundModel;
         /*multiModel = new MultiModel(soundModel);
@@ -70,7 +79,7 @@ public class IntroController implements MouseListener, MouseMotionListener {
             System.out.println("x : " + e.getX() + ", y : " + e.getY() + ", " + introModel.getCheckClicked());
 
             // SINGLE PLAY & MULTI PLAY
-            if(introModel.getCheckClicked() > 0) {
+            if(introModel.getCheckClicked() == 1) {
                 if(isWithinBounds(x, y, introModel.getSelect_gameX(), introModel.getSelect_gameY(), introModel.getSelect_gameWidth(), introModel.getSelect_gameHeight())) {
                      /*Thread singleThread = new Thread(singleController);
                     singleThread.start();
@@ -78,10 +87,18 @@ public class IntroController implements MouseListener, MouseMotionListener {
                     soundModel.menuClickPlay();
                     contentPane.remove(introView);
                     contentPane.add(singleView);
-                    frame.addKeyListener(singleController);*/
+                    frame.addKeyListener(singleController);
                     frame.setSize(1200 + 15, 901 + 35);
                     frame.setLocation(200, 0);
+                    frame.setVisible(true);*/
+                    soundModel.intoBgmStop();
+                    contentPane.remove(introView);
+                    contentPane.add(board);
+                    frame.addKeyListener(new TAdapter(this.board));
+                    frame.setSize(300, 600);
                     frame.setVisible(true);
+                    board.start();
+
                     return;
                 } else if(isWithinBounds(x, y, introModel.getSelect_gameX(), introModel.getSelect_gameY() + introModel.getSelect_gameHeight() + introModel.getSelect_gameInterval(), introModel.getSelect_gameWidth(), introModel.getSelect_gameHeight())) {
                     introModel.setCheckMulti(1);
@@ -93,6 +110,7 @@ public class IntroController implements MouseListener, MouseMotionListener {
                     introView.removeMouseMotionListener(this);
                     return;
                 }
+
                 /*else if((x >= 300 && x <= 500) && (y >= 680 && y <= 730) && (introModel.getCheckClicked() == 3)) {
                 Thread senderThread = new SenderThread(socket, name, multiModel, writer, multiView);
                 Thread receiverThread = new ReceiverThread(socket, writer, introView, multiModel, multiView, contentPane, frame, name, soundModel);
@@ -103,6 +121,7 @@ public class IntroController implements MouseListener, MouseMotionListener {
 
             // GAME START
             if(isWithinBounds(x, y, introModel.getMenuX(), introModel.getMenuY(), introModel.getMenuWidth(), introModel.getMenuHeight())) {
+                introModel.setCheckClicked(1);
                 introModel.setMenuState(MenuState.GAME_START);
                 return;
             }
@@ -204,6 +223,7 @@ public class IntroController implements MouseListener, MouseMotionListener {
             else if((x >= introModel.getSelect_gameX() && x <= introModel.getSelect_gameX() + introModel.getSelect_gameWidth()) && (y >= introModel.getSelect_gameY() + introModel.getSelect_gameHeight() + introModel.getSelect_gameInterval() && y <= introModel.getSelect_gameY() + (introModel.getSelect_gameHeight() * 2) + introModel.getSelect_gameInterval()))
                 introModel.setMenuState(MenuState.MULTI_PLAY);
             else {
+                introModel.setCheckClicked(0);
                 introModel.setMenuState(MenuState.GAME_START);
 
             }

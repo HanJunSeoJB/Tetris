@@ -107,26 +107,26 @@ public class IntroController implements MouseListener, MouseMotionListener {
                 return;
             }
 
-            // HOW TO PLAY
-            if(isWithinBounds(x, y, introModel.getMenuX(), introModel.getMenuY() + introModel.getMenuHeight(), introModel.getMenuWidth(), introModel.getMenuHeight())) {
+// HOW TO PLAY
+            else if(isWithinBounds(x, y, introModel.getMenuX(), introModel.getMenuY() + introModel.getMenuHeight(), introModel.getMenuWidth(), introModel.getMenuHeight())) {
                 introModel.setMenuState(MenuState.HOW_TO_PLAY);
                 introView.repaint();
                 return;
             }
 
-            // RANKING
-            if(isWithinBounds(x, y, introModel.getMenuX(), introModel.getMenuY() + 2*introModel.getMenuHeight(), introModel.getMenuWidth(), introModel.getMenuHeight())) {
-                // ... 이전 코드
+// RANKING
+            else if(isWithinBounds(x, y, introModel.getMenuX(), introModel.getMenuY() + 2*introModel.getMenuHeight() + introModel.getMenuInterval(), introModel.getMenuWidth(), introModel.getMenuHeight())) {
                 return;
             }
 
-            // GAME EXIT
-            if(isWithinBounds(x, y, introModel.getMenuX(), introModel.getMenuY() + 3*introModel.getMenuHeight(), introModel.getMenuWidth(), introModel.getMenuHeight())) {
+// GAME EXIT
+            else if(isWithinBounds(x, y, introModel.getMenuX(), introModel.getMenuY() + 3*introModel.getMenuHeight() + introModel.getMenuInterval(), introModel.getMenuWidth(), introModel.getMenuHeight())) {
                 System.exit(1);
                 return;
             }
 
             introModel.setMenuState(MenuState.NONE);
+
         }
 
         // SINGLE PLAY & MULTI PLAY
@@ -198,7 +198,6 @@ public class IntroController implements MouseListener, MouseMotionListener {
         if(introModel.getMenuState() == MenuState.GAME_START || introModel.getMenuState() == MenuState.SINGLE_PLAY || introModel.getMenuState() == MenuState.MULTI_PLAY) {
             if((x >= introModel.getSelect_gameX() && x <= introModel.getSelect_gameX() + introModel.getSelect_gameWidth()) && (y >= introModel.getSelect_gameY() && y <= introModel.getSelect_gameY() + introModel.getSelect_gameHeight())) {
                 introModel.setMenuState(MenuState.SINGLE_PLAY);
-                System.out.println(introModel.getMenuState());
 
             }
 

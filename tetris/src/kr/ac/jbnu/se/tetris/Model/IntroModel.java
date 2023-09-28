@@ -13,15 +13,15 @@ public class IntroModel {
 
     private int playY = 200;
     private int menuWidth = 450;
-    private int menuHeight = 69;
+    private int menuHeight = 70;
     private int menuX = 154;
     private int menuY = 200;
     private int menuInterval = 100;
     private int select_gameX = 240;
-    private int select_gameY = 229;
+    private int select_gameY = 210;
     private int select_gameWidth = 320;
-    private int select_gameHeight = 85;
-    private int select_gameInterval = 40;
+    private int select_gameHeight = 80;
+    private int select_gameInterval = 30;
     private int checkEntered = 0;
     private int checkClicked = 0;
     private int checkMulti = 0;

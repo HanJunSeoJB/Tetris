@@ -131,6 +131,23 @@ public class Board extends JPanel implements ActionListener {
 			}
 		}
 
+		//보드판 색상 결정
+		g.setColor(Color.DARK_GRAY);
+		g.fillRect(0, 0, size.width, size.height);
+		Color lineColor = new Color(169, 169, 169, 50);
+		g.setColor(lineColor);
+
+		//보드판 실선
+		for(int i = 0; i < this.BoardHeight; ++i) {
+			int x = boardTop + i * this.squareHeight();
+			g.fillRect(0, x, size.width, 1);
+		}
+
+		for(int i = 0; i < this.BoardWidth; ++i) {
+			int x = 0 + i * this.squareWidth();
+			g.fillRect(x, boardTop, 1, size.height - boardTop);
+		}
+
 		if (curPiece.getShape() != Tetrominoes.NoShape) {
 			for (int i = 0; i < 4; ++i) {
 				int x = gameLogicManager.getCurX() + curPiece.x(i);

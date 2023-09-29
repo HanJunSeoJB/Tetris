@@ -161,6 +161,7 @@ public class GameLogicManager {
             numLinesRemoved += numFullLines;
             uiManager.updateScore(numLinesRemoved);
             isFallingFinished = true;
+            curPiece.setShape(Tetrominoes.NoShape);
             board.repaint();
         }
     }

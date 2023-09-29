@@ -119,25 +119,17 @@ public class Board extends JPanel implements ActionListener {
 	public void paint(Graphics g) {
 		g.clearRect(0, 0, getWidth(), getHeight());
 		super.paint(g);
-		Shape curPiece = gameLogicManager.getCurPiece();
+
 		Dimension size = getSize();
 		int boardTop = (int) size.getHeight() - BoardHeight * squareHeight();
 
-		for (int i = 0; i < BoardHeight; ++i) {
-			for (int j = 0; j < BoardWidth; ++j) {
-				Tetrominoes shape = gameLogicManager.shapeAt(j, BoardHeight - i - 1);
-				if (shape != Tetrominoes.NoShape)
-					renderingManager.drawSquare(g, 0 + j * squareWidth(), boardTop + i * squareHeight(), shape);
-			}
-		}
-
-		//보드판 색상 결정
+		// 보드판 색상 결정
 		g.setColor(Color.DARK_GRAY);
 		g.fillRect(0, 0, size.width, size.height);
 		Color lineColor = new Color(169, 169, 169, 50);
 		g.setColor(lineColor);
 
-		//보드판 실선
+		// 보드판 실선
 		for(int i = 0; i < this.BoardHeight; ++i) {
 			int x = boardTop + i * this.squareHeight();
 			g.fillRect(0, x, size.width, 1);
@@ -146,6 +138,16 @@ public class Board extends JPanel implements ActionListener {
 		for(int i = 0; i < this.BoardWidth; ++i) {
 			int x = 0 + i * this.squareWidth();
 			g.fillRect(x, boardTop, 1, size.height - boardTop);
+		}
+
+		// 블록들을 그립니다.
+		Shape curPiece = gameLogicManager.getCurPiece();
+		for (int i = 0; i < BoardHeight; ++i) {
+			for (int j = 0; j < BoardWidth; ++j) {
+				Tetrominoes shape = gameLogicManager.shapeAt(j, BoardHeight - i - 1);
+				if (shape != Tetrominoes.NoShape)
+					renderingManager.drawSquare(g, 0 + j * squareWidth(), boardTop + i * squareHeight(), shape);
+			}
 		}
 
 		if (curPiece.getShape() != Tetrominoes.NoShape) {
@@ -157,6 +159,7 @@ public class Board extends JPanel implements ActionListener {
 			}
 		}
 	}
+
 
 	// 보드 초기화 함수
 	private void clearBoard() {

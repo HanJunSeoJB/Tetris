@@ -15,6 +15,10 @@ public class Shape {
 	}
 	//*
 
+	public Tetrominoes getPieceShape() {
+		return pieceShape;
+	}
+
 	//* 도형 생성 함수
 	public void setShape(Tetrominoes shape) {
 

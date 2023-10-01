@@ -115,6 +115,10 @@ public class Board extends JPanel implements ActionListener {
 		gameLogicManager.newPiece();
 		timerManager.startTimer();
 	}
+
+	public void initGame() {
+
+	}
 	// 보드에 그리는 함수
 	public void paint(Graphics g) {
 		super.paint(g);

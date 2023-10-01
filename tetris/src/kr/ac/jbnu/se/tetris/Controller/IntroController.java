@@ -34,13 +34,12 @@ public class IntroController implements MouseListener, MouseMotionListener {
     SingleModel singleModel;
     SingleView singleView;
     SingleController singleController;
-    Tetris tetrisInstance = new Tetris();
-    Board board = new Board(tetrisInstance);
+    /*Tetris tetrisInstance = new Tetris();
+    Board board = new Board(tetrisInstance);*/
 
     /*MultiModel multiModel;
     MultiView multiView;*/
     Socket socket;
-    PrintWriter writer;
     SoundModel soundModel;
     String name;
     /***************************************************************/
@@ -81,7 +80,9 @@ public class IntroController implements MouseListener, MouseMotionListener {
             // SINGLE PLAY & MULTI PLAY
             if(introModel.getCheckClicked() == 1) {
                 if(isWithinBounds(x, y, introModel.getSelect_gameX(), introModel.getSelect_gameY(), introModel.getSelect_gameWidth(), introModel.getSelect_gameHeight())) {
-                     /*Thread singleThread = new Thread(singleController);
+                    Tetris tetrisInstance = new Tetris();
+                    Board board = new Board(tetrisInstance);
+                    /*Thread singleThread = new Thread(singleController);
                     singleThread.start();
                     soundModel.intoBgmStop();
                     soundModel.menuClickPlay();
@@ -93,7 +94,7 @@ public class IntroController implements MouseListener, MouseMotionListener {
                     soundModel.intoBgmStop();
                     contentPane.remove(introView);
                     contentPane.add(board);
-                    frame.addKeyListener(new TAdapter(this.board));
+                    //frame.addKeyListener(new TAdapter(this.board));
                     frame.setSize(300, 600);
                     frame.setLocationRelativeTo(null);
                     frame.setVisible(true);

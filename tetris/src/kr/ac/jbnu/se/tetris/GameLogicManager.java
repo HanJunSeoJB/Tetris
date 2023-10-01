@@ -101,19 +101,18 @@ public class GameLogicManager {
     // 블럭이 바닥에 닿았나 확인하는 함수
     public void pieceDropped() {
        Tetrominoes[] boardArray = board.getBoardArray();
-       curPiece = shapeAndTetrominoesManager.getCurrentShape();
+        System.out.println(curPiece.getPieceShape());
         for (int i = 0; i < 4; ++i) {
             int x = curX + curPiece.x(i);
             int y =curY - curPiece.y(i);
             boardArray[(y * BoardWidth) + x] = curPiece.getShape();
+
         }
 
         removeFullLines();
 
         if (!isFallingFinished) {
             newPiece();
-        } else {
-            isFallingFinished = false;
         }
     }
     //*

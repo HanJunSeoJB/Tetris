@@ -1,6 +1,6 @@
 package kr.ac.jbnu.se.tetris;
 
-public class EventManager {
+public class  EventManager {
     //* 객체 초기화
     private final GameLogicManager gameLogicManager;
     public EventManager(GameLogicManager gameLogicManager) {

@@ -89,13 +89,13 @@ public class IntroController implements MouseListener, MouseMotionListener {
                     contentPane.add(singleView);
                     frame.addKeyListener(singleController);
                     frame.setSize(1200 + 15, 901 + 35);
-                    frame.setLocation(200, 0);
                     frame.setVisible(true);*/
                     soundModel.intoBgmStop();
                     contentPane.remove(introView);
                     contentPane.add(board);
                     frame.addKeyListener(new TAdapter(this.board));
                     frame.setSize(300, 600);
+                    frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
                     board.start();
 

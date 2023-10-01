@@ -1,5 +1,6 @@
 package kr.ac.jbnu.se.tetris;
 
+import java.util.Arrays;
 import java.util.Timer;
 
 public class GameLogicManager {
@@ -10,6 +11,9 @@ public class GameLogicManager {
     private int numLinesRemoved = 0;
     private int curX = 0;
     private int curY = 0;
+
+    private int BoardWidth;
+    private int BoardHeight;
     private Shape curPiece;
     private boolean isFallingFinished = false;
     //*
@@ -19,7 +23,7 @@ public class GameLogicManager {
     private final TimerManager timerManager;
     private final UIManager uiManager;
     private final ShapeAndTetrominoesManager shapeAndTetrominoesManager;
-    private final EventManager eventManager;
+    //private final EventManager eventManager;
     private final ConfigurationManager configurationManager;
 
     //*
@@ -74,8 +78,10 @@ public class GameLogicManager {
         this.uiManager = board.getUIManager();
         this.shapeAndTetrominoesManager = new ShapeAndTetrominoesManager();
         this.timerManager = board.getTimerManager();
-        this.eventManager = new EventManager(this);
+        //this.eventManager = new EventManager(this);
         this.configurationManager = new ConfigurationManager();
+        this.BoardWidth= configurationManager.getBoardWidth();
+        this.BoardHeight = configurationManager.getBoardHeight();
 
     }
     //*
@@ -94,8 +100,8 @@ public class GameLogicManager {
 
     // 블럭이 바닥에 닿았나 확인하는 함수
     public void pieceDropped() {
-        int BoardWidth = board.getBoardWidth();
-        Tetrominoes[] boardArray = board.getBoardArray();
+       Tetrominoes[] boardArray = board.getBoardArray();
+       curPiece = shapeAndTetrominoesManager.getCurrentShape();
         for (int i = 0; i < 4; ++i) {
             int x = curX + curPiece.x(i);
             int y =curY - curPiece.y(i);
@@ -114,8 +120,7 @@ public class GameLogicManager {
 
     //* 새 조각 생성 함수
     public void newPiece() {
-        int BoardWidth = configurationManager.getBoardWidth();
-        int BoardHeight = configurationManager.getBoardHeight();
+
         shapeAndTetrominoesManager.generateNewShape();
         curPiece = shapeAndTetrominoesManager.getCurrentShape();
         curX = BoardWidth / 2 + 1;
@@ -133,8 +138,7 @@ public class GameLogicManager {
     //* 줄 제거 함수
     public void removeFullLines() {
         int numFullLines = 0;
-        int BoardWidth = configurationManager.getBoardWidth();
-        int BoardHeight = configurationManager.getBoardHeight();
+
         Tetrominoes[] boardArray = board.getBoardArray();
 
         for (int i = BoardHeight - 1; i >= 0; --i) {
@@ -150,8 +154,9 @@ public class GameLogicManager {
             if (lineIsFull) {
                 ++numFullLines;
                 for (int k = i; k < BoardHeight - 1; ++k) {
-                    for (int j = 0; j < BoardWidth; ++j)
+                    for (int j = 0; j < BoardWidth; ++j) {
                         boardArray[(k * BoardWidth) + j] = shapeAt(j, k + 1);
+                    }
                 }
             }
 
@@ -171,15 +176,13 @@ public class GameLogicManager {
     //* ?
     public Tetrominoes shapeAt(int x, int y) {
         Tetrominoes[] boardArray = board.getBoardArray();
-        int BoardWidth = configurationManager.getBoardWidth();
         return boardArray[(y * BoardWidth) + x];
     }
 //*
 
     //* 블럭 좌,우 이동 함수
     public boolean tryMove(Shape newPiece, int newX, int newY) {
-        int BoardWidth = configurationManager.getBoardWidth();
-        int BoardHeight = configurationManager.getBoardHeight();
+
         for (int i = 0; i < 4; ++i) {
             int x = newX + newPiece.x(i);
             int y = newY - newPiece.y(i);
@@ -231,4 +234,16 @@ public class GameLogicManager {
         board.repaint();
     }
     //*
+
+    public void printBoard() {
+        Tetrominoes[] boardArray = board.getBoardArray();
+        for (int i = 0; i < BoardHeight; i++) {
+            for (int j = 0; j < BoardWidth; j++) {
+                // 인덱스 변환하여 2차원 형태로 출력
+                System.out.print(boardArray[i * BoardWidth + j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
 }

@@ -242,7 +242,6 @@ public class GameLogicManager {
             if (shapeAt(x, y) != Tetrominoes.NoShape)
                 return false;
         }
-
         return true;
     }
 

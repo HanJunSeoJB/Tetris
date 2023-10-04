@@ -35,7 +35,7 @@ public class RenderingManager {
     //*
 
     public void drawGhostSquare(Graphics g, int x, int y) {
-        Color semiTransparentWhite = new Color(255, 255, 255, 127); // R=255, G=255, B=255, A=127
+        Color semiTransparentWhite = new Color(239, 237, 239, 40); // R=255, G=255, B=255, A=127
 
         g.setColor(semiTransparentWhite);
         g.fillRect(x + 1, y + 1, board.squareWidth() - 2, board.squareHeight() - 2);

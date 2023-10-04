@@ -161,7 +161,28 @@ public class Board extends JPanel implements ActionListener {
 				int y = gameLogicManager.getCurY() - curPiece.y(i);
 				renderingManager.drawSquare(g, 0 + x * squareWidth(), boardTop + (BoardHeight - y - 1) * squareHeight(),
 						curPiece.getShape());
+				renderGhostPiece(g);
 			}
+		}
+
+	}
+
+	private void renderGhostPiece(Graphics g) {
+		Dimension size = getSize();
+		int boardTop = (int) size.getHeight() - BoardHeight * squareHeight();
+		Shape ghostPiece = gameLogicManager.getCurPiece();  // 현재 조각을 복사하여 고스트 블록 생성
+		int ghostY = gameLogicManager.getCurY();
+
+		// 고스트 블록이 이동할 수 없을 때까지 아래로 이동
+		while (gameLogicManager.ghostTryMove(ghostPiece, gameLogicManager.getCurX(), ghostY - 1)) {
+			ghostY--;
+		}
+
+		// 고스트 블록 그리기 (반투명하게 그리는 로직이 필요합니다.)
+		for (int i = 0; i < 4; ++i) {
+			int x = gameLogicManager.getCurX() + ghostPiece.x(i);
+			int y = ghostY - ghostPiece.y(i);
+			renderingManager.drawGhostSquare(g, x * squareWidth(), boardTop + (BoardHeight - y - 1) * squareHeight());
 		}
 	}
 

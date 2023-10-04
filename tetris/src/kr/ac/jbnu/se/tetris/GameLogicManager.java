@@ -101,7 +101,6 @@ public class GameLogicManager {
     // 블럭이 바닥에 닿았나 확인하는 함수
     public void pieceDropped() {
        Tetrominoes[] boardArray = board.getBoardArray();
-        System.out.println(curPiece.getPieceShape());
         for (int i = 0; i < 4; ++i) {
             int x = curX + curPiece.x(i);
             int y =curY - curPiece.y(i);
@@ -234,15 +233,17 @@ public class GameLogicManager {
     }
     //*
 
-    public void printBoard() {
-        Tetrominoes[] boardArray = board.getBoardArray();
-        for (int i = 0; i < BoardHeight; i++) {
-            for (int j = 0; j < BoardWidth; j++) {
-                // 인덱스 변환하여 2차원 형태로 출력
-                System.out.print(boardArray[i * BoardWidth + j] + " ");
-            }
-            System.out.println();
+    public boolean ghostTryMove(Shape newPiece, int newX, int newY) {
+        for (int i = 0; i < 4; ++i) {
+            int x = newX + newPiece.x(i);
+            int y = newY - newPiece.y(i);
+            if (x < 0 || x >= BoardWidth || y < 0 || y >= BoardHeight)
+                return false;
+            if (shapeAt(x, y) != Tetrominoes.NoShape)
+                return false;
         }
+
+        return true;
     }
 
 }

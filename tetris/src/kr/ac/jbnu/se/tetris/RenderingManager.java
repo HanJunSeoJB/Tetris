@@ -33,4 +33,20 @@ public class RenderingManager {
         g.drawLine(x + board.squareWidth() - 1, y + board.squareHeight() - 1, x + board.squareWidth() - 1, y + 1);
     }
     //*
+
+    public void drawGhostSquare(Graphics g, int x, int y) {
+        Color semiTransparentWhite = new Color(255, 255, 255, 127); // R=255, G=255, B=255, A=127
+
+        g.setColor(semiTransparentWhite);
+        g.fillRect(x + 1, y + 1, board.squareWidth() - 2, board.squareHeight() - 2);
+
+        g.setColor(semiTransparentWhite.brighter());
+        g.drawLine(x, y + board.squareHeight() - 1, x, y);
+        g.drawLine(x, y, x + board.squareWidth() - 1, y);
+
+        g.setColor(semiTransparentWhite.darker());
+        g.drawLine(x + 1, y + board.squareHeight() - 1, x + board.squareWidth() - 1, y + board.squareHeight() - 1);
+        g.drawLine(x + board.squareWidth() - 1, y + board.squareHeight() - 1, x + board.squareWidth() - 1, y + 1);
+    }
+
 }

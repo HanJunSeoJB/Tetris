@@ -8,9 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+import javax.swing.*;
 
 public class Board extends JPanel implements ActionListener {
 	boolean isStarted = false; // 게임시작 여부 변수
@@ -185,7 +183,6 @@ public class Board extends JPanel implements ActionListener {
 			renderingManager.drawGhostSquare(g, x * squareWidth(), boardTop + (BoardHeight - y - 1) * squareHeight());
 		}
 	}
-
 
 	// 보드 초기화 함수
 	private void clearBoard() {

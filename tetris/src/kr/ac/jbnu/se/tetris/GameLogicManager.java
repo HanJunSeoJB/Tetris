@@ -15,6 +15,7 @@ public class GameLogicManager {
     private int BoardWidth;
     private int BoardHeight;
     private Shape curPiece;
+    private Shape nextPiece;
     private boolean isFallingFinished = false;
     //*
 
@@ -25,6 +26,8 @@ public class GameLogicManager {
     private final ShapeAndTetrominoesManager shapeAndTetrominoesManager;
     //private final EventManager eventManager;
     private final ConfigurationManager configurationManager;
+
+    NextPiecePanel nextPiecePanel;
 
     //*
 
@@ -43,6 +46,9 @@ public class GameLogicManager {
         return curPiece;
     }
 
+    public Shape getNextPiece() {
+        return nextPiece;
+    }
 
     public boolean isFallingFinished() {
         return isFallingFinished;
@@ -72,9 +78,11 @@ public class GameLogicManager {
     //*
 
     //* 클래스 초기화
-    public GameLogicManager(Board board) {
+    public GameLogicManager(Board board, NextPiecePanel nextPiecePanel) {
         this.board = board;
+        this.nextPiecePanel = nextPiecePanel;
         this.curPiece = new Shape();
+        this.nextPiece = new Shape();
         this.uiManager = board.getUIManager();
         this.shapeAndTetrominoesManager = new ShapeAndTetrominoesManager();
         this.timerManager = board.getTimerManager();
@@ -121,6 +129,7 @@ public class GameLogicManager {
 
         shapeAndTetrominoesManager.generateNewShape();
         curPiece = shapeAndTetrominoesManager.getCurrentShape();
+        nextPiece = shapeAndTetrominoesManager.getNextShape();
         curX = BoardWidth / 2 + 1;
         curY = BoardHeight - 1 + curPiece.minY();
 
@@ -130,6 +139,9 @@ public class GameLogicManager {
             isStarted = false;
            uiManager.updateStatusbar("game over");
         }
+
+        nextPiecePanel.updateMiniBoard(nextPiece);
+        nextPiecePanel.repaint();
     }
     //*
 

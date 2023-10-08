@@ -3,14 +3,26 @@ package kr.ac.jbnu.se.tetris;
 public class ShapeAndTetrominoesManager {
 
     private Shape currentShape;
+    private Shape nextShape;
 
     public ShapeAndTetrominoesManager() {
-        currentShape = new Shape();
+        generateNewShape();
+        generateNextShape();
     }
 
     // 새로운 Shape를 랜덤하게 생성하는 메서드
     public void generateNewShape() {
-        currentShape.setRandomShape();
+        currentShape = nextShape != null ? nextShape : new Shape();
+        generateNextShape();
+    }
+
+    private void generateNextShape() {
+        nextShape = new Shape();
+        nextShape.setRandomShape();
+    }
+
+    public Shape getNextShape() {
+        return nextShape;
     }
 
     // 현재 Shape를 회전시키는 메서드

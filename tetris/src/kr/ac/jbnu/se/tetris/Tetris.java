@@ -14,9 +14,11 @@ public class Tetris extends JFrame {
 	JLabel hold = new JLabel(hold_img);
 
 	JLabel statusbar;
+	NextPiecePanel nextPiecePanel;
 
 	public Tetris() {
 		statusbar = new JLabel(" 0");
+		this.nextPiecePanel = new NextPiecePanel();
 
 		hold.setBounds(0, 0, 220, 230);
 
@@ -50,8 +52,8 @@ public class Tetris extends JFrame {
 		TitlePanelN.setPreferredSize(new Dimension(200, 30));
 		TitlePanelN.setBackground(Color.LIGHT_GRAY);
 		TitlePanelN.setLayout(new BorderLayout());
-		TitlePanelN.setLayout(new BorderLayout());
 		TitlePanelN.setBorder(border);
+		NextPanel.add(nextPiecePanel, BorderLayout.CENTER);
 		NextPanel.add(TitlePanelN, BorderLayout.NORTH);
 
 		JLabel NextTitle = new JLabel("Next");

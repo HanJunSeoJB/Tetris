@@ -5,6 +5,10 @@ public class ConfigurationManager {
 
     private int boardWidth;
     private int boardHeight;
+
+    private int MiniBoardWidth;
+
+    private int MiniBoarHeight;
     private int delay;
 
     public ConfigurationManager() {
@@ -12,6 +16,8 @@ public class ConfigurationManager {
         this.boardWidth = 10;
         this.boardHeight = 22;
         this.delay = 400;
+        this.MiniBoardWidth = 4;
+        this.MiniBoarHeight = 4;
     }
 
     // 게임 설정을 로드하는 메소드 (예: 파일에서 불러오기)
@@ -24,14 +30,6 @@ public class ConfigurationManager {
         // TODO: 설정 값을 설정 파일에 저장하는 로직을 구현
     }
 
-    //* 게임 설정을 업데이트하는 메소드
-    public void updateConfiguration(int boardWidth, int boardHeight, int delay) {
-        this.boardWidth = boardWidth;
-        this.boardHeight = boardHeight;
-        this.delay = delay;
-    }
-    //*
-
     //* 각 설정에 대한 "getter" 메소드
     public int getBoardWidth() {
         return boardWidth;
@@ -43,6 +41,13 @@ public class ConfigurationManager {
 
     public int getDelay() {
         return delay;
+    }
+    public int getMiniBoardWidth() {
+        return MiniBoardWidth;
+    }
+
+    public int getMiniBoardHeight() {
+        return MiniBoarHeight;
     }
     //*
 }

@@ -3,20 +3,20 @@ package kr.ac.jbnu.se.tetris;
 // 상수 관리 클래스
 public class ConfigurationManager {
 
-    private int boardWidth;
-    private int boardHeight;
+    private int executionWidth;
+    private int excutionHeight;
 
     private int MiniBoardWidth;
-
     private int MiniBoarHeight;
+
     private int delay;
 
     public ConfigurationManager() {
         // 기본 설정 값으로 초기화
-        this.boardWidth = 10;
-        this.boardHeight = 22;
+        this.executionWidth = 10;
+        this.excutionHeight = 20;
         this.delay = 400;
-        this.MiniBoardWidth = 4;
+        this.MiniBoardWidth = 8;
         this.MiniBoarHeight = 4;
     }
 
@@ -32,11 +32,11 @@ public class ConfigurationManager {
 
     //* 각 설정에 대한 "getter" 메소드
     public int getBoardWidth() {
-        return boardWidth;
+        return executionWidth;
     }
 
     public int getBoardHeight() {
-        return boardHeight;
+        return excutionHeight;
     }
 
     public int getDelay() {

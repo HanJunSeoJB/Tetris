@@ -53,7 +53,14 @@ public class Tetris extends JFrame {
 		TitlePanelN.setBackground(Color.LIGHT_GRAY);
 		TitlePanelN.setLayout(new BorderLayout());
 		TitlePanelN.setBorder(border);
-		NextPanel.add(nextPiecePanel, BorderLayout.CENTER);
+
+		JPanel NextBlock = new JPanel();
+		NextBlock.setBorder(border);
+		NextBlock.setPreferredSize(new Dimension(200,100));
+		NextBlock.setBackground(Color.DARK_GRAY);
+		NextBlock.add(nextPiecePanel);
+
+		NextPanel.add(NextBlock, BorderLayout.CENTER);
 		NextPanel.add(TitlePanelN, BorderLayout.NORTH);
 
 		JLabel NextTitle = new JLabel("Next");

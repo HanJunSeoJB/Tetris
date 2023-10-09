@@ -6,17 +6,16 @@ import java.util.Arrays;
 
 public class NextPiecePanel extends JPanel {
 
-    int miniBoardSize = 4;
+    int miniBoardSize = 8;
     Tetrominoes[] miniBoard;
     final int MiniBoardWidth;
     final int MiniBoardHeight;
     private ConfigurationManager configurationManager;
 
-
     public NextPiecePanel() {
         this.configurationManager = new ConfigurationManager();
-        setPreferredSize(new Dimension(100, 100));
-        setBackground(Color.BLACK);
+        this.setPreferredSize(new Dimension(200, 100));
+        this.setBackground(Color.DARK_GRAY);
         MiniBoardWidth = configurationManager.getMiniBoardWidth();
         MiniBoardHeight = configurationManager.getMiniBoardHeight();
 
@@ -30,10 +29,14 @@ public class NextPiecePanel extends JPanel {
     }
 
     public void updateMiniBoard(Shape nextPiece) {
+        int MiniBoardWidth = configurationManager.getMiniBoardWidth();
+        int MiniBoardHeight = configurationManager.getBoardHeight();
+
         clearMiniBoard();
+
         for (int i = 0; i < 4; ++i) {
-            int x = nextPiece.x(i) + miniBoardSize / 2;  // 중앙 정렬
-            int y = nextPiece.y(i) + miniBoardSize / 2;  // 중앙 정렬
+            int x = (nextPiece.x(i) + miniBoardSize / 2);  // 중앙 정렬(x축)
+            int y = MiniBoardHeight - (nextPiece.y(i) + miniBoardSize/ 2) - 14;  // 중앙 정렬(y축)
 
             // miniBoard의 범위 내에 있는지 확인합니다.
             if (x >= 0 && x < miniBoardSize && y >= 0 && y < miniBoardSize) {
@@ -49,7 +52,6 @@ public class NextPiecePanel extends JPanel {
     int squareHeight() {
         return getHeight() / configurationManager.getMiniBoardHeight();
     }
-
     public Tetrominoes miniShapeAt(int x, int y) {
         return miniBoard[(y * MiniBoardWidth) + x];
     }
@@ -84,7 +86,7 @@ public class NextPiecePanel extends JPanel {
                 Tetrominoes shape = miniShapeAt(j, MiniBoardHeight - i - 1);
 
                 if (shape != Tetrominoes.NoShape)
-                    drawSquare(g, 0 + j * squareWidth(), MiniboardTop + i * squareHeight(), shape);
+                    drawSquare(g, 0 + j * squareWidth(), MiniboardTop + i * squareHeight() , shape);
             }
         }
     }

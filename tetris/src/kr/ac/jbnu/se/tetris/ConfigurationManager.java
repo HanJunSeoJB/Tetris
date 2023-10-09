@@ -7,16 +7,16 @@ public class ConfigurationManager {
     private int boardHeight;
 
     private int MiniBoardWidth;
-
     private int MiniBoarHeight;
+
     private int delay;
 
     public ConfigurationManager() {
         // 기본 설정 값으로 초기화
         this.boardWidth = 10;
-        this.boardHeight = 22;
+        this.boardHeight = 20;
         this.delay = 400;
-        this.MiniBoardWidth = 4;
+        this.MiniBoardWidth = 8;
         this.MiniBoarHeight = 4;
     }
 

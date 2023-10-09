@@ -81,7 +81,6 @@ public class IntroController implements MouseListener, MouseMotionListener {
             if(introModel.getCheckClicked() == 1) {
                 if(isWithinBounds(x, y, introModel.getSelect_gameX(), introModel.getSelect_gameY(), introModel.getSelect_gameWidth(), introModel.getSelect_gameHeight())) {
                     Tetris tetrisInstance = new Tetris();
-                    Board board = new Board(tetrisInstance);
                     /*Thread singleThread = new Thread(singleController);
                     singleThread.start();
                     soundModel.intoBgmStop();
@@ -93,12 +92,9 @@ public class IntroController implements MouseListener, MouseMotionListener {
                     frame.setVisible(true);*/
                     soundModel.intoBgmStop();
                     contentPane.remove(introView);
-                    contentPane.add(board);
+                    frame.dispose();
                     //frame.addKeyListener(new TAdapter(this.board));
-                    frame.setSize(300, 600);
-                    frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
-                    board.start();
+                    tetrisInstance.setVisible(true);
 
                     return;
                 } else if(isWithinBounds(x, y, introModel.getSelect_gameX(), introModel.getSelect_gameY() + introModel.getSelect_gameHeight() + introModel.getSelect_gameInterval(), introModel.getSelect_gameWidth(), introModel.getSelect_gameHeight())) {

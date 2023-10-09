@@ -29,6 +29,19 @@ public class SoundModel {
         clip.stop();
     }
     /***************************************************************/
+    // playBgm
+    public void playBgm() {
+        try {
+            ais = AudioSystem.getAudioInputStream(new File("src/sound/playbgm.wav"));
+            clip = AudioSystem.getClip();
+            clip.open(ais);
+            clip.start();
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    /***************************************************************/
+
     // victory
     public void victoryPlay() {
         try {

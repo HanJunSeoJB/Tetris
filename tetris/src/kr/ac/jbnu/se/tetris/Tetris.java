@@ -1,5 +1,7 @@
 package kr.ac.jbnu.se.tetris;
 
+import kr.ac.jbnu.se.tetris.Model.SoundModel;
+
 import java.awt.*;
 
 import javax.swing.*;
@@ -15,6 +17,8 @@ public class Tetris extends JFrame {
 
 	JLabel statusbar;
 	NextPiecePanel nextPiecePanel;
+
+	SoundModel soundModel = new SoundModel();
 
 	public Tetris() {
 		statusbar = new JLabel(" 0");
@@ -138,6 +142,8 @@ public class Tetris extends JFrame {
 		setTitle("Tetris");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
+
+		soundModel.playBgm();
 	}
 
 	public JLabel getStatusBar() {

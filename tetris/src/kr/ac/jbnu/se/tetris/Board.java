@@ -139,7 +139,7 @@ public class Board extends JPanel implements ActionListener {
 		}
 
 		for(int i = 0; i < this.BoardWidth; ++i) {
-			int x = 0 + i * this.squareWidth();
+			int x = i * this.squareWidth();
 			g.fillRect(x, boardTop, 1, size.height - boardTop);
 		}
 
@@ -149,7 +149,7 @@ public class Board extends JPanel implements ActionListener {
 			for (int j = 0; j < BoardWidth; ++j) {
 				Tetrominoes shape = gameLogicManager.shapeAt(j, BoardHeight - i - 1);
 				if (shape != Tetrominoes.NoShape)
-					renderingManager.drawSquare(g, 0 + j * squareWidth(), boardTop + i * squareHeight(), shape);
+					renderingManager.drawSquare(g, j * squareWidth(), boardTop + i * squareHeight(), shape);
 			}
 		}
 
@@ -157,7 +157,7 @@ public class Board extends JPanel implements ActionListener {
 			for (int i = 0; i < 4; ++i) {
 				int x = gameLogicManager.getCurX() + curPiece.x(i);
 				int y = gameLogicManager.getCurY() - curPiece.y(i);
-				renderingManager.drawSquare(g, 0 + x * squareWidth(), boardTop + (BoardHeight - y - 1) * squareHeight(),
+				renderingManager.drawSquare(g, x * squareWidth(), boardTop + (BoardHeight - y - 1) * squareHeight(),
 						curPiece.getShape());
 				renderGhostPiece(g);
 			}

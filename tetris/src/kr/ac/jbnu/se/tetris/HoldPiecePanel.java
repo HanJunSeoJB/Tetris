@@ -13,13 +13,12 @@ public class HoldPiecePanel extends JPanel {
 
     public HoldPiecePanel() {
         this.configurationManager = new ConfigurationManager();
-        this.setPreferredSize(new Dimension(200, 80));
+        this.setPreferredSize(new Dimension(170, 85));
         this.setBackground(Color.DARK_GRAY);
         holdBoardWidth = configurationManager.getHoldBoardWidth();
         holdBoardHeight = configurationManager.getHoldBoarHeight();
         holdBoard = new Tetrominoes[holdBoardWidth * holdBoardHeight];
         clearHoldBoard();
-
     }
 
     public void clearHoldBoard() {

@@ -14,14 +14,12 @@ public class NextPiecePanel extends JPanel {
 
     public NextPiecePanel() {
         this.configurationManager = new ConfigurationManager();
-        this.setPreferredSize(new Dimension(200, 100));
+        this.setPreferredSize(new Dimension(170, 85));
         this.setBackground(Color.DARK_GRAY);
         MiniBoardWidth = configurationManager.getMiniBoardWidth();
         MiniBoardHeight = configurationManager.getMiniBoardHeight();
-
         miniBoard = new Tetrominoes[MiniBoardWidth * MiniBoardHeight];
         clearMiniBoard();
-
     }
 
     public void clearMiniBoard() {

@@ -27,7 +27,7 @@ public class Tetris extends JFrame {
 		this.nextPiecePanel = new NextPiecePanel();
 		this.holdPiecePanel = new HoldPiecePanel();
 
-		hold.setBounds(0, 0, 220, 230);
+		hold.setBounds(0, 0, 220, 300); //hold에 표시되는 블록 크기?
 
 		Board board = new Board(this);
 		board.setPreferredSize(new Dimension(300, 600)); // 게임 보드의 크기 설정

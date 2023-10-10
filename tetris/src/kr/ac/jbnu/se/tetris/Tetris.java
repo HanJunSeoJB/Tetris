@@ -17,12 +17,14 @@ public class Tetris extends JFrame {
 
 	JLabel statusbar;
 	NextPiecePanel nextPiecePanel;
+	HoldPiecePanel holdPiecePanel;
 
 	SoundModel soundModel = new SoundModel();
 
 	public Tetris() {
 		statusbar = new JLabel(" 0");
 		this.nextPiecePanel = new NextPiecePanel();
+		this.holdPiecePanel = new HoldPiecePanel();
 
 		hold.setBounds(0, 0, 220, 230);
 
@@ -95,6 +97,16 @@ public class Tetris extends JFrame {
 		HoldPanel.setPreferredSize(new Dimension((executionWidth - 200) / 4,130));
 		HoldPanel.setLayout(new BorderLayout());
 		HoldPanel.setBorder(border);
+
+		// Hold 블럭 칸에 holdPiecePanel을 추가하는 JPanel 객체 생성
+		JPanel HoldBlock = new JPanel();
+		HoldBlock.setBorder(border);
+		HoldBlock.setPreferredSize(new Dimension(200, 100));  // 너비와 높이는 필요에 따라 조정
+		HoldBlock.setBackground(Color.DARK_GRAY);
+		HoldBlock.add(holdPiecePanel);  // holdPiecePanel을 HoldBlock에 추가
+
+		// HoldPanel의 중앙에 HoldBlock 추가
+		HoldPanel.add(HoldBlock, BorderLayout.CENTER);
 
 		JPanel TitlePanelH = new JPanel();
 		TitlePanelH.setPreferredSize(new Dimension(100,30));

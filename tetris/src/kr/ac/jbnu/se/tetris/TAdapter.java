@@ -31,7 +31,7 @@ public class TAdapter extends KeyAdapter {
                 board.handleKeyAction("right");
                 break;
             case KeyEvent.VK_DOWN:
-                board.handleKeyAction("rotateRight");
+                board.handleKeyAction("oneLineDown");
                 break;
             case KeyEvent.VK_UP:
                 board.handleKeyAction("rotateLeft");
@@ -41,7 +41,7 @@ public class TAdapter extends KeyAdapter {
                 break;
             case 'd':
             case 'D':
-                board.handleKeyAction("oneLineDown");
+                board.handleKeyAction("hold");
                 break;
         }
     }

@@ -8,6 +8,8 @@ public class ConfigurationManager {
 
     private int MiniBoardWidth;
     private int MiniBoarHeight;
+    private int holdBoardWidth;
+    private int holdBoarHeight;
 
     private int delay;
 
@@ -18,6 +20,8 @@ public class ConfigurationManager {
         this.delay = 400;
         this.MiniBoardWidth = 8;
         this.MiniBoarHeight = 4;
+        this.holdBoardWidth = 8;
+        this.holdBoarHeight = 4;
     }
 
     // 게임 설정을 로드하는 메소드 (예: 파일에서 불러오기)
@@ -48,6 +52,13 @@ public class ConfigurationManager {
 
     public int getMiniBoardHeight() {
         return MiniBoarHeight;
+    }
+    public int getHoldBoardWidth() {
+        return holdBoardWidth;
+    }
+
+    public int getHoldBoarHeight() {
+        return holdBoarHeight;
     }
     //*
 }

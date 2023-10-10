@@ -56,7 +56,7 @@ public class Board extends JPanel implements ActionListener {
 		//* 객체 초기화
 		this.timerManager = new TimerManager(this, delay);
 		this.uiManager = new UIManager(parent.getStatusBar());
-		this.gameLogicManager = new GameLogicManager(this, parent.nextPiecePanel);
+		this.gameLogicManager = new GameLogicManager(this, parent.nextPiecePanel, parent.holdPiecePanel);
 		this.renderingManager = new RenderingManager(this);
 		this.eventManager = new EventManager(this.gameLogicManager);
 		//*

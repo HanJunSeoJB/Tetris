@@ -16,6 +16,7 @@ public class GameLogicManager {
     private int BoardHeight;
     private Shape curPiece;
     private Shape nextPiece;
+    private Shape holdPiece;
     private boolean isFallingFinished = false;
     //*
 
@@ -28,6 +29,7 @@ public class GameLogicManager {
     private final ConfigurationManager configurationManager;
 
     NextPiecePanel nextPiecePanel;
+    HoldPiecePanel holdPiecePanel;
 
     //*
 
@@ -78,9 +80,10 @@ public class GameLogicManager {
     //*
 
     //* 클래스 초기화
-    public GameLogicManager(Board board, NextPiecePanel nextPiecePanel) {
+    public GameLogicManager(Board board, NextPiecePanel nextPiecePanel, HoldPiecePanel holdPiecePanel) {
         this.board = board;
         this.nextPiecePanel = nextPiecePanel;
+        this.holdPiecePanel = holdPiecePanel;
         this.curPiece = new Shape();
         this.nextPiece = new Shape();
         this.uiManager = board.getUIManager();
@@ -228,6 +231,8 @@ public class GameLogicManager {
     }
     //*
 
+
+
     //* 게임 정지 기능
     public void pause() {
         if (!isStarted)
@@ -256,5 +261,32 @@ public class GameLogicManager {
         }
         return true;
     }
+
+    public void hold() {
+        // 현재 블록을 임시 변수에 저장합니다.
+        Shape tempPiece = curPiece;
+
+        // 현재 블록을 홀드 영역에 저장합니다.
+        if (holdPiece == null) {
+            holdPiece = tempPiece;
+            newPiece();
+
+        } else {
+            curPiece = holdPiece;
+            holdPiece = tempPiece;
+            shapeAndTetrominoesManager.setCurrentShape(curPiece);
+            // 현재 블록의 위치를 초기화합니다.
+            curX = BoardWidth / 2 + 1;
+            curY = BoardHeight - 1 + curPiece.minY();
+        }
+        holdPiecePanel.updateHoldBoard(holdPiece);
+
+        // 현재 블록을 지웁니다.
+
+        // 보드를 업데이트하여 현재 블록을 지웁니다.
+        board.repaint();
+        holdPiecePanel.repaint();
+    }
+
 
 }

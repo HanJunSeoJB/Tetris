@@ -29,7 +29,6 @@ public class NextPiecePanel extends JPanel {
     }
 
     public void updateMiniBoard(Shape nextPiece) {
-        int MiniBoardWidth = configurationManager.getMiniBoardWidth();
         int MiniBoardHeight = configurationManager.getBoardHeight();
 
         clearMiniBoard();

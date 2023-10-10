@@ -40,6 +40,9 @@ public class  EventManager {
             case "oneLineDown":
                 gameLogicManager.oneLineDown();
                 break;
+            case "hold":
+                gameLogicManager.hold();
+                break;
             default:
                 throw new IllegalArgumentException("Unknown action: " + action);
         }

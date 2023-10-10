@@ -88,16 +88,22 @@ public class Tetris extends JFrame {
 
 		//왼쪽 패널 생성
 		JPanel fillerPanelW = new JPanel();
-		fillerPanelW.add(hold);
 		fillerPanelW.setPreferredSize(new Dimension((executionWidth - 200) / 2, 400));
 		fillerPanelW.setBackground(Color.black);
+		fillerPanelW.setLayout(new BorderLayout());
 
 		//Hold 블럭 칸
 		JPanel HoldPanel = new JPanel();
-		HoldPanel.setBackground(Color.DARK_GRAY);
-		HoldPanel.setPreferredSize(new Dimension((executionWidth - 200) / 4,130));
-		HoldPanel.setLayout(new BorderLayout());
 		HoldPanel.setBorder(border);
+		HoldPanel.setPreferredSize(new Dimension(200,130)); //200, 300
+		HoldPanel.setBackground(Color.DARK_GRAY);
+		HoldPanel.setLayout(new BorderLayout());
+
+		JPanel TitlePanelH = new JPanel();
+		TitlePanelH.setPreferredSize(new Dimension(200,30));
+		TitlePanelH.setBackground(Color.LIGHT_GRAY);
+		TitlePanelH.setLayout(new BorderLayout());
+		TitlePanelH.setBorder(border);
 
 		// Hold 블럭 칸에 holdPiecePanel을 추가하는 JPanel 객체 생성
 		JPanel HoldBlock = new JPanel();
@@ -107,13 +113,8 @@ public class Tetris extends JFrame {
 		HoldBlock.add(holdPiecePanel);  // holdPiecePanel을 HoldBlock에 추가
 
 		// HoldPanel의 중앙에 HoldBlock 추가
-		HoldPanel.add(HoldBlock, BorderLayout.CENTER);
-
-		JPanel TitlePanelH = new JPanel();
-		TitlePanelH.setPreferredSize(new Dimension(100,30));
-		TitlePanelH.setBackground(Color.LIGHT_GRAY);
-		TitlePanelH.setLayout(new BorderLayout());
-		TitlePanelH.setBorder(border);
+		HoldPanel.add(HoldBlock, BorderLayout.EAST); //Hold 패널 위치
+		HoldPanel.add(TitlePanelH, BorderLayout.NORTH);
 
 		JLabel HoldTitle = new JLabel("Hold");
 		HoldTitle.setFont(new Font("",Font.PLAIN,16));
@@ -122,8 +123,13 @@ public class Tetris extends JFrame {
 		HoldTitle.setHorizontalAlignment(JLabel.CENTER);
 
 		TitlePanelH.add(HoldTitle,BorderLayout.NORTH);
-		HoldPanel.add(TitlePanelH, BorderLayout.NORTH);
 		fillerPanelW.add(HoldPanel, BorderLayout.EAST);
+
+		JPanel jPanelW = new JPanel();
+		jPanelW.setPreferredSize(new Dimension(100, 100)); //height
+		jPanelW.setBackground(Color.BLACK);
+
+		fillerPanelW.add(jPanelW, BorderLayout.SOUTH);
 
 		//아래쪽 패널 생성
 		JPanel fillerPanelS = new JPanel();

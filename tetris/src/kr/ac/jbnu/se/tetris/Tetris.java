@@ -95,7 +95,7 @@ public class Tetris extends JFrame {
 		//Hold 블럭 칸
 		JPanel HoldPanel = new JPanel();
 		HoldPanel.setBorder(border);
-		HoldPanel.setPreferredSize(new Dimension(200,175)); //200, 300
+		HoldPanel.setPreferredSize(new Dimension(200,175)); //아래의 jPanelW(여백) 패널과 함께 크기 조절
 		HoldPanel.setBackground(Color.DARK_GRAY);
 		HoldPanel.setLayout(new BorderLayout());
 
@@ -126,7 +126,7 @@ public class Tetris extends JFrame {
 		fillerPanelW.add(HoldPanel, BorderLayout.EAST);
 
 		JPanel jPanelW = new JPanel();
-		jPanelW.setPreferredSize(new Dimension(100, 225)); //height
+		jPanelW.setPreferredSize(new Dimension(100, 225)); //위의 HoldPanel 패널과 함께 크기 조절
 		jPanelW.setBackground(Color.BLACK);
 
 		fillerPanelW.add(jPanelW, BorderLayout.SOUTH);

@@ -81,7 +81,7 @@ public class HoldPiecePanel extends JPanel {
                 Tetrominoes shape = holdShapeAt(j, holdBoardHeight - i - 1);
 
                 if (shape != Tetrominoes.NoShape)
-                    drawSquare(g, 0 + j * squareWidth(), holdBoardTop + i * squareHeight() , shape);
+                    drawSquare(g, j * squareWidth(), holdBoardTop + i * squareHeight() , shape);
             }
         }
     }

@@ -14,7 +14,6 @@ public class UIManager {
     }
 
     public void updateStatusbar(String text) {
-        System.out.println("Updating status bar with text: " + text); // Log
         statusbar.setText(text);
     }
 

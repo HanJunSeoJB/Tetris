@@ -12,6 +12,10 @@ public class GameLogicManager {
     private int curX = 0;
     private int curY = 0;
 
+    private int level = 1;
+
+    private int score = 0;
+
     private int BoardWidth;
     private int BoardHeight;
     private Shape curPiece;
@@ -109,6 +113,64 @@ public class GameLogicManager {
     }
     //*
 
+    // 레벨에 따른 점수 배수를 반환하는 메서드
+    public int getScoreMultiplier(int level) {
+        switch (level) {
+            case 2:
+                return 20;
+            case 3:
+                return 50;
+            case 4:
+                return 100;
+            case 5:
+                return 500;
+            default:
+                return 10;  // 기본 점수 배수는 10입니다.
+        }
+    }
+
+    //* 레벨 관리 함수
+    public void updateLevel(int score) {
+        if (score >= 10000) {
+            level = 6;
+        } else if (score >= 5000) {
+            level = 5;
+        } else if (score >= 2500) {
+            level = 4;
+        } else if (score >= 500) {
+            level = 3;
+        } else if (score >= 100) {
+            level = 2;
+        } else {
+            level = 1;
+        }
+        adjustSpeed(level);
+    }
+    //*
+
+    public void adjustSpeed(int level) {
+        int delay = 400;  // Default delay
+        switch(level) {
+            case 2:
+                delay = 300;
+                break;
+            case 3:
+                delay = 200;
+                break;
+            case 4:
+                delay = 150;
+                break;
+            case 5:
+                delay = 100;
+                break;
+            case 6:
+                delay = 50;
+                break;
+        }
+        timerManager.setDelay(delay);
+    }
+
+
     // 블럭이 바닥에 닿았나 확인하는 함수
     public void pieceDropped() {
        Tetrominoes[] boardArray = board.getBoardArray();
@@ -176,8 +238,10 @@ public class GameLogicManager {
         }
 
         if (numFullLines > 0) {
-            numLinesRemoved += numFullLines;
-            uiManager.updateScore(numLinesRemoved);
+            int scoreMultiplier = getScoreMultiplier(level);  // 레벨에 따른 점수 배수를 가져옵니다.
+            score += numFullLines * scoreMultiplier;  // 줄의 수와 점수 배수를 곱하여 점수를 업데이트합니다.
+            updateLevel(score);
+            uiManager.updateScore(score);
             isFallingFinished = true;
             curPiece.setShape(Tetrominoes.NoShape);
             board.repaint();

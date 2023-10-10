@@ -12,6 +12,7 @@ public class Tetris extends JFrame {
 	final int executionWidth = 800;
 	final int executionHeight = 800;
 
+
 	ImageIcon hold_img = new ImageIcon("src/image/hold.png");
 	JLabel hold = new JLabel(hold_img);
 

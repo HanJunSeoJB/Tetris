@@ -80,7 +80,7 @@ public class IntroController implements MouseListener, MouseMotionListener {
             // SINGLE PLAY & MULTI PLAY
             if(introModel.getCheckClicked() == 1) {
                 if(isWithinBounds(x, y, introModel.getSelect_gameX(), introModel.getSelect_gameY(), introModel.getSelect_gameWidth(), introModel.getSelect_gameHeight())) {
-                    Tetris tetrisInstance = new Tetris();
+                    Tetris tetrisInstance = new Tetris(false);
                     /*Thread singleThread = new Thread(singleController);
                     singleThread.start();
                     soundModel.intoBgmStop();

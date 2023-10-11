@@ -22,6 +22,7 @@ public class Board extends JPanel implements ActionListener {
 	private final GameLogicManager gameLogicManager;
 	private final RenderingManager renderingManager;
 	private final EventManager eventManager;
+
 	ConfigurationManager configManager = new ConfigurationManager();
 	//*
 	final int BoardWidth = configManager.getBoardWidth(); // 보드 넓이 초기화
@@ -51,12 +52,12 @@ public class Board extends JPanel implements ActionListener {
 	//*
 
 
-	public Board(Tetris parent) {
+	public Board(Tetris parent, NextPiecePanel nextPiecePanel, HoldPiecePanel holdPiecePanel,JLabel statusbar) {
 
 		//* 객체 초기화
 		this.timerManager = new TimerManager(this, delay);
-		this.uiManager = new UIManager(parent.getStatusBar());
-		this.gameLogicManager = new GameLogicManager(this, parent.nextPiecePanel, parent.holdPiecePanel);
+		this.uiManager = new UIManager(statusbar);
+		this.gameLogicManager = new GameLogicManager(this, nextPiecePanel, holdPiecePanel);
 		this.renderingManager = new RenderingManager(this);
 		this.eventManager = new EventManager(this.gameLogicManager);
 		//*

@@ -208,6 +208,7 @@ public class Tetris extends JFrame {
 
 		playerPanel.add(containerPanel, BorderLayout.CENTER);
 
+
 		board.start();
 
 		return playerPanel;
@@ -220,7 +221,7 @@ public class Tetris extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		Tetris game = new Tetris(false);
+		Tetris game = new Tetris(true);
 		game.setVisible(true);
 	}
 }

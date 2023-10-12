@@ -46,11 +46,11 @@ public class Tetris extends JFrame {
 	private JPanel createFillerPanelS(JLabel statusbar) {
 		this.statusbar = statusbar;
 		JPanel fillerPanelS = new JPanel();
-		fillerPanelS.setPreferredSize(new Dimension(executionWidth, (executionHeight - 400) / 2));
+		fillerPanelS.setPreferredSize(new Dimension(isMultiplayer ? executionWidth / 2 : executionWidth, (executionHeight - 400) / 2));
 		fillerPanelS.setBackground(Color.black );
 
 		JPanel Score = new JPanel();
-		Score.setPreferredSize(new Dimension((executionWidth - 400) / 2, 40));
+		Score.setPreferredSize(new Dimension(isMultiplayer ? (executionWidth - 400) / 4 : (executionWidth - 400) / 2, 40));
 		Score.setLayout(new BorderLayout());
 		Score.setBackground(Color.LIGHT_GRAY);
 
@@ -67,7 +67,7 @@ public class Tetris extends JFrame {
 	private JPanel createFillerPanelW(EtchedBorder border, HoldPiecePanel holdPiecePanel) {
 		this.holdPiecePanel = holdPiecePanel;
 		JPanel fillerPanelW = new JPanel();
-		fillerPanelW.setPreferredSize(new Dimension((executionWidth - 200) / 2, 400));
+		fillerPanelW.setPreferredSize(new Dimension(isMultiplayer ? (executionWidth - 200) / 4 : (executionWidth - 200) / 2, 400));
 		fillerPanelW.setBackground(Color.black);
 		fillerPanelW.setLayout(new BorderLayout());
 
@@ -115,7 +115,7 @@ public class Tetris extends JFrame {
 	private JPanel createFillerPanelE(EtchedBorder border, NextPiecePanel nextPiecePanel) {
 		this.nextPiecePanel = nextPiecePanel;
 		JPanel fillerPanelE = new JPanel();
-		fillerPanelE.setPreferredSize(new Dimension((executionWidth - 200) / 2, 400));
+		fillerPanelE.setPreferredSize(new Dimension(isMultiplayer ? (executionWidth - 200) / 4 : (executionWidth - 200) / 2, 400));
 		fillerPanelE.setBackground(Color.black);
 		fillerPanelE.setLayout(new BorderLayout());
 
@@ -160,7 +160,7 @@ public class Tetris extends JFrame {
 
 	private JPanel createFillerPanelN() {
 		JPanel fillerPanelN = new JPanel();
-		fillerPanelN.setPreferredSize(new Dimension(executionWidth, (executionHeight - 400) / 2));
+		fillerPanelN.setPreferredSize(new Dimension(isMultiplayer ? executionWidth / 2 : executionWidth, (executionHeight - 400) / 2));
 		fillerPanelN.setBackground(Color.black);
 		return fillerPanelN;
 	}
@@ -174,15 +174,19 @@ public class Tetris extends JFrame {
 		player1Panel = createPlayerPanel();
 		player2Panel = createPlayerPanel();
 
+
 		JPanel multiplayerPanel = new JPanel(new GridLayout(1, 2));
 		multiplayerPanel.add(player1Panel);
 		multiplayerPanel.add(player2Panel);
 
 		add(multiplayerPanel, BorderLayout.CENTER);
+
+
 	}
 
 	private JPanel createPlayerPanel() {
 		JPanel playerPanel = new JPanel(new BorderLayout());
+
 
 		// components initialization
 		JLabel statusbar = new JLabel(" 0");
@@ -208,12 +212,12 @@ public class Tetris extends JFrame {
 
 		playerPanel.add(containerPanel, BorderLayout.CENTER);
 
-
 		board.start();
+
+
 
 		return playerPanel;
 	}
-
 
 
 	public JLabel getStatusBar() {

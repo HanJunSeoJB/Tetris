@@ -24,7 +24,7 @@ public class TAdapter extends KeyAdapter {
             return;
 
         switch (keycode) {
-            case KeyEvent.VK_LEFT:
+            case KeyEvent.VK_LgitEFT:
                 board.handleKeyAction("left");
                 break;
             case KeyEvent.VK_RIGHT:

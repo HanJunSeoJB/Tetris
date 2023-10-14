@@ -29,15 +29,14 @@ public class HoldPiecePanel extends JPanel {
         clearHoldBoard();
 
         for (int i = 0; i < 4; ++i) {
-            int x = holdPiece.x(i) + holdBoardWidth / 2;  // 중앙 정렬(x축)
-            int y = holdBoardHeight - 1 - (holdPiece.y(i) + holdBoardHeight / 2);
+            int x = (holdPiece.x(i) + holdBoardWidth / 2);  // 중앙 정렬(x축)
+            int y = holdBoardHeight - (holdPiece.y(i) + holdBoardHeight / 2) - 1;  // 중앙 정렬(y축), -1은 배열 인덱스 조정을 위해 추가
 
             // holdBoard의 범위 내에 있는지 확인합니다.
             if (x >= 0 && x < holdBoardWidth && y >= 0 && y < holdBoardHeight) {
                 holdBoard[(y * holdBoardWidth) + x] = holdPiece.getShape();
             }
         }
-
     }
 
     int squareWidth() {

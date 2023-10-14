@@ -166,13 +166,13 @@ public class Tetris extends JFrame {
 	}
 
 	public void singlePlay() {
-		player1Panel = createPlayerPanel();
+		player1Panel = createPlayerPanel(1);
 		add(player1Panel, BorderLayout.CENTER);
 	}
 
 	public void multiPlay() {
-		player1Panel = createPlayerPanel();
-		player2Panel = createPlayerPanel();
+		player1Panel = createPlayerPanel(1);
+		player2Panel = createPlayerPanel(2);
 
 
 		JPanel multiplayerPanel = new JPanel(new GridLayout(1, 2));
@@ -184,7 +184,7 @@ public class Tetris extends JFrame {
 
 	}
 
-	private JPanel createPlayerPanel() {
+	private JPanel createPlayerPanel(int playerNum) {
 		JPanel playerPanel = new JPanel(new BorderLayout());
 
 
@@ -194,7 +194,7 @@ public class Tetris extends JFrame {
 		HoldPiecePanel holdPiecePanel = new HoldPiecePanel();
 
 		// Board
-		Board board = new Board(this, nextPiecePanel, holdPiecePanel, statusbar);
+		Board board = new Board(this, nextPiecePanel, holdPiecePanel, statusbar, playerNum);
 		board.setPreferredSize(new Dimension(300, 600)); // 게임 보드의 크기 설정
 
 		// EtchedBorder
@@ -225,7 +225,7 @@ public class Tetris extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		Tetris game = new Tetris(true);
+		Tetris game = new Tetris(false);
 		game.setVisible(true);
 	}
 }

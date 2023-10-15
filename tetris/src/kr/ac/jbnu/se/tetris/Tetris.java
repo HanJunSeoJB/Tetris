@@ -172,18 +172,18 @@ public class Tetris extends JFrame {
 		LevelTitlePanel.add(LevelTitle, BorderLayout.WEST);
 		LevelPanel.add(LevelTitlePanel, BorderLayout.NORTH);
 
-		//Total Score 패널
-		JPanel TotalScorePanel = new JPanel();
-		TotalScorePanel.setPreferredSize(new Dimension(200,50));
-		TotalScorePanel.setBackground(Color.DARK_GRAY);
-		TotalScorePanel.setBorder(border);
+		//Best Score 패널
+		JPanel BestScorePanel = new JPanel();
+		BestScorePanel.setPreferredSize(new Dimension(200,50));
+		BestScorePanel.setBackground(Color.DARK_GRAY);
+		BestScorePanel.setBorder(border);
 
-		JLabel TotalScore = new JLabel("Total Score");
-		TotalScore.setFont(new Font("",Font.BOLD,24));
-		TotalScore.setForeground(Color.GRAY);
+		JLabel BestScore = new JLabel("Best Score");
+		BestScore.setFont(new Font("",Font.BOLD,24));
+		BestScore.setForeground(Color.GRAY);
 
-		TotalScorePanel.add(TotalScore, BorderLayout.WEST);
-		UnderNextPanel.add(TotalScorePanel, BorderLayout.CENTER);
+		BestScorePanel.add(BestScore, BorderLayout.WEST);
+		UnderNextPanel.add(BestScorePanel, BorderLayout.CENTER);
 
 		NextPanel.add(UnderNextPanel, BorderLayout.SOUTH);
 		return fillerPanelE;

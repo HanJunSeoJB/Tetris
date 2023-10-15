@@ -20,14 +20,14 @@ public class SingleView extends JPanel {
     // SingleView 생성자
     public SingleView(SingleModel singleModel) {
         this.singleModel = singleModel;
-        back = new ImageIcon("src/image/single_play.png");
-        bar[0] = new ImageIcon("src/image/bar1.png");
-        bar[1] = new ImageIcon("src/image/bar2.png");
-        bar[2] = new ImageIcon("src/image/bar3.png");
-        bar[3] = new ImageIcon("src/image/bar4.png");
-        bar[4] = new ImageIcon("src/image/bar5.png");
-        bar[5] = new ImageIcon("src/image/bar6.png");
-        bar[6] = new ImageIcon("src/image/bar7.png");
+        back = new ImageIcon("tetris/src/image/single_play.png");
+        bar[0] = new ImageIcon("tetris/src/image/bar1.png");
+        bar[1] = new ImageIcon("tetris/src/image/bar2.png");
+        bar[2] = new ImageIcon("tetris/src/image/bar3.png");
+        bar[3] = new ImageIcon("tetris/src/image/bar4.png");
+        bar[4] = new ImageIcon("tetris/src/image/bar5.png");
+        bar[5] = new ImageIcon("tetris/src/image/bar6.png");
+        bar[6] = new ImageIcon("tetris/src/image/bar7.png");
     }
     /***************************************************************/
     // paint 메소드 : singleplay 화면을 그려줌

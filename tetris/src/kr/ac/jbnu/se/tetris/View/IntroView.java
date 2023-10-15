@@ -19,20 +19,20 @@ public class IntroView extends JPanel {
     // IntroView 생성자
     public IntroView(IntroModel introModel) {
         this.introModel = introModel;
-        intro = new ImageIcon("src/image/intro.png");
-        multi_start = new ImageIcon("src/image/multi_start.png");
-        how_to_start = new ImageIcon("src/image/how_to_play.png");
-        menu[0] = new ImageIcon("src/image/menu1.png");
-        menu[1] = new ImageIcon("src/image/menu2.png");
-        menu[2] = new ImageIcon("src/image/menu3.png");
-        menu[3] = new ImageIcon("src/image/menu4.png");
-        menu_click[0] = new ImageIcon("src/image/menu1_click.png");
-        menu_click[1] = new ImageIcon("src/image/menu2_click.png");
-        menu_click[2] = new ImageIcon("src/image/menu3_click.png");
-        menu_click[3] = new ImageIcon("src/image/menu4_click.png");
-        select_game[0] = new ImageIcon("src/image/select_game.png");
-        select_game[1] = new ImageIcon("src/image/select_game_click1.png");
-        select_game[2] = new ImageIcon("src/image/select_game_click2.png");
+        intro = new ImageIcon("tetris/src/image/intro.png");
+        multi_start = new ImageIcon("tetris/src/image/multi_start.png");
+        how_to_start = new ImageIcon("tetris/src/image/how_to_play.png");
+        menu[0] = new ImageIcon("tetris/src/image/menu1.png");
+        menu[1] = new ImageIcon("tetris/src/image/menu2.png");
+        menu[2] = new ImageIcon("tetris/src/image/menu3.png");
+        menu[3] = new ImageIcon("tetris/src/image/menu4.png");
+        menu_click[0] = new ImageIcon("tetris/src/image/menu1_click.png");
+        menu_click[1] = new ImageIcon("tetris/src/image/menu2_click.png");
+        menu_click[2] = new ImageIcon("tetris/src/image/menu3_click.png");
+        menu_click[3] = new ImageIcon("tetris/src/image/menu4_click.png");
+        select_game[0] = new ImageIcon("tetris/src/image/select_game.png");
+        select_game[1] = new ImageIcon("tetris/image/select_game_click1.png");
+        select_game[2] = new ImageIcon("tetris/src/image/select_game_click2.png");
     }
 
     /***************************************************************/

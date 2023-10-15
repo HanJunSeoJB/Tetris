@@ -15,7 +15,8 @@ public class SoundModel {
     // intro bgm
     public void introBgmPlay() {
         try {
-            ais = AudioSystem.getAudioInputStream(new File("src/sound/bgm.wav"));
+            ais = AudioSystem.getAudioInputStream(new File("tetris/src/sound/bgm.wav"));
+            //"src/sound/bgm.wav"
             clip = AudioSystem.getClip();
             clip.open(ais);
             clip.start();
@@ -32,7 +33,7 @@ public class SoundModel {
     // playBgm
     public void playBgm() {
         try {
-            ais = AudioSystem.getAudioInputStream(new File("src/sound/playbgm.wav"));
+            ais = AudioSystem.getAudioInputStream(new File("tetris/src/sound/playbgm.wav"));
             clip = AudioSystem.getClip();
             clip.open(ais);
             clip.start();
@@ -45,7 +46,7 @@ public class SoundModel {
     // victory
     public void victoryPlay() {
         try {
-            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("sound/victory.wav"));
+            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("tetris/sound/victory.wav"));
             Clip clip = AudioSystem.getClip();
             clip.open(ais);
             clip.start();
@@ -57,7 +58,7 @@ public class SoundModel {
     // lose
     public void losePlay() {
         try {
-            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("sound/lose.wav"));
+            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("tetris/sound/lose.wav"));
             Clip clip = AudioSystem.getClip();
             clip.open(ais);
             clip.start();
@@ -69,7 +70,7 @@ public class SoundModel {
     // menu click
     public void menuClickPlay() {
         try {
-            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("sound/menu_click.wav"));
+            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("tetris/sound/menu_click.wav"));
             Clip clip = AudioSystem.getClip();
             clip.open(ais);
             clip.start();
@@ -81,7 +82,7 @@ public class SoundModel {
     // move block
     public void moveBlockPlay() {
         try {
-            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("sound/move_block.wav"));
+            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("tetris/sound/move_block.wav"));
             Clip clip = AudioSystem.getClip();
             clip.open(ais);
             clip.start();
@@ -93,7 +94,7 @@ public class SoundModel {
     // clear block
     public void clearBlockPlay() {
         try {
-            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("sound/clear_block.wav"));
+            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("tetris/sound/clear_block.wav"));
             Clip clip = AudioSystem.getClip();
             clip.open(ais);
             clip.start();

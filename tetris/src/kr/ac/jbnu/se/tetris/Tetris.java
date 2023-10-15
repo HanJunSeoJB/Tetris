@@ -30,7 +30,7 @@ public class Tetris extends JFrame {
 		this.executionWidth = isMultiplayer ? 1600 : 800;
 		this.executionHeight = 800;
 
-		if (isMultiplayer) {
+		if (isMultiPlayer) {
 			multiPlay();
 		} else {
 			singlePlay();
@@ -68,7 +68,7 @@ public class Tetris extends JFrame {
 		this.holdPiecePanel = holdPiecePanel;
 		JPanel fillerPanelW = new JPanel();
 		fillerPanelW.setPreferredSize(new Dimension(isMultiplayer ? (executionWidth - 200) / 4 : (executionWidth - 200) / 2, 400));
-		fillerPanelW.setBackground(Color.black);
+		fillerPanelW.setBackground(Color.BLACK);
 		fillerPanelW.setLayout(new BorderLayout());
 
 		//Hold 블럭 칸
@@ -115,13 +115,13 @@ public class Tetris extends JFrame {
 	private JPanel createFillerPanelE(EtchedBorder border, NextPiecePanel nextPiecePanel) {
 		this.nextPiecePanel = nextPiecePanel;
 		JPanel fillerPanelE = new JPanel();
-		fillerPanelE.setPreferredSize(new Dimension(isMultiplayer ? (executionWidth - 200) / 4 : (executionWidth - 200) / 2, 400));
+		fillerPanelE.setPreferredSize(new Dimension(isMultiplayer ? (executionWidth - 200) / 4 : (executionWidth - 200) / 2, 200));
 		fillerPanelE.setBackground(Color.black);
 		fillerPanelE.setLayout(new BorderLayout());
 
 		JPanel NextPanel = new JPanel();
-		NextPanel.setBorder(border);
-		NextPanel.setPreferredSize(new Dimension(200,300));
+		//NextPanel.setBorder(border);
+		NextPanel.setPreferredSize(new Dimension(200,200));
 		NextPanel.setBackground(Color.DARK_GRAY);
 		NextPanel.setLayout(new BorderLayout());
 
@@ -149,12 +149,43 @@ public class Tetris extends JFrame {
 
 		fillerPanelE.add(NextPanel, BorderLayout.WEST);
 
-		//Next 패널 밑 여백
-		JPanel jPanelE = new JPanel();
-		jPanelE.setPreferredSize(new Dimension(100,60));
-		jPanelE.setBackground(Color.BLACK);
+		//Next 패널 아래(Level, TotalScore)
+		JPanel UnderNextPanel = new JPanel();
+		UnderNextPanel.setPreferredSize(new Dimension(100, 100));
+		UnderNextPanel.setBackground(Color.BLACK);
 
-		fillerPanelE.add(jPanelE, BorderLayout.SOUTH);
+		//Level 패널
+		JPanel LevelPanel = new JPanel();
+		LevelPanel.setPreferredSize(new Dimension(200, 50));
+		LevelPanel.setBackground(Color.WHITE);
+		LevelPanel.setLayout(new BorderLayout());
+		UnderNextPanel.add(LevelPanel, BorderLayout.SOUTH);
+
+		JPanel LevelTitlePanel = new JPanel();
+		LevelTitlePanel.setPreferredSize(new Dimension(200,50));
+		LevelTitlePanel.setBackground(Color.DARK_GRAY);
+		LevelTitlePanel.setBorder(border);
+
+		JLabel LevelTitle = new JLabel("Level");
+		LevelTitle.setFont(new Font("",Font.BOLD, 24));
+		LevelTitle.setForeground(Color.GRAY);
+		LevelTitlePanel.add(LevelTitle, BorderLayout.WEST);
+		LevelPanel.add(LevelTitlePanel, BorderLayout.NORTH);
+
+		//Best Score 패널
+		JPanel BestScorePanel = new JPanel();
+		BestScorePanel.setPreferredSize(new Dimension(200,50));
+		BestScorePanel.setBackground(Color.DARK_GRAY);
+		BestScorePanel.setBorder(border);
+
+		JLabel BestScore = new JLabel("Best Score");
+		BestScore.setFont(new Font("",Font.BOLD,24));
+		BestScore.setForeground(Color.GRAY);
+
+		BestScorePanel.add(BestScore, BorderLayout.WEST);
+		UnderNextPanel.add(BestScorePanel, BorderLayout.CENTER);
+
+		NextPanel.add(UnderNextPanel, BorderLayout.SOUTH);
 		return fillerPanelE;
 	}
 

@@ -6,9 +6,11 @@ import java.awt.event.KeyEvent;
 //키보드 액션 처리 클래스
 public class TAdapter extends KeyAdapter {
     private final Board board;
+    private final int playerNum;
 
-    public TAdapter(Board board) {
+    public TAdapter(Board board, int playerNum) {
         this.board = board;
+        this.playerNum = playerNum;
     }
 
     //* 키보드 액션 처리 함수

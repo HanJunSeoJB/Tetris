@@ -31,7 +31,7 @@ public class IntroView extends JPanel {
         menu_click[2] = new ImageIcon("tetris/src/image/menu3_click.png");
         menu_click[3] = new ImageIcon("tetris/src/image/menu4_click.png");
         select_game[0] = new ImageIcon("tetris/src/image/select_game.png");
-        select_game[1] = new ImageIcon("tetris//image/select_game_click1.png");
+        select_game[1] = new ImageIcon("tetris/image/select_game_click1.png");
         select_game[2] = new ImageIcon("tetris/src/image/select_game_click2.png");
     }
 

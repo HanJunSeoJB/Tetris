@@ -15,7 +15,7 @@ public class SoundModel {
     // intro bgm
     public void introBgmPlay() {
         try {
-            ais = AudioSystem.getAudioInputStream(new File("C://Users//Kim//Desktop//소스코드분석//Tetris//tetris//src/sound/bgm.wav"));
+            ais = AudioSystem.getAudioInputStream(new File("tetris/src/sound/bgm.wav"));
             //"src/sound/bgm.wav"
             clip = AudioSystem.getClip();
             clip.open(ais);

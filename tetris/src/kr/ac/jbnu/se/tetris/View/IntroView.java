@@ -11,8 +11,8 @@ public class IntroView extends JPanel {
     // 멤버변수
     IntroModel introModel;
     ImageIcon intro, multi_start, how_to_start;
-    ImageIcon[] menu = new ImageIcon[4];
-    ImageIcon[] menu_click = new ImageIcon[4];
+    ImageIcon[] menu = new ImageIcon[3];
+    ImageIcon[] menu_click = new ImageIcon[3];
     ImageIcon[] select_game = new ImageIcon[3];
 
     /***************************************************************/
@@ -24,14 +24,12 @@ public class IntroView extends JPanel {
         how_to_start = new ImageIcon("tetris/src/image/how_to_play.png");
         menu[0] = new ImageIcon("tetris/src/image/menu1.png");
         menu[1] = new ImageIcon("tetris/src/image/menu2.png");
-        menu[2] = new ImageIcon("tetris/src/image/menu3.png");
-        menu[3] = new ImageIcon("tetris/src/image/menu4.png");
+        menu[2] = new ImageIcon("tetris/src/image/menu4.png");
         menu_click[0] = new ImageIcon("tetris/src/image/menu1_click.png");
         menu_click[1] = new ImageIcon("tetris/src/image/menu2_click.png");
-        menu_click[2] = new ImageIcon("tetris/src/image/menu3_click.png");
-        menu_click[3] = new ImageIcon("tetris/src/image/menu4_click.png");
+        menu_click[2] = new ImageIcon("tetris/src/image/menu4_click.png");
         select_game[0] = new ImageIcon("tetris/src/image/select_game.png");
-        select_game[1] = new ImageIcon("tetris/image/select_game_click1.png");
+        select_game[1] = new ImageIcon("tetris/src/image/select_game_click1.png");
         select_game[2] = new ImageIcon("tetris/src/image/select_game_click2.png");
     }
 
@@ -46,9 +44,6 @@ public class IntroView extends JPanel {
                 break;
             case 2:
                 g.drawImage(menu_click[1].getImage(), introModel.getMenuX(), introModel.getMenuY() + introModel.getMenuInterval(), introModel.getMenuWidth(), introModel.getMenuHeight(), null);
-                break;
-            case 3:
-                g.drawImage(menu_click[2].getImage(), introModel.getMenuX(), introModel.getMenuY() + (2 * introModel.getMenuInterval()), introModel.getMenuWidth(), introModel.getMenuHeight(), null);
                 break;
             case 4:
                 g.drawImage(menu_click[3].getImage(), introModel.getMenuX(), introModel.getMenuY() + (3 * introModel.getMenuInterval()), introModel.getMenuWidth(), introModel.getMenuHeight(), null);

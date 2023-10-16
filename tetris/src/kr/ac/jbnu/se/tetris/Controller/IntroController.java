@@ -81,39 +81,25 @@ public class IntroController implements MouseListener, MouseMotionListener {
             if(introModel.getCheckClicked() == 1) {
                 if(isWithinBounds(x, y, introModel.getSelect_gameX(), introModel.getSelect_gameY(), introModel.getSelect_gameWidth(), introModel.getSelect_gameHeight())) {
                     Tetris tetrisInstance = new Tetris(false);
-                    /*Thread singleThread = new Thread(singleController);
-                    singleThread.start();
-                    soundModel.intoBgmStop();
-                    soundModel.menuClickPlay();
-                    contentPane.remove(introView);
-                    contentPane.add(singleView);
-                    frame.addKeyListener(singleController);
-                    frame.setSize(1200 + 15, 901 + 35);
-                    frame.setVisible(true);*/
                     soundModel.intoBgmStop();
                     contentPane.remove(introView);
                     frame.dispose();
-                    //frame.addKeyListener(new TAdapter(this.board));
                     tetrisInstance.setVisible(true);
-
-                    return;
-                } else if(isWithinBounds(x, y, introModel.getSelect_gameX(), introModel.getSelect_gameY() + introModel.getSelect_gameHeight() + introModel.getSelect_gameInterval(), introModel.getSelect_gameWidth(), introModel.getSelect_gameHeight())) {
-                    introModel.setCheckMulti(1);
-                    introView.repaint();
-                    introView.add(nameField);
-                    nameField.setLocation(240, 600);
-                    nameField.setSize(330, 60);
-                    nameField.setFont(new Font("Courier", Font.BOLD, 22));
-                    introView.removeMouseMotionListener(this);
                     return;
                 }
+                else if(y >= 320 && y <= 383) {
+                    System.out.println("multy");
+                    Tetris tetrisInstance = new Tetris(true);
+                    soundModel.intoBgmStop();
+                    contentPane.remove(introView);
+                    frame.dispose();
+                    tetrisInstance.setVisible(true);
+                    return;
+                }
+                else {
+                    introModel.setCheckClicked(0);
+                }
 
-                /*else if((x >= 300 && x <= 500) && (y >= 680 && y <= 730) && (introModel.getCheckClicked() == 3)) {
-                Thread senderThread = new SenderThread(socket, name, multiModel, writer, multiView);
-                Thread receiverThread = new ReceiverThread(socket, writer, introView, multiModel, multiView, contentPane, frame, name, soundModel);
-                senderThread.start();
-                receiverThread.start();
-            }*/
             }
 
             // GAME START
@@ -129,12 +115,6 @@ public class IntroController implements MouseListener, MouseMotionListener {
                 introView.repaint();
                 return;
             }
-
-// RANKING
-            else if(isWithinBounds(x, y, introModel.getMenuX(), introModel.getMenuY() + 2*introModel.getMenuHeight() + introModel.getMenuInterval(), introModel.getMenuWidth(), introModel.getMenuHeight())) {
-                return;
-            }
-
 // GAME EXIT
             else if(isWithinBounds(x, y, introModel.getMenuX(), introModel.getMenuY() + 3*introModel.getMenuHeight() + introModel.getMenuInterval(), introModel.getMenuWidth(), introModel.getMenuHeight())) {
                 System.exit(1);
@@ -218,9 +198,10 @@ public class IntroController implements MouseListener, MouseMotionListener {
             }
 
             else if((x >= introModel.getSelect_gameX() && x <= introModel.getSelect_gameX() + introModel.getSelect_gameWidth()) && (y >= introModel.getSelect_gameY() + introModel.getSelect_gameHeight() + introModel.getSelect_gameInterval() && y <= introModel.getSelect_gameY() + (introModel.getSelect_gameHeight() * 2) + introModel.getSelect_gameInterval()))
+            {
                 introModel.setMenuState(MenuState.MULTI_PLAY);
+            }
             else {
-                introModel.setCheckClicked(0);
                 introModel.setMenuState(MenuState.GAME_START);
 
             }

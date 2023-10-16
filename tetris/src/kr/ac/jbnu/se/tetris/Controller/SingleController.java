@@ -38,7 +38,7 @@ public class SingleController implements Runnable, KeyListener {
             switch(e.getKeyCode()) {
                 case KeyEvent.VK_UP:
                     singleModel.setTurnNum(singleModel.getTurnNum() + 1);
-                    soundModel.moveBlockPlay();
+                    //soundModel.moveBlockPlay();
                     break;
                 case KeyEvent.VK_LEFT:
                     singleModel.setNowBlockX(singleModel.getNowBlockX() - singleModel.getBlockSize());

@@ -25,27 +25,50 @@ public class TAdapter extends KeyAdapter {
         if (board.isPaused())
             return;
 
-        switch (keycode) {
-            case KeyEvent.VK_LEFT:
-                board.handleKeyAction("left");
-                break;
-            case KeyEvent.VK_RIGHT:
-                board.handleKeyAction("right");
-                break;
-            case KeyEvent.VK_DOWN:
-                board.handleKeyAction("oneLineDown");
-                break;
-            case KeyEvent.VK_UP:
-                board.handleKeyAction("rotateLeft");
-                break;
-            case KeyEvent.VK_SPACE:
-                board.handleKeyAction("dropDown");
-                break;
-            case 'd':
-            case 'D':
-                board.handleKeyAction("hold");
-                break;
+        if(playerNum == 1) {
+            switch (keycode) {
+                case KeyEvent.VK_LEFT:
+                    board.handleKeyAction("left");
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    board.handleKeyAction("right");
+                    break;
+                case KeyEvent.VK_DOWN:
+                    board.handleKeyAction("oneLineDown");
+                    break;
+                case KeyEvent.VK_UP:
+                    board.handleKeyAction("rotateLeft");
+                    break;
+                case KeyEvent.VK_SPACE:
+                    board.handleKeyAction("dropDown");
+                    break;
+                case 'd':
+                case 'D':
+                    board.handleKeyAction("hold");
+                    break;
+            }
         }
+        else if(playerNum==2){
+            switch (keycode) {
+                case 'j':
+                    board.handleKeyAction("left");
+                    break;
+                case 'l':
+                    board.handleKeyAction("right");
+                    break;
+                case 'k':
+                    board.handleKeyAction("rotateLeft");  // 또는 "rotateRight"에 따라
+                    break;
+                case 'y':
+                    board.handleKeyAction("oneLineDown");
+                    break;
+                case 'u':
+                    board.handleKeyAction("dropDown");
+                    break;
+                // 추가적으로 필요한 키 액션들
+            }
+        }
+
     }
     //*
 }

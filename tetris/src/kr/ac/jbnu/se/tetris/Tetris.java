@@ -3,15 +3,18 @@ package kr.ac.jbnu.se.tetris;
 import kr.ac.jbnu.se.tetris.Model.SoundModel;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.logging.Level;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 
 // 메인 함수 클래스
-public class Tetris extends JFrame {
+public class Tetris extends JFrame implements KeyListener {
 	final int executionWidth;
 	final int executionHeight;
+	int playerNum;
 
 	private boolean isMultiplayer;
 
@@ -24,10 +27,15 @@ public class Tetris extends JFrame {
 	HoldPiecePanel holdPiecePanel;
 	LevelPanel levelPanel;
 	BestScorePanel bestScorePanel;
-
 	SoundModel soundModel = new SoundModel();
+	TAdapter tAdapter;
+	Board board1;
+	Board board2;
+
 
 	public Tetris(boolean isMultiPlayer) {
+		addKeyListener(this);
+		setFocusable(true);
 		this.isMultiplayer = isMultiPlayer;
 		// 멀티플레이 모드인 경우 화면의 너비를 두 배로 설정합니다.
 		this.executionWidth = isMultiplayer ? 1600 : 800;
@@ -44,6 +52,9 @@ public class Tetris extends JFrame {
 		setLocationRelativeTo(null);
 
 		soundModel.playBgm();
+
+
+
 	}
 
 	private JPanel createFillerPanelS(JLabel statusbar) {
@@ -191,11 +202,13 @@ public class Tetris extends JFrame {
 	}
 
 	public void singlePlay() {
+		playerNum = 1;
 		player1Panel = createPlayerPanel(1);
 		add(player1Panel, BorderLayout.CENTER);
 	}
 
 	public void multiPlay() {
+		playerNum = 2;
 		player1Panel = createPlayerPanel(1);
 		player2Panel = createPlayerPanel(2);
 
@@ -222,6 +235,10 @@ public class Tetris extends JFrame {
 
 		// Board
 		Board board = new Board(this, nextPiecePanel, holdPiecePanel, levelPanel, bestScorePanel, statusbar, playerNum);
+		if (playerNum == 1)
+			board1 = board;
+		else
+			board2 = board;
 		board.setPreferredSize(new Dimension(300, 600)); // 게임 보드의 크기 설정
 
 		// EtchedBorder
@@ -252,7 +269,65 @@ public class Tetris extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		Tetris game = new Tetris(false);
+		Tetris game = new Tetris(true);
 		game.setVisible(true);
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int keycode = e.getKeyCode();
+		Board board = null;
+
+		// Check if the key event is from player 1 or player 2 based on the keycode
+		if (keycode == KeyEvent.VK_LEFT || keycode == KeyEvent.VK_RIGHT ||
+				keycode == KeyEvent.VK_DOWN || keycode == KeyEvent.VK_UP ||
+				keycode == KeyEvent.VK_SPACE || keycode == 'd' || keycode == 'D') {
+			// The key event is from player 1
+			board = board1;
+		} else if (keycode == KeyEvent.VK_J || keycode == KeyEvent.VK_L || keycode == KeyEvent.VK_U ||
+				keycode == KeyEvent.VK_K || keycode == KeyEvent.VK_I) {
+			// The key event is from player 2
+			board = board2;
+		}
+		else {
+			System.out.println("error");
+		}
+
+		if (board != null) {
+			String action = convertKeycodeToAction(keycode);
+			if (action != null) {
+				board.handleKeyAction(action);
+			}
+		}
+	}
+
+	private String convertKeycodeToAction(int keycode) {
+		switch (keycode) {
+			case KeyEvent.VK_LEFT: return "left";
+			case KeyEvent.VK_RIGHT: return "right";
+			case KeyEvent.VK_DOWN: return "oneLineDown";
+			case KeyEvent.VK_UP: return "rotateLeft";
+			case KeyEvent.VK_SPACE: return "dropDown";
+			case 'd':
+			case 'D':
+				return "hold";
+			case KeyEvent.VK_J: return "left";
+			case KeyEvent.VK_L: return "right";
+			case KeyEvent.VK_U: return "oneLineDown";
+			case KeyEvent.VK_K: return "rotateLeft";
+			case KeyEvent.VK_I: return "dropDown";
+			default:
+				return null;
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// Handle key released event if needed
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// Handle key typed event if needed
 	}
 }

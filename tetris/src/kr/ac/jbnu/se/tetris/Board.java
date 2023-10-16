@@ -70,13 +70,10 @@ public class Board extends JPanel implements ActionListener {
 		setFocusable(true);
 		timerManager.startTimer();
 		//*
-
-		//상태바 초기화
-		statusbar = parent.getStatusBar();
 		//보드 초기화
 		board = new Tetrominoes[BoardWidth * BoardHeight];
 		//키 입력 이벤트 초기화
-		addKeyListener(new TAdapter(this, playerNum));
+		//addKeyListener(new TAdapter(this, playerNum));
 		//보드 클리어
 		clearBoard();
 	}

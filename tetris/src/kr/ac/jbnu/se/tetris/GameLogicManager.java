@@ -1,5 +1,7 @@
 package kr.ac.jbnu.se.tetris;
 
+import kr.ac.jbnu.se.tetris.Model.SoundModel;
+
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.logging.Level;
@@ -16,8 +18,7 @@ public class GameLogicManager {
     private int level = 1;
 
     private int score = 0;
-
-    private int bestScore = 0;
+    private int bestScore;
 
     private int BoardWidth;
     private int BoardHeight;
@@ -39,6 +40,7 @@ public class GameLogicManager {
     HoldPiecePanel holdPiecePanel;
     LevelPanel levelPanel;
     ScoreManager scoreManager;
+    SoundModel soundModel;
 
     //*
 
@@ -86,16 +88,13 @@ public class GameLogicManager {
     public boolean isStarted() {
         return isStarted;
     }
-    public int getBestScore() {
-        return bestScore;
-    }
 
     //*
 
     //* 클래스 초기화
     public GameLogicManager(Board board, NextPiecePanel nextPiecePanel, HoldPiecePanel holdPiecePanel, LevelPanel levelPanel, ScoreManager scoreManager) {
         this.scoreManager = scoreManager;
-        this.bestScore = scoreManager.loadBestScore();
+        this.soundModel = new SoundModel();
         this.board = board;
         this.nextPiecePanel = nextPiecePanel;
         this.holdPiecePanel = holdPiecePanel;
@@ -109,6 +108,7 @@ public class GameLogicManager {
         this.configurationManager = new ConfigurationManager();
         this.BoardWidth= configurationManager.getBoardWidth();
         this.BoardHeight = configurationManager.getBoardHeight();
+        this.bestScore = scoreManager.loadBestScore();
 
     }
     //*
@@ -197,6 +197,7 @@ public class GameLogicManager {
         removeFullLines();
 
         if (!isFallingFinished) {
+            soundModel.dropBlockPlay();
             newPiece();
         }
     }
@@ -253,6 +254,7 @@ public class GameLogicManager {
         }
 
         if (numFullLines > 0) {
+            soundModel.clearBlockPlay();
             int scoreMultiplier = getScoreMultiplier(level);  // 레벨에 따른 점수 배수를 가져옵니다.
             score += numFullLines * scoreMultiplier;  // 줄의 수와 점수 배수를 곱하여 점수를 업데이트합니다.
             updateLevel(score);

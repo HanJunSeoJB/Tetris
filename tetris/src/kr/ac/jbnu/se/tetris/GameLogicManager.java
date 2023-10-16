@@ -2,6 +2,7 @@ package kr.ac.jbnu.se.tetris;
 
 import java.util.Arrays;
 import java.util.Timer;
+import java.util.logging.Level;
 
 public class GameLogicManager {
 
@@ -15,6 +16,8 @@ public class GameLogicManager {
     private int level = 1;
 
     private int score = 0;
+
+    private int bestScore = 0;
 
     private int BoardWidth;
     private int BoardHeight;
@@ -34,6 +37,8 @@ public class GameLogicManager {
 
     NextPiecePanel nextPiecePanel;
     HoldPiecePanel holdPiecePanel;
+    LevelPanel levelPanel;
+    ScoreManager scoreManager;
 
     //*
 
@@ -81,13 +86,20 @@ public class GameLogicManager {
     public boolean isStarted() {
         return isStarted;
     }
+    public int getBestScore() {
+        return bestScore;
+    }
+
     //*
 
     //* 클래스 초기화
-    public GameLogicManager(Board board, NextPiecePanel nextPiecePanel, HoldPiecePanel holdPiecePanel) {
+    public GameLogicManager(Board board, NextPiecePanel nextPiecePanel, HoldPiecePanel holdPiecePanel, LevelPanel levelPanel, ScoreManager scoreManager) {
+        this.scoreManager = scoreManager;
+        this.bestScore = scoreManager.loadBestScore();
         this.board = board;
         this.nextPiecePanel = nextPiecePanel;
         this.holdPiecePanel = holdPiecePanel;
+        this.levelPanel = levelPanel;
         this.curPiece = new Shape();
         this.nextPiece = new Shape();
         this.uiManager = board.getUIManager();
@@ -145,6 +157,7 @@ public class GameLogicManager {
             level = 1;
         }
         adjustSpeed(level);
+        levelPanel.updateLevel(level);
     }
     //*
 
@@ -201,6 +214,8 @@ public class GameLogicManager {
         if (!tryMove(curPiece, curX, curY)) {
             curPiece.setShape(Tetrominoes.NoShape);
             timerManager.stopTimer();
+            if(score > bestScore)
+               scoreManager.saveBestScore(score);
             isStarted = false;
            uiManager.updateStatusbar("game over");
         }

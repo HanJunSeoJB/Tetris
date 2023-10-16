@@ -3,6 +3,7 @@ package kr.ac.jbnu.se.tetris;
 import kr.ac.jbnu.se.tetris.Model.SoundModel;
 
 import java.awt.*;
+import java.util.logging.Level;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -21,6 +22,8 @@ public class Tetris extends JFrame {
 	private JPanel player2Panel;
 	NextPiecePanel nextPiecePanel;
 	HoldPiecePanel holdPiecePanel;
+	LevelPanel levelPanel;
+	BestScorePanel bestScorePanel;
 
 	SoundModel soundModel = new SoundModel();
 
@@ -112,8 +115,10 @@ public class Tetris extends JFrame {
 		return fillerPanelW;
 	}
 
-	private JPanel createFillerPanelE(EtchedBorder border, NextPiecePanel nextPiecePanel) {
+	private JPanel createFillerPanelE(EtchedBorder border, NextPiecePanel nextPiecePanel, LevelPanel levelPanel, BestScorePanel bestScorePanel) {
 		this.nextPiecePanel = nextPiecePanel;
+		this.levelPanel = levelPanel;
+		this.bestScorePanel = bestScorePanel;
 		JPanel fillerPanelE = new JPanel();
 		fillerPanelE.setPreferredSize(new Dimension(isMultiplayer ? (executionWidth - 200) / 4 : (executionWidth - 200) / 2, 200));
 		fillerPanelE.setBackground(Color.black);
@@ -159,18 +164,7 @@ public class Tetris extends JFrame {
 		LevelPanel.setPreferredSize(new Dimension(200, 50));
 		LevelPanel.setBackground(Color.WHITE);
 		LevelPanel.setLayout(new BorderLayout());
-		UnderNextPanel.add(LevelPanel, BorderLayout.SOUTH);
-
-		JPanel LevelTitlePanel = new JPanel();
-		LevelTitlePanel.setPreferredSize(new Dimension(200,50));
-		LevelTitlePanel.setBackground(Color.DARK_GRAY);
-		LevelTitlePanel.setBorder(border);
-
-		JLabel LevelTitle = new JLabel("Level");
-		LevelTitle.setFont(new Font("",Font.BOLD, 24));
-		LevelTitle.setForeground(Color.GRAY);
-		LevelTitlePanel.add(LevelTitle, BorderLayout.WEST);
-		LevelPanel.add(LevelTitlePanel, BorderLayout.NORTH);
+		UnderNextPanel.add(levelPanel, BorderLayout.SOUTH);
 
 		//Best Score 패널
 		JPanel BestScorePanel = new JPanel();
@@ -183,7 +177,7 @@ public class Tetris extends JFrame {
 		BestScore.setForeground(Color.GRAY);
 
 		BestScorePanel.add(BestScore, BorderLayout.WEST);
-		UnderNextPanel.add(BestScorePanel, BorderLayout.CENTER);
+		UnderNextPanel.add(bestScorePanel, BorderLayout.CENTER);
 
 		NextPanel.add(UnderNextPanel, BorderLayout.SOUTH);
 		return fillerPanelE;
@@ -223,9 +217,11 @@ public class Tetris extends JFrame {
 		JLabel statusbar = new JLabel(" 0");
 		NextPiecePanel nextPiecePanel = new NextPiecePanel();
 		HoldPiecePanel holdPiecePanel = new HoldPiecePanel();
+		LevelPanel levelPanel = new LevelPanel();
+		BestScorePanel bestScorePanel = new BestScorePanel();
 
 		// Board
-		Board board = new Board(this, nextPiecePanel, holdPiecePanel, statusbar, playerNum);
+		Board board = new Board(this, nextPiecePanel, holdPiecePanel, levelPanel, bestScorePanel, statusbar, playerNum);
 		board.setPreferredSize(new Dimension(300, 600)); // 게임 보드의 크기 설정
 
 		// EtchedBorder
@@ -237,7 +233,7 @@ public class Tetris extends JFrame {
 		containerPanel.add(board, BorderLayout.CENTER);
 
 		containerPanel.add(createFillerPanelN(), BorderLayout.NORTH);
-		containerPanel.add(createFillerPanelE(border, nextPiecePanel), BorderLayout.EAST);
+		containerPanel.add(createFillerPanelE(border, nextPiecePanel, levelPanel, bestScorePanel), BorderLayout.EAST);
 		containerPanel.add(createFillerPanelW(border, holdPiecePanel), BorderLayout.WEST);
 		containerPanel.add(createFillerPanelS(statusbar), BorderLayout.SOUTH);
 

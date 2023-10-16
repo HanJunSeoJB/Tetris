@@ -23,7 +23,9 @@ public class Board extends JPanel implements ActionListener {
 	private final RenderingManager renderingManager;
 	private final EventManager eventManager;
 
+	private final ScoreManager scoreManager;
 	ConfigurationManager configManager = new ConfigurationManager();
+	BestScorePanel bestScorePanel;
 	//*
 	final int BoardWidth = configManager.getBoardWidth(); // 보드 넓이 초기화
 	final int BoardHeight = configManager.getBoardHeight(); // 보드 높이 초기화
@@ -52,14 +54,16 @@ public class Board extends JPanel implements ActionListener {
 	//*
 
 
-	public Board(Tetris parent, NextPiecePanel nextPiecePanel, HoldPiecePanel holdPiecePanel,JLabel statusbar, int playerNum) {
+	public Board(Tetris parent, NextPiecePanel nextPiecePanel, HoldPiecePanel holdPiecePanel,LevelPanel levelPanel, BestScorePanel bestScorePanel, JLabel statusbar, int playerNum) {
 
 		//* 객체 초기화
 		this.timerManager = new TimerManager(this, delay);
 		this.uiManager = new UIManager(statusbar);
-		this.gameLogicManager = new GameLogicManager(this, nextPiecePanel, holdPiecePanel);
+		this.scoreManager = new ScoreManager();
+		this.gameLogicManager = new GameLogicManager(this, nextPiecePanel, holdPiecePanel, levelPanel, scoreManager);
 		this.renderingManager = new RenderingManager(this);
 		this.eventManager = new EventManager(this.gameLogicManager);
+		this.bestScorePanel = bestScorePanel;
 		//*
 
 		//* 게임시작
@@ -112,6 +116,7 @@ public class Board extends JPanel implements ActionListener {
 		clearBoard();
 
 		gameLogicManager.newPiece();
+		bestScorePanel.updateBestScore(scoreManager.loadBestScore());
 		timerManager.startTimer();
 	}
 

@@ -216,7 +216,7 @@ public class GameLogicManager {
             curPiece.setShape(Tetrominoes.NoShape);
             timerManager.stopTimer();
             if(score > bestScore)
-               scoreManager.saveBestScore(score);
+               scoreManager.updateAndSaveScores(score);
             isStarted = false;
            uiManager.updateStatusbar("game over");
         }
@@ -342,7 +342,9 @@ public class GameLogicManager {
         }
         return true;
     }
-
+    public void reStart() {
+       board.reStart();
+    }
     public void hold() {
         // 현재 블록을 임시 변수에 저장합니다.
         Shape tempPiece = curPiece;

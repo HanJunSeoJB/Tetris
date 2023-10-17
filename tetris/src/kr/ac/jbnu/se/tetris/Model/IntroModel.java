@@ -16,6 +16,32 @@ public class IntroModel {
     private int menuHeight = 70;
     private int menuX = 154;
     private int menuY = 200;
+    private int numWidth = 45;
+    private int numHeight = 45;
+    private int numX = 246;
+    private int numY = 193;
+
+    public int getNumWidth() {
+        return numWidth;
+    }
+
+    public int getNumHeight() {
+        return numHeight;
+    }
+
+    public int getNumX() {
+        return numX;
+    }
+
+    public int getNumY() {
+        return numY;
+    }
+
+    public int getNumInterval() {
+        return numInterval;
+    }
+
+    private int numInterval = 72;
     private int menuInterval = 100;
     private int select_gameX = 240;
     private int select_gameY = 210;

@@ -117,9 +117,13 @@ public class Board extends JPanel implements ActionListener {
 		timerManager.startTimer();
 	}
 
-	public void initGame() {
-
+	public void reStart() {
+		clearBoard();
+		start();
+		repaint();
 	}
+
+
 	// 보드에 그리는 함수
 	public void paint(Graphics g) {
 		super.paint(g);
@@ -188,7 +192,7 @@ public class Board extends JPanel implements ActionListener {
 	}
 
 	// 보드 초기화 함수
-	private void clearBoard() {
+	public void clearBoard() {
 		for (int i = 0; i < BoardHeight * BoardWidth; ++i)
 			board[i] = Tetrominoes.NoShape;
 	}

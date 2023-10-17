@@ -46,6 +46,9 @@ public class TAdapter extends KeyAdapter {
                 case 'D':
                     board.handleKeyAction("hold");
                     break;
+                case KeyEvent.VK_R:
+                    board.handleKeyAction("re");
+                    break;
             }
         }
         else if(playerNum==2){

@@ -43,6 +43,9 @@ public class  EventManager {
             case "hold":
                 gameLogicManager.hold();
                 break;
+            case "re":
+                gameLogicManager.reStart();
+                break;
             default:
                 throw new IllegalArgumentException("Unknown action: " + action);
         }

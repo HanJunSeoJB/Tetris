@@ -34,11 +34,6 @@ public class IntroController implements MouseListener, MouseMotionListener {
     SingleModel singleModel;
     SingleView singleView;
     SingleController singleController;
-    /*Tetris tetrisInstance = new Tetris();
-    Board board = new Board(tetrisInstance);*/
-
-    /*MultiModel multiModel;
-    MultiView multiView;*/
     Socket socket;
     SoundModel soundModel;
     String name;
@@ -55,14 +50,6 @@ public class IntroController implements MouseListener, MouseMotionListener {
         singleController = new SingleController(singleModel, singleView, frame, contentPane, soundModel);
         name = "ClientA";
         this.soundModel = soundModel;
-        /*multiModel = new MultiModel(soundModel);
-        multiView = new MultiView(multiModel, name);*/
-        /*try {
-            socket = new Socket("192.168.0.9", 8050);
-            writer = new PrintWriter(socket.getOutputStream());
-        } catch(Exception e) {
-            System.out.println(e.getMessage());
-        }*/
     }
 
     private boolean isWithinBounds(int x, int y, int startX, int startY, int width, int height) {
@@ -108,10 +95,14 @@ public class IntroController implements MouseListener, MouseMotionListener {
                 introModel.setMenuState(MenuState.GAME_START);
                 return;
             }
-
 // HOW TO PLAY
             else if(isWithinBounds(x, y, introModel.getMenuX(), introModel.getMenuY() + introModel.getMenuHeight(), introModel.getMenuWidth(), introModel.getMenuHeight())) {
                 introModel.setMenuState(MenuState.HOW_TO_PLAY);
+                introView.repaint();
+                return;
+            }
+            else if(isWithinBounds(x, y, introModel.getMenuX(), introModel.getMenuY() + 2*introModel.getMenuHeight()+ introModel.getMenuInterval(), introModel.getMenuWidth(), introModel.getMenuHeight())) {
+                introModel.setMenuState(MenuState.RANKING);
                 introView.repaint();
                 return;
             }
@@ -124,37 +115,6 @@ public class IntroController implements MouseListener, MouseMotionListener {
             introModel.setMenuState(MenuState.NONE);
 
         }
-
-        // SINGLE PLAY & MULTI PLAY
-        /*if(introModel.getCheckClicked() > 0) {
-            if((x >= introModel.getSelect_gameX() && x <= introModel.getSelect_gameX() + introModel.getSelect_gameWidth()) && (y >= introModel.getSelect_gameY() && y <= introModel.getSelect_gameY() + introModel.getSelect_gameHeight())) {
-                *//*Thread singleThread = new Thread(singleController);
-                singleThread.start();
-                soundModel.intoBgmStop();
-                soundModel.menuClickPlay();
-                contentPane.remove(introView);
-                contentPane.add(singleView);
-                frame.addKeyListener(singleController);*//*
-                frame.setSize(1200 + 15, 901 + 35);
-                frame.setLocation(200, 0);
-                frame.setVisible(true);
-            }
-            else if((x >= introModel.getSelect_gameX() && x <= introModel.getSelect_gameX() + introModel.getSelect_gameWidth()) && (y >= introModel.getSelect_gameY() + introModel.getSelect_gameHeight() + introModel.getSelect_gameInterval() && y <= introModel.getSelect_gameY() + (introModel.getSelect_gameHeight() * 2) + introModel.getSelect_gameInterval())) {
-                introModel.setCheckMulti(1);
-                introView.repaint();
-                introView.add(nameField);
-                nameField.setLocation(240, 600);
-                nameField.setSize(330, 60);
-                nameField.setFont(new Font("Courier", Font.BOLD, 22));
-                introView.removeMouseMotionListener(this);
-            }
-            *//*else if((x >= 300 && x <= 500) && (y >= 680 && y <= 730) && (introModel.getCheckClicked() == 3)) {
-                Thread senderThread = new SenderThread(socket, name, multiModel, writer, multiView);
-                Thread receiverThread = new ReceiverThread(socket, writer, introView, multiModel, multiView, contentPane, frame, name, soundModel);
-                senderThread.start();
-                receiverThread.start();
-            }*//*
-        }*/
 
     @Override
     public void mouseEntered(MouseEvent e) {}

@@ -28,7 +28,7 @@ public class Tetris extends JFrame implements KeyListener {
 	LevelPanel levelPanel;
 	BestScorePanel bestScorePanel;
 	SoundModel soundModel = new SoundModel();
-	TAdapter tAdapter;
+	//TAdapter tAdapter;
 	Board board1;
 	Board board2;
 
@@ -269,7 +269,7 @@ public class Tetris extends JFrame implements KeyListener {
 	}
 
 	public static void main(String[] args) {
-		Tetris game = new Tetris(true);
+		Tetris game = new Tetris(false);
 		game.setVisible(true);
 	}
 
@@ -281,16 +281,13 @@ public class Tetris extends JFrame implements KeyListener {
 		// Check if the key event is from player 1 or player 2 based on the keycode
 		if (keycode == KeyEvent.VK_LEFT || keycode == KeyEvent.VK_RIGHT ||
 				keycode == KeyEvent.VK_DOWN || keycode == KeyEvent.VK_UP ||
-				keycode == KeyEvent.VK_SPACE || keycode == 'd' || keycode == 'D') {
+				keycode == KeyEvent.VK_SPACE || keycode == 'd' || keycode == 'D' || keycode == KeyEvent.VK_R) {
 			// The key event is from player 1
 			board = board1;
 		} else if (keycode == KeyEvent.VK_J || keycode == KeyEvent.VK_L || keycode == KeyEvent.VK_U ||
 				keycode == KeyEvent.VK_K || keycode == KeyEvent.VK_I) {
 			// The key event is from player 2
 			board = board2;
-		}
-		else {
-			System.out.println("error");
 		}
 
 		if (board != null) {
@@ -311,6 +308,7 @@ public class Tetris extends JFrame implements KeyListener {
 			case 'd':
 			case 'D':
 				return "hold";
+			case KeyEvent.VK_R: return "re";
 			case KeyEvent.VK_J: return "left";
 			case KeyEvent.VK_L: return "right";
 			case KeyEvent.VK_U: return "oneLineDown";

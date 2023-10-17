@@ -27,13 +27,12 @@ public class Tetris extends JFrame implements KeyListener {
 	HoldPiecePanel holdPiecePanel;
 	LevelPanel levelPanel;
 	BestScorePanel bestScorePanel;
-	SoundModel soundModel = new SoundModel();
-	//TAdapter tAdapter;
+	SoundModel soundModel;
 	Board board1;
 	Board board2;
 
 
-	public Tetris(boolean isMultiPlayer) {
+	public Tetris(boolean isMultiPlayer, SoundModel soundModel) {
 		addKeyListener(this);
 		setFocusable(true);
 		this.isMultiplayer = isMultiPlayer;
@@ -268,10 +267,10 @@ public class Tetris extends JFrame implements KeyListener {
 		return statusbar;
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		Tetris game = new Tetris(false);
 		game.setVisible(true);
-	}
+	}*/
 
 	@Override
 	public void keyPressed(KeyEvent e) {

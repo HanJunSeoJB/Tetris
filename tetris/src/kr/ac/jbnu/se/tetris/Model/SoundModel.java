@@ -1,10 +1,7 @@
 package kr.ac.jbnu.se.tetris.Model;
 
 import java.io.File;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import javax.sound.sampled.*;
 
 public class SoundModel {
     /***************************************************************/
@@ -12,6 +9,19 @@ public class SoundModel {
     AudioInputStream ais;
     Clip clip;
     /***************************************************************/
+
+    // 볼륨 설정 메소드
+    public void setVolume(float volume) {
+        if (clip != null && clip.isRunning()) {
+            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            float min = volumeControl.getMinimum();
+            float max = volumeControl.getMaximum();
+            // volume 파라미터는 0.0 (최소)에서 1.0 (최대) 사이의 값이어야 합니다.
+            float value = min + (max - min) * volume;
+            volumeControl.setValue(value);
+        }
+    }
+
     // intro bgm
     public void introBgmPlay() {
         try {

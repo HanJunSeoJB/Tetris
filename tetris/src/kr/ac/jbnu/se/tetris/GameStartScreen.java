@@ -16,7 +16,7 @@ public class GameStartScreen extends JFrame {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Tetris tetris = new Tetris(false);
+                //Tetris tetris = new Tetris(false);
                 //tetris.initUI();
                 GameStartScreen.this.dispose();  // Add this line to close the start screen when the game starts
             }

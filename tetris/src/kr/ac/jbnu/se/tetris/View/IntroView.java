@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import kr.ac.jbnu.se.tetris.Board;
 import kr.ac.jbnu.se.tetris.Model.IntroModel;
+import kr.ac.jbnu.se.tetris.Model.SoundModel;
 import kr.ac.jbnu.se.tetris.ScoreManager;
 
 public class IntroView extends JPanel {
@@ -14,7 +15,8 @@ public class IntroView extends JPanel {
     // 멤버변수
     IntroModel introModel;
     ScoreManager scoreManager;
-    ImageIcon intro, multi_start, how_to_start, ranking;
+
+    ImageIcon intro, multi_start, how_to_start, ranking, sound;
     ImageIcon[] menu = new ImageIcon[4];
     ImageIcon[] menu_click = new ImageIcon[4];
     ImageIcon[] select_game = new ImageIcon[3];
@@ -27,6 +29,7 @@ public class IntroView extends JPanel {
         this.scoreManager = new ScoreManager();
         intro = new ImageIcon("tetris/src/image/intro.png");
         ranking =new ImageIcon("tetris/src/image/ranking.png");
+        sound = new ImageIcon("tetris/src/image/sound.png");
         multi_start = new ImageIcon("tetris/src/image/multi_start.png");
         how_to_start = new ImageIcon("tetris/src/image/how_to_play.png");
         menu[0] = new ImageIcon("tetris/src/image/menu1.png");
@@ -129,6 +132,7 @@ public class IntroView extends JPanel {
         g.clearRect(0, 0, getWidth(), getHeight());
         g.drawImage(intro.getImage(), 0, 0, 800, 800, null);
         drawMenu(g, introModel);
+        g.drawImage(sound.getImage(), 685, 29, 50, 50, null);
         setOpaque(false);
     }
 }

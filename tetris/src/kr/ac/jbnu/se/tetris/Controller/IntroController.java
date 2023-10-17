@@ -9,8 +9,7 @@ import java.awt.event.MouseMotionListener;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import javax.swing.JFrame;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import kr.ac.jbnu.se.tetris.Board;
 import kr.ac.jbnu.se.tetris.Model.SingleModel;
@@ -34,7 +33,8 @@ public class IntroController implements MouseListener, MouseMotionListener {
     SingleModel singleModel;
     SingleView singleView;
     SingleController singleController;
-    Socket socket;
+    private JSlider volumeSlider;
+    private boolean isVolumeSliderVisible = false;
     SoundModel soundModel;
     String name;
     /***************************************************************/
@@ -52,6 +52,30 @@ public class IntroController implements MouseListener, MouseMotionListener {
         this.soundModel = soundModel;
     }
 
+    private void createVolumeSlider() {
+        volumeSlider = new JSlider(JSlider.HORIZONTAL, 0, 100, (int)(introModel.getVolume() * 100));
+        volumeSlider.setBounds(50, 80, 685, 30);
+        volumeSlider.setMajorTickSpacing(10);
+        volumeSlider.setMinorTickSpacing(1);
+        volumeSlider.setPaintTicks(true);
+        volumeSlider.setPaintLabels(true);
+        volumeSlider.addChangeListener(e -> {
+            JSlider source = (JSlider) e.getSource();
+            if (!source.getValueIsAdjusting()) {
+                float volume = source.getValue() / 100f;
+                introModel.setVolume(volume);
+                soundModel.setVolume(volume);
+            }
+        });
+        introView.add(volumeSlider);
+        isVolumeSliderVisible = true;
+    }
+
+    private void hideVolumeSlider() {
+        introView.remove(volumeSlider);
+        isVolumeSliderVisible = false;
+    }
+
     private boolean isWithinBounds(int x, int y, int startX, int startY, int width, int height) {
         return (x >= startX && x <= startX + width) && (y >= startY && y <= startY + height);
     }
@@ -67,7 +91,7 @@ public class IntroController implements MouseListener, MouseMotionListener {
             // SINGLE PLAY & MULTI PLAY
             if(introModel.getCheckClicked() == 1) {
                 if(isWithinBounds(x, y, introModel.getSelect_gameX(), introModel.getSelect_gameY(), introModel.getSelect_gameWidth(), introModel.getSelect_gameHeight())) {
-                    Tetris tetrisInstance = new Tetris(false);
+                    Tetris tetrisInstance = new Tetris(false, soundModel);
                     soundModel.intoBgmStop();
                     contentPane.remove(introView);
                     frame.dispose();
@@ -76,7 +100,7 @@ public class IntroController implements MouseListener, MouseMotionListener {
                 }
                 else if(y >= 320 && y <= 383) {
                     System.out.println("multy");
-                    Tetris tetrisInstance = new Tetris(true);
+                    Tetris tetrisInstance = new Tetris(true, soundModel);
                     soundModel.intoBgmStop();
                     contentPane.remove(introView);
                     frame.dispose();
@@ -112,6 +136,14 @@ public class IntroController implements MouseListener, MouseMotionListener {
                 return;
             }
 
+            else if(isWithinBounds(x, y, 685, 29, 50, 50)) {
+                createVolumeSlider();
+                introView.repaint();  // refresh the view to show/hide the slider
+                return;
+            }
+            if(isVolumeSliderVisible)
+                hideVolumeSlider();
+            introView.repaint();
             introModel.setMenuState(MenuState.NONE);
 
         }

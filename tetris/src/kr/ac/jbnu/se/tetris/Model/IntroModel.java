@@ -21,6 +21,9 @@ public class IntroModel {
     private int numX = 246;
     private int numY = 193;
 
+
+    private float volume = 1.0f;  // 초기 볼륨 값을 1.0으로 설정
+
     public int getNumWidth() {
         return numWidth;
     }
@@ -97,5 +100,13 @@ public class IntroModel {
 
     public void setMenuState(MenuState menuState) {
         this.menuState = menuState;
+    }
+
+    public float getVolume() {
+        return volume;
+    }
+
+    public void setVolume(float volume) {
+        this.volume = volume;
     }
 }

@@ -10,12 +10,13 @@ public class ShapeAndTetrominoesManager {
         generateNextShape();
     }
 
-    // 새로운 Shape를 랜덤하게 생성하는 메서드
+    // 새로운 Shape 랜덤 생성 메소드
     public void generateNewShape() {
         currentShape = nextShape != null ? nextShape : new Shape();
         generateNextShape();
     }
 
+    //Next Shpae 생성 메소드
     private void generateNextShape() {
         nextShape = new Shape();
         nextShape.setRandomShape();

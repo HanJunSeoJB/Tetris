@@ -104,7 +104,6 @@ public class GameLogicManager {
         this.uiManager = board.getUIManager();
         this.shapeAndTetrominoesManager = new ShapeAndTetrominoesManager();
         this.timerManager = board.getTimerManager();
-        //this.eventManager = new EventManager(this);
         this.configurationManager = new ConfigurationManager();
         this.BoardWidth= configurationManager.getBoardWidth();
         this.BoardHeight = configurationManager.getBoardHeight();
@@ -363,8 +362,6 @@ public class GameLogicManager {
             curY = BoardHeight - 1 + curPiece.minY();
         }
         holdPiecePanel.updateHoldBoard(holdPiece);
-
-        // 현재 블록을 지웁니다.
 
         // 보드를 업데이트하여 현재 블록을 지웁니다.
         board.repaint();

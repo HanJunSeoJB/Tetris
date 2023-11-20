@@ -6,13 +6,6 @@ public class ScoreManager {
 
     private static final String BEST_SCORE_FILE = "tetris/src/data/best_score.txt";
 
-/*    public static void saveBestScore(int bestScore) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(BEST_SCORE_FILE))) {
-            writer.write(String.valueOf(bestScore));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 
     public static int loadBestScore() {
         File file = new File(BEST_SCORE_FILE);
@@ -29,7 +22,7 @@ public class ScoreManager {
         return 0;  // 파일이 없거나 읽기에 실패하면 0 반환
     }
 
-    // 새로운 메소드: 파일에서 처음 6 줄의 점수를 불러온다
+    // 파일에서 처음 6 줄의 점수를 불러온다
     public static int[] loadScores() {
         int[] scores = new int[6];
         File file = new File(BEST_SCORE_FILE);

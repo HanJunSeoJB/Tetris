@@ -17,7 +17,7 @@ public class Board extends JPanel implements ActionListener {
 	Tetrominoes[] board; // 보드 객체 초기화
 
 	//* 필요한 클래스 초기화
-	private final TimerManager timerManager;
+
 	private final UIManager uiManager;
 	private final GameLogicManager gameLogicManager;
 	private final RenderingManager renderingManager;
@@ -29,12 +29,8 @@ public class Board extends JPanel implements ActionListener {
 	//*
 	final int BoardWidth = configManager.getBoardWidth(); // 보드 넓이 초기화
 	final int BoardHeight = configManager.getBoardHeight(); // 보드 높이 초기화
-	final int delay = configManager.getDelay(); // 게임 시작 딜레이 변수 초기화
 
 	//* GameLogicManager class에서 사용하기 위해 getter 생성
-	public TimerManager getTimerManager() {
-		return timerManager;
-	}
 
 	public Tetrominoes[] getBoardArray() {
 		return board;
@@ -54,10 +50,9 @@ public class Board extends JPanel implements ActionListener {
 	//*
 
 
-	public Board(Tetris parent, NextPiecePanel nextPiecePanel, HoldPiecePanel holdPiecePanel,LevelPanel levelPanel, BestScorePanel bestScorePanel, JLabel statusbar, int playerNum) {
+	public Board(NextPiecePanel nextPiecePanel, HoldPiecePanel holdPiecePanel,LevelPanel levelPanel, BestScorePanel bestScorePanel, JLabel statusbar, int playerNum) {
 
 		//* 객체 초기화
-		this.timerManager = new TimerManager(this, delay);
 		this.uiManager = new UIManager(statusbar);
 		this.scoreManager = new ScoreManager();
 		this.gameLogicManager = new GameLogicManager(this, nextPiecePanel, holdPiecePanel, levelPanel, scoreManager);
@@ -68,7 +63,7 @@ public class Board extends JPanel implements ActionListener {
 
 		//* 게임시작
 		setFocusable(true);
-		timerManager.startTimer();
+		gameLogicManager.setStarted(true);
 		//*
 		//보드 초기화
 		board = new Tetrominoes[BoardWidth * BoardHeight];
@@ -96,10 +91,6 @@ public class Board extends JPanel implements ActionListener {
 		return (int) getSize().getHeight() / BoardHeight;
 	}
 
-	public void startTimer() {
-		timerManager.startTimer();
-	}
-
 	// 게임 시작 함수 ( 정지 된 상태에서  p를 눌렀을 때 시작처리)
 	public void start() {
 		if (gameLogicManager.isPaused())
@@ -112,7 +103,7 @@ public class Board extends JPanel implements ActionListener {
 
 		gameLogicManager.newPiece();
 		bestScorePanel.updateBestScore(scoreManager.loadBestScore());
-		timerManager.startTimer();
+		gameLogicManager.startTimer();
 	}
 
 	public void reStart() {

@@ -2,24 +2,17 @@
 package kr.ac.jbnu.se.tetris.Controller;
 
 import java.awt.Container;
-import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.io.PrintWriter;
-import java.net.Socket;
 
 import javax.swing.*;
 
-import kr.ac.jbnu.se.tetris.Board;
-import kr.ac.jbnu.se.tetris.Model.SingleModel;
 import kr.ac.jbnu.se.tetris.Model.SoundModel;
 import kr.ac.jbnu.se.tetris.Model.IntroModel;
-import kr.ac.jbnu.se.tetris.TAdapter;
 import kr.ac.jbnu.se.tetris.Tetris;
 import kr.ac.jbnu.se.tetris.View.IntroView;
 import kr.ac.jbnu.se.tetris.MenuState;
-import kr.ac.jbnu.se.tetris.View.SingleView;
 
 public class IntroController implements MouseListener, MouseMotionListener {
     /***************************************************************/
@@ -30,9 +23,6 @@ public class IntroController implements MouseListener, MouseMotionListener {
     JTextField nameField;
     Container contentPane;
 
-    SingleModel singleModel;
-    SingleView singleView;
-    SingleController singleController;
     private JSlider volumeSlider;
     private boolean isVolumeSliderVisible = false;
     SoundModel soundModel;
@@ -45,9 +35,6 @@ public class IntroController implements MouseListener, MouseMotionListener {
         this.frame = frame;
         this.contentPane = contentPane;
         nameField = new JTextField(" 게임시작 대기중 ");
-        singleModel = new SingleModel(soundModel);
-        singleView = new SingleView(singleModel);
-        singleController = new SingleController(singleModel, singleView, frame, contentPane, soundModel);
         name = "ClientA";
         this.soundModel = soundModel;
     }

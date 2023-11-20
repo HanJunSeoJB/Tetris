@@ -27,7 +27,6 @@ public class Tetris extends JFrame implements KeyListener {
 	HoldPiecePanel holdPiecePanel;
 	LevelPanel levelPanel;
 	BestScorePanel bestScorePanel;
-	SoundModel soundModel;
 	Board board1;
 	Board board2;
 
@@ -233,7 +232,7 @@ public class Tetris extends JFrame implements KeyListener {
 		BestScorePanel bestScorePanel = new BestScorePanel();
 
 		// Board
-		Board board = new Board(this, nextPiecePanel, holdPiecePanel, levelPanel, bestScorePanel, statusbar, playerNum);
+		Board board = new Board(nextPiecePanel, holdPiecePanel, levelPanel, bestScorePanel, statusbar, playerNum);
 		if (playerNum == 1)
 			board1 = board;
 		else
@@ -261,16 +260,6 @@ public class Tetris extends JFrame implements KeyListener {
 
 		return playerPanel;
 	}
-
-
-	public JLabel getStatusBar() {
-		return statusbar;
-	}
-
-	/*public static void main(String[] args) {
-		Tetris game = new Tetris(false);
-		game.setVisible(true);
-	}*/
 
 	@Override
 	public void keyPressed(KeyEvent e) {

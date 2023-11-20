@@ -2,9 +2,6 @@ package kr.ac.jbnu.se.tetris;
 
 import kr.ac.jbnu.se.tetris.Model.SoundModel;
 
-import java.util.Arrays;
-import java.util.Timer;
-import java.util.logging.Level;
 
 public class GameLogicManager {
 
@@ -20,7 +17,7 @@ public class GameLogicManager {
     private int score = 0;
     private int bestScore;
 
-    private int BoardWidth;
+    public int BoardWidth;
     private int BoardHeight;
     private Shape curPiece;
     private Shape nextPiece;
@@ -275,7 +272,6 @@ public class GameLogicManager {
 
     //* 블럭 좌,우 이동 함수
     public boolean tryMove(Shape newPiece, int newX, int newY) {
-
         for (int i = 0; i < 4; ++i) {
             int x = newX + newPiece.x(i);
             int y = newY - newPiece.y(i);

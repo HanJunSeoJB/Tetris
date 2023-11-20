@@ -47,7 +47,8 @@ public class ShapeAndTetrominoesManager {
             result.setX(i, shape.y(i));
             result.setY(i, -shape.x(i));
         }
-        currentShape = result;  // 현재 Shape를 업데이트
+        currentShape = result; // 현재 Shape를 업데이트
+        int curWidth = currentShape.getWidth();
         return result;
     }
 

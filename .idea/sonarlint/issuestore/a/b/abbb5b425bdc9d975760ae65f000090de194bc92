@@ -1,0 +1,43 @@
+
+f
+java:S6208¢"CMerge the previous cases into this one using comma-separated label.(è‰½Ôùÿÿÿÿ8ÈÚé×¾1
+m	java:S117="QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûğ¢8ÈÚé×¾1
+m	java:S117T"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áş°ª8ÈÚé×¾1
+m	java:S117Z"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹åÆ8ÈÚé×¾1
+r	java:S117a"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸ìîÉıÿÿÿÿ8ÈÚé×¾1
+r	java:S117k"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–‰İÈşÿÿÿÿ8ÈÚé×¾1
+s	java:S117…"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†©»Ñıÿÿÿÿ8ÈÚé×¾1
+s	java:S117‹"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(°£Ú½şÿÿÿÿ8ÈÚé×¾1
+n	java:S117‘"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²®–Ğ8ÈÚé×¾1
+n	java:S117š"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í…¶Û8ÈÚé×¾1
+s	java:S117¤"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦÷§æûÿÿÿÿ8ÈÚé×¾1
+s	java:S117©"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öš³õÿÿÿÿÿ8ÈÚé×¾1
+n	java:S117°"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šãùÿ8ÈÚé×¾1
+n	java:S117µ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğ¾ì«8ÈÚé×¾1
+}
+java:S1450"[Remove the "player2Panel" field and declare it as a local variable in the relevant methods.(§ÌÜ”ÿÿÿÿÿ8Ûé×¾1
+]
+java:S3252D"AUse static access with "javax.swing.SwingConstants" for "CENTER".(Ößáe8ºÛé×¾1
+^
+java:S3252E"AUse static access with "javax.swing.SwingConstants" for "CENTER".(ÊÒ¸—8ºÛé×¾1
+^
+java:S3252n"AUse static access with "javax.swing.SwingConstants" for "CENTER".(‹œ8ºÛé×¾1
+^
+java:S3252o"AUse static access with "javax.swing.SwingConstants" for "CENTER".(›î¸¹8ºÛé×¾1
+^	java:S125†"<This block of commented-out lines of code should be removed.(²ıÆ¹üÿÿÿÿ8ºÛé×¾1
+_
+java:S3252"AUse static access with "javax.swing.SwingConstants" for "CENTER".(ËÒ™Â8ÊÛé×¾1
+d
+java:S3252"AUse static access with "javax.swing.SwingConstants" for "CENTER".(‘›Ôêşÿÿÿÿ8ÊÛé×¾1
+`
+java:S1117ß"=Rename "statusbar" which hides the field declared at line 22.(ëØ½¹ûÿÿÿÿ8ÊÛé×¾1
+e
+java:S1117à"BRename "nextPiecePanel" which hides the field declared at line 26.(§¹ö§ıÿÿÿÿ8ÊÛé×¾1
+`
+java:S1117á"BRename "holdPiecePanel" which hides the field declared at line 27.(»½£ğ8ÙÛé×¾1
+a
+java:S1117â">Rename "levelPanel" which hides the field declared at line 28.(áŒ§Éıÿÿÿÿ8ÙÛé×¾1
+`
+java:S1117ã"BRename "bestScorePanel" which hides the field declared at line 29.(¬¤šÃ8ÙÛé×¾1
+Q
+java:S1128"4Remove this unused import 'java.util.logging.Level'.(…µÛ¶8ÙÛé×¾1

@@ -50,16 +50,13 @@ public class Tetris extends JFrame implements KeyListener {
 		setLocationRelativeTo(null);
 
 		soundModel.playBgm();
-
-
-
 	}
 
 	private JPanel createFillerPanelS(JLabel statusbar) {
 		this.statusbar = statusbar;
 		JPanel fillerPanelS = new JPanel();
 		fillerPanelS.setPreferredSize(new Dimension(isMultiplayer ? executionWidth / 2 : executionWidth, (executionHeight - 400) / 2));
-		fillerPanelS.setBackground(Color.black );
+		fillerPanelS.setBackground(Color.black);
 
 		JPanel Score = new JPanel();
 		Score.setPreferredSize(new Dimension(isMultiplayer ? (executionWidth - 400) / 4 : (executionWidth - 400) / 2, 40));
@@ -216,8 +213,6 @@ public class Tetris extends JFrame implements KeyListener {
 		multiplayerPanel.add(player2Panel);
 
 		add(multiplayerPanel, BorderLayout.CENTER);
-
-
 	}
 
 	private JPanel createPlayerPanel(int playerNum) {
@@ -255,8 +250,6 @@ public class Tetris extends JFrame implements KeyListener {
 		playerPanel.add(containerPanel, BorderLayout.CENTER);
 
 		board.start();
-
-
 
 		return playerPanel;
 	}

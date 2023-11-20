@@ -1,0 +1,21 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(şæã‹
+˜
+java:S1186Š"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ôãƒ
+˜
+java:S1186Œ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(÷á›®
+˜
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(·ÖºÑ
+˜
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(İÒî
+
+java:S1186’"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(èş“±ıÿÿÿÿ
+`
+java:S3252+"EUse static access with "javax.swing.SwingConstants" for "HORIZONTAL".(Ğ¤úıÿÿÿÿ
+@	java:S106L"+Replace this use of System.out by a logger.(ñ´Ë‚
+i
+java:S3776”"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(ç¨Î§
+N
+java:S1135•"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ
+8
+java:S1116¨"Remove this empty statement.(Åñ­õşÿÿÿÿ

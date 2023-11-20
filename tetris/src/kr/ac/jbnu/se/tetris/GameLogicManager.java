@@ -8,6 +8,9 @@ public class GameLogicManager {
     //* 변수 초기화
     private boolean isStarted = false;
     private boolean isPaused = false;
+    private boolean inFeverMode = false;
+    private int feverModeLinesCleared = 0;
+
     private int numLinesRemoved = 0;
     private int curX = 0;
     private int curY = 0;
@@ -15,7 +18,7 @@ public class GameLogicManager {
     private int level = 1;
 
     private int score = 0;
-    private int bestScore;
+   private int delay = 400;
 
     public int BoardWidth;
     private int BoardHeight;
@@ -30,8 +33,6 @@ public class GameLogicManager {
     private final TimerManager timerManager;
     private final UIManager uiManager;
     private final ShapeAndTetrominoesManager shapeAndTetrominoesManager;
-    //private final EventManager eventManager;
-    private final ConfigurationManager configurationManager;
 
     NextPiecePanel nextPiecePanel;
     HoldPiecePanel holdPiecePanel;
@@ -100,11 +101,9 @@ public class GameLogicManager {
         this.nextPiece = new Shape();
         this.uiManager = board.getUIManager();
         this.shapeAndTetrominoesManager = new ShapeAndTetrominoesManager();
-        this.timerManager = board.getTimerManager();
-        this.configurationManager = new ConfigurationManager();
-        this.BoardWidth= configurationManager.getBoardWidth();
-        this.BoardHeight = configurationManager.getBoardHeight();
-        this.bestScore = scoreManager.loadBestScore();
+        this.timerManager = new TimerManager(board, delay);
+        this.BoardWidth= board.getBoardWidth();
+        this.BoardHeight = board.getBoardHeight();
 
     }
     //*
@@ -211,8 +210,7 @@ public class GameLogicManager {
         if (!tryMove(curPiece, curX, curY)) {
             curPiece.setShape(Tetrominoes.NoShape);
             timerManager.stopTimer();
-            if(score > bestScore)
-               scoreManager.updateAndSaveScores(score);
+            scoreManager.updateAndSaveScores(score);
             isStarted = false;
            uiManager.updateStatusbar("game over");
         }
@@ -221,6 +219,10 @@ public class GameLogicManager {
         nextPiecePanel.repaint();
     }
     //*
+
+    public void startTimer() {
+        timerManager.startTimer();
+    }
 
     //* 줄 제거 함수
     public void removeFullLines() {
@@ -258,9 +260,30 @@ public class GameLogicManager {
             isFallingFinished = true;
             curPiece.setShape(Tetrominoes.NoShape);
             board.repaint();
+            feverMode(numFullLines);
+
+            if (inFeverMode) {
+                feverModeLinesCleared += numFullLines;
+                // Fever Mode 종료 조건 체크
+                if (feverModeLinesCleared >= 10) {
+                    inFeverMode = false;
+                    feverModeLinesCleared = 0;
+                }
+            }
         }
     }
     //*
+
+    private void feverMode(int numFullLines) {
+        // 한 번에 5개 이상의 줄을 제거했는지 체크
+        if (numFullLines >= 5) {
+            // Fever Mode 활성화
+            inFeverMode = true;
+            feverModeLinesCleared = 0;
+
+        }
+    }
+
 
 
     //* ?

@@ -30,3 +30,11 @@ o
 ?tetris/src/kr/ac/jbnu/se/tetris/Controller/IntroController.java,a\3\a341aee63be0933411c566dee74c0c1f848a7107
 a
 1tetris/src/kr/ac/jbnu/se/tetris/ScoreManager.java,8\0\8057f7dd7d334dabbef3345cffd08bf1ac41c40a
+e
+5tetris/src/kr/ac/jbnu/se/tetris/Model/SoundModel.java,5\9\59d7338830d2ebc3dc85a9ae0313aa454173b7f8
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+Å
+Q.idea/sonarlint/securityhotspotstore/5/9/59d7338830d2ebc3dc85a9ae0313aa454173b7f8,3\8\38d42b1e1d09817a7cdd6105fc0a375243924a31

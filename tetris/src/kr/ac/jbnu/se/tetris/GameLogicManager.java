@@ -199,7 +199,7 @@ public class GameLogicManager {
 
     // 블럭이 바닥에 닿았나 확인하는 함수
     public void pieceDropped() {
-       Tetrominoes[] boardArray = board.getBoardArray();
+        Tetrominoes[] boardArray = board.getBoardArray();
         for (int i = 0; i < 4; ++i) {
             int x = curX + curPiece.x(i);
             int y =curY - curPiece.y(i);
@@ -229,7 +229,7 @@ public class GameLogicManager {
             timerManager.stopTimer();
             scoreManager.updateAndSaveScores(score);
             isStarted = false;
-           uiManager.updateStatusbar("game over");
+            uiManager.updateStatusbar("game over");
         }
 
         nextPiecePanel.updateMiniBoard(nextPiece);
@@ -246,6 +246,7 @@ public class GameLogicManager {
         int numFullLines = 0;
 
         Tetrominoes[] boardArray = board.getBoardArray();
+        boolean[] fullLines = new boolean[BoardHeight];
 
         for (int i = BoardHeight - 1; i >= 0; --i) {
             boolean lineIsFull = true;
@@ -257,10 +258,14 @@ public class GameLogicManager {
                 }
             }
 
+            fullLines[i] = lineIsFull;
+
             if (lineIsFull) {
                 ++numFullLines;
 
                 // Add blinking effect
+
+                /*
                 blinkLines(i);
 
                 for (int k = i; k < BoardHeight - 1; ++k) {
@@ -268,6 +273,7 @@ public class GameLogicManager {
                         boardArray[(k * BoardWidth) + j] = shapeAt(j, k + 1);
                     }
                 }
+                */
             }
         }
 
@@ -424,7 +430,7 @@ public class GameLogicManager {
         return true;
     }
     public void reStart() {
-       board.reStart();
+        board.reStart();
     }
     public void hold() {
         // 현재 블록을 임시 변수에 저장합니다.

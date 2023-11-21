@@ -3,72 +3,33 @@ package kr.ac.jbnu.se.tetris.Model;
 import kr.ac.jbnu.se.tetris.MenuState;
 
 public class IntroModel {
-    /***************************************************************/
     // 변수 초기화
-    private int introWidth = 800;
-    private int introHeight = 800;
-    private int playWidth = 400;
-    private int playHeight = 400;
-    private int playX = 200;
+    public static final int PLAY_WIDTH = 400;
+    public static final int PLAY_HEIGHT = 400;
+    public static final int MENU_WIDTH = 450;
+    public static final int MENU_HEIGHT = 70;
+    public static final int MENU_X = 154;
+    public static final int MENU_Y = 200;
+    public static final int NUM_WIDTH = 45;
+    public static final int NUM_HEIGHT = 45;
+    public static final int NUM_X = 246;
+    public static final int NUM_Y = 193;
 
-    private int playY = 200;
-    private int menuWidth = 450;
-    private int menuHeight = 70;
-    private int menuX = 154;
-    private int menuY = 200;
-    private int numWidth = 45;
-    private int numHeight = 45;
-    private int numX = 246;
-    private int numY = 193;
-
-
-    private float volume = 1.0f;  // 초기 볼륨 값을 1.0으로 설정
-
-    public int getNumWidth() {
-        return numWidth;
-    }
-
-    public int getNumHeight() {
-        return numHeight;
-    }
-
-    public int getNumX() {
-        return numX;
-    }
-
-    public int getNumY() {
-        return numY;
-    }
-
-    public int getNumInterval() {
-        return numInterval;
-    }
-
-    private int numInterval = 72;
-    private int menuInterval = 100;
-    private int select_gameX = 240;
-    private int select_gameY = 210;
-    private int select_gameWidth = 320;
-    private int select_gameHeight = 80;
-    private int select_gameInterval = 30;
+    public static final int NUM_INTERVAL = 72;
+    public static final int MENU_INTERVAL = 100;
+    public static final int SELECT_GAME_X = 240;
+    public static final int SELECT_GAME_Y = 210;
+    public static final int SELECT_GAME_WIDTH = 320;
+    public static final int SELECT_GAME_HEIGHT = 80;
+    public static final int SELECT_GAME_INTERVAL = 30;
     private int checkEntered = 0;
     private int checkClicked = 0;
-    private int checkMulti = 0;
+    public static final float VOLUME = 1.0f;
     private MenuState menuState = MenuState.NONE;
+    private int checkMulti = 0;
+
     /***************************************************************/
     // getter & setter
-    public int getIntroWidth() { return introWidth; }
-    public int getIntroHeight() { return introHeight; }
-    public int getMenuWidth() { return menuWidth; }
-    public int getMenuHeight() { return menuHeight; }
-    public int getMenuX() { return menuX; }
-    public int getMenuY() {	return menuY;}
-    public int getMenuInterval() { return menuInterval; }
-    public int getSelect_gameX() { return select_gameX;	}
-    public int getSelect_gameY() { return select_gameY;	}
-    public int getSelect_gameWidth() { return select_gameWidth; }
-    public int getSelect_gameHeight() { return select_gameHeight; }
-    public int getSelect_gameInterval() { return select_gameInterval; }
     public int getCheckEntered() { return checkEntered; }
     public void setCheckEntered(int checkEntered) {
         this.checkEntered = checkEntered;
@@ -77,23 +38,7 @@ public class IntroModel {
     public void setCheckClicked(int checkClicked) {
         this.checkClicked = checkClicked;
     }
-    public int getCheckMulti() { return checkMulti; }
-    public void setCheckMulti(int checkMulti) { this.checkMulti = checkMulti; }
-    public int getPlayWidth() {        return playWidth;    }
 
-    public void setPlayWidth(int playWidth) {        this.playWidth = playWidth;    }
-
-    public int getPlayHeight() {        return playHeight;    }
-
-    public void setPlayHeight(int playHeight) { this.playHeight = playHeight;    }
-
-    public int getPlayX() { return playX;    }
-
-    public void setPlayX(int playX) {        this.playX = playX;    }
-
-    public int getPlayY() {        return playY;    }
-
-    public void setPlayY(int playY) {        this.playY = playY;    }
     public MenuState getMenuState() {
         return menuState;
     }
@@ -102,11 +47,7 @@ public class IntroModel {
         this.menuState = menuState;
     }
 
-    public float getVolume() {
-        return volume;
-    }
-
-    public void setVolume(float volume) {
-        this.volume = volume;
+    public int getCheckMulti() {
+        return checkMulti;
     }
 }

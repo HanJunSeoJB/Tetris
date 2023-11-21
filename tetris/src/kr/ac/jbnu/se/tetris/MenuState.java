@@ -8,5 +8,6 @@ public enum MenuState {
     GAME_EXIT,       // 게임 종료
     SINGLE_PLAY,     // 싱글 플레이
     MULTI_PLAY       // 멀티 플레이
+
     // 필요에 따라 추가 상태를 정의할 수 있습니다.
 }

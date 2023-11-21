@@ -1,28 +1,35 @@
 
 J
-java:S1604u"(Make this anonymous inner class a lambda(ıòÈÓúÿÿÿÿ8 ÙÕÿ¾1
+java:S1604u"(Make this anonymous inner class a lambda(ıòÈÓúÿÿÿÿ8æÊğ•¿1
 x
-java:S1104"VMake BoardWidth a static final constant or non-public and provide accessors if needed.(ÎÀşìÿÿÿÿÿ8Ë«Óÿ¾1
-v	java:S116"URename this field "BoardWidth" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎÀşìÿÿÿÿÿ8²¬Óÿ¾1
-w	java:S116"VRename this field "BoardHeight" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹æÔÕÿÿÿÿÿ8²¬Óÿ¾1
+java:S1104"VMake BoardWidth a static final constant or non-public and provide accessors if needed.(ÎÀşìÿÿÿÿÿ8™è¯•¿1
+v	java:S116"URename this field "BoardWidth" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎÀşìÿÿÿÿÿ8Ëè¯•¿1
+w	java:S116"VRename this field "BoardHeight" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹æÔÕÿÿÿÿÿ8Ëè¯•¿1
 \
-java:S1117²"9Rename "delay" which hides the field declared at line 25.(Öóã“ùÿÿÿÿ8·¬Óÿ¾1
->	java:S131³""Add a default case to this switch.(•Ø†e8·¬Óÿ¾1
+java:S1117²"9Rename "delay" which hides the field declared at line 25.(Öóã“ùÿÿÿÿ8Ôè¯•¿1
+>	java:S131³""Add a default case to this switch.(•Ø†e8Ôè¯•¿1
 a
-java:S1117Ê">Rename "boardArray" which hides the field declared at line 34.(Ùñ»Šùÿÿÿÿ8¹¬Óÿ¾1
+java:S1117Ê">Rename "boardArray" which hides the field declared at line 34.(Ùñ»Šùÿÿÿÿ8Öè¯•¿1
 S
-java:S2209æ"5Change this instance-reference to a static reference.(¯¼’8¹¬Óÿ¾1
+java:S2209æ"5Change this instance-reference to a static reference.(¯¼’8×è¯•¿1
 u
-java:S3776õ"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(İşä¬ıÿÿÿÿ8º¬Óÿ¾1
+java:S3776õ"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(İşä¬ıÿÿÿÿ8×è¯•¿1
 a
-java:S1117ø">Rename "boardArray" which hides the field declared at line 34.(Ùñ»Šùÿÿÿÿ8¾¬Óÿ¾1
+java:S1854ø">Remove this useless assignment to local variable "boardArray".(Ùñ»Šùÿÿÿÿ8ª™ú•¿1
+a
+java:S1117ø">Rename "boardArray" which hides the field declared at line 34.(Ùñ»Šùÿÿÿÿ8Øè¯•¿1
+R
+java:S1481ø"/Remove this unused "boardArray" local variable.(Ùñ»Šùÿÿÿÿ8ª™ú•¿1
+^	java:S125"<This block of commented-out lines of code should be removed.(û˜­³ıÿÿÿÿ8ª™ú•¿1
 |
-java:S2142˜"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€8‡èÚÿ¾1
+java:S2142"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€8Ÿ°õ•¿1
 a
-java:S1117¹">Rename "boardArray" which hides the field declared at line 34.(Ùñ»Šùÿÿÿÿ8´™Øÿ¾1
+java:S1117¿">Rename "boardArray" which hides the field declared at line 34.(Ùñ»Šùÿÿÿÿ8Ûè¯•¿1
 a
-java:S1117â">Rename "boardArray" which hides the field declared at line 34.(Ùñ»Šùÿÿÿÿ8ôõÛÿ¾1
+java:S1117è">Rename "boardArray" which hides the field declared at line 34.(Ùñ»Šùÿÿÿÿ8Şè¯•¿1
+B
+java:S3398¾"$Move this method into "BlinkWorker".(àÍÜŒ8´™ú•¿1
 K
-java:S1068!")Remove this unused "blink" private field.(Ë„”Šıÿÿÿÿ8Á¬Óÿ¾1
+java:S1068!")Remove this unused "blink" private field.(Ë„”Šıÿÿÿÿ8áè¯•¿1
 P
-java:S1068"".Remove this unused "boardArray" private field.(î•šæÿÿÿÿÿ8÷õÛÿ¾1
+java:S1068"".Remove this unused "boardArray" private field.(î•šæÿÿÿÿÿ8âè¯•¿1

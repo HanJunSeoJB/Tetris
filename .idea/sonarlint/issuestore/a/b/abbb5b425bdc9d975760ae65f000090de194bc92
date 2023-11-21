@@ -1,0 +1,43 @@
+
+_
+java:S6208©"CMerge the previous cases into this one using comma-separated label.(è‰½Ôùÿÿÿÿ
+f	java:S117@"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûğ¢
+f	java:S117W"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áş°ª
+f	java:S117]"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹åÆ
+k	java:S117d"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸ìîÉıÿÿÿÿ
+k	java:S117n"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–‰İÈşÿÿÿÿ
+l	java:S117ˆ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†©»Ñıÿÿÿÿ
+l	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(°£Ú½şÿÿÿÿ
+g	java:S117”"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²®–Ğ
+g	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í…¶Û
+l	java:S117§"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦÷§æûÿÿÿÿ
+l	java:S117¬"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öš³õÿÿÿÿÿ
+g	java:S117³"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šãùÿ
+g	java:S117¸"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğ¾ì«
+v
+java:S1450"[Remove the "player2Panel" field and declare it as a local variable in the relevant methods.(§ÌÜ”ÿÿÿÿÿ
+V
+java:S3252G"AUse static access with "javax.swing.SwingConstants" for "CENTER".(Ößáe
+W
+java:S3252H"AUse static access with "javax.swing.SwingConstants" for "CENTER".(ÊÒ¸—
+W
+java:S3252q"AUse static access with "javax.swing.SwingConstants" for "CENTER".(‹œ
+W
+java:S3252r"AUse static access with "javax.swing.SwingConstants" for "CENTER".(›î¸¹
+W	java:S125‰"<This block of commented-out lines of code should be removed.(²ıÆ¹üÿÿÿÿ
+X
+java:S3252 "AUse static access with "javax.swing.SwingConstants" for "CENTER".(ËÒ™Â
+]
+java:S3252¡"AUse static access with "javax.swing.SwingConstants" for "CENTER".(‘›Ôêşÿÿÿÿ
+Y
+java:S1117ä"=Rename "statusbar" which hides the field declared at line 22.(ëØ½¹ûÿÿÿÿ
+^
+java:S1117å"BRename "nextPiecePanel" which hides the field declared at line 26.(§¹ö§ıÿÿÿÿ
+Y
+java:S1117æ"BRename "holdPiecePanel" which hides the field declared at line 27.(»½£ğ
+Z
+java:S1117ç">Rename "levelPanel" which hides the field declared at line 28.(áŒ§Éıÿÿÿÿ
+Y
+java:S1117è"BRename "bestScorePanel" which hides the field declared at line 29.(¬¤šÃ
+J
+java:S1128"4Remove this unused import 'java.util.logging.Level'.(…µÛ¶

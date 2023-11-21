@@ -17,17 +17,32 @@ public class  EventManager {
 
         int currentX = gameLogicManager.getCurX();
         int currentY = gameLogicManager.getCurY();
+        int lenth = gameLogicManager.getCurPiece().getWidth();
 
         switch (action) {
             case "pause":
                 gameLogicManager.pause();
                 break;
+
+                //좌우 이동
             case "left":
-                gameLogicManager.tryMove(gameLogicManager.getCurPiece(), currentX - 1, currentY);
+                if (currentX >= 1) {
+                    gameLogicManager.tryMove(gameLogicManager.getCurPiece(), currentX - 1, currentY);
+                }
+                else if (currentX < 1){
+                    gameLogicManager.tryMove(gameLogicManager.getCurPiece(), gameLogicManager.BoardWidth - lenth, currentY);
+                }
                 break;
+
             case "right":
-                gameLogicManager.tryMove(gameLogicManager.getCurPiece(), currentX + 1, currentY);
+                if (currentX + lenth < gameLogicManager.BoardWidth) {
+                    gameLogicManager.tryMove(gameLogicManager.getCurPiece(), currentX + 1, currentY);
+                }
+                else if (currentX + lenth >= gameLogicManager.BoardWidth){
+                    gameLogicManager.tryMove(gameLogicManager.getCurPiece(), 0, currentY);
+                }
                 break;
+
             case "rotateRight":
                 gameLogicManager.rotateRight();
                 break;

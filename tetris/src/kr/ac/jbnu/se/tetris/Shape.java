@@ -81,6 +81,20 @@ public class Shape {
 		}
 		return m;
 	}
+
+	public int maxX() {
+		int M = coords[0][0];
+		for (int i = 0; i < 4; i++) {
+			M = Math.max(M, coords[i][0]);
+		}
+		return M;
+	}
+
+	public int getWidth(){
+		int curWidth =  maxX() - minX() + 1;
+		return curWidth;
+	}
+
 	public int minY() {
 		int m = coords[0][1];
 		for (int i = 0; i < 4; i++) {
@@ -88,6 +102,5 @@ public class Shape {
 		}
 		return m;
 	}
-	//*
 
 }

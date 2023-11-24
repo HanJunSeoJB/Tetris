@@ -27,8 +27,8 @@ public class Board extends JPanel implements ActionListener {
 	ConfigurationManager configManager = new ConfigurationManager();
 	BestScorePanel bestScorePanel;
 	//*
-	final int BoardWidth = configManager.getBoardWidth(); // 보드 넓이 초기화
-	final int BoardHeight = configManager.getBoardHeight(); // 보드 높이 초기화
+	final int BoardWidth = configManager.getBoardWidth() * 12 / 10; // 보드 넓이 초기화
+	final int BoardHeight = configManager.getBoardHeight() * 12 / 10; // 보드 높이 초기화
 
 	//* GameLogicManager class에서 사용하기 위해 getter 생성
 
@@ -131,10 +131,10 @@ public class Board extends JPanel implements ActionListener {
 		// 보드판 실선
 		for(int i = 0; i < this.BoardHeight; ++i) {
 			int x = boardTop + i * this.squareHeight();
-			g.fillRect(0, x, size.width, 1);
+			g.fillRect(0, x, size.width * 10, 1);
 		}
 
-		for(int i = 0; i < this.BoardWidth; ++i) {
+		for(int i = 0; i < this.BoardWidth + 1; ++i) {
 			int x = i * this.squareWidth();
 			g.fillRect(x, boardTop, 1, size.height - boardTop);
 		}

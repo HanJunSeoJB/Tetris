@@ -131,7 +131,7 @@ public class Board extends JPanel implements ActionListener {
 		// 보드판 실선
 		for(int i = 0; i < this.BoardHeight; ++i) {
 			int x = boardTop + i * this.squareHeight();
-			g.fillRect(0, x, size.width * 10, 1);
+			g.fillRect(0, x, size.width, 1);
 		}
 
 		for(int i = 0; i < this.BoardWidth + 1; ++i) {

@@ -1,12 +1,12 @@
 
 x
-java:S1104"VMake BoardWidth a static final constant or non-public and provide accessors if needed.(ÎÀşìÿÿÿÿÿ8ã¦®Ú¾1
-v	java:S116"URename this field "BoardWidth" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎÀşìÿÿÿÿÿ8È¨®Ú¾1
-w	java:S116"VRename this field "BoardHeight" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹æÔÕÿÿÿÿÿ8È¨®Ú¾1
+java:S1104"VMake BoardWidth a static final constant or non-public and provide accessors if needed.(ÎÀşìÿÿÿÿÿ8ûÚ½ƒÀ1
+v	java:S116"URename this field "BoardWidth" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÎÀşìÿÿÿÿÿ8óÛ½ƒÀ1
+w	java:S116"VRename this field "BoardHeight" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹æÔÕÿÿÿÿÿ8óÛ½ƒÀ1
 \
-java:S1117 "9Rename "delay" which hides the field declared at line 21.(Öóã“ùÿÿÿÿ8Õ¨®Ú¾1
->	java:S131¡""Add a default case to this switch.(•Ø†e8Õ¨®Ú¾1
+java:S1117 "9Rename "delay" which hides the field declared at line 21.(Öóã“ùÿÿÿÿ8ıÛ½ƒÀ1
+>	java:S131¡""Add a default case to this switch.(•Ø†e8ıÛ½ƒÀ1
 S
-java:S2209Õ"5Change this instance-reference to a static reference.(¯¼’8Ù¨®Ú¾1
+java:S2209Ô"5Change this instance-reference to a static reference.(¯¼’8Ü½ƒÀ1
 u
-java:S3776ä"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(İşä¬ıÿÿÿÿ8Ú¨®Ú¾1
+java:S3776ã"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(İşä¬ıÿÿÿÿ8Ü½ƒÀ1

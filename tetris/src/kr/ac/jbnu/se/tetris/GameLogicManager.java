@@ -186,7 +186,6 @@ public class GameLogicManager {
             int x = curX + curPiece.x(i);
             int y =curY - curPiece.y(i);
             boardArray[(y * BoardWidth) + x] = curPiece.getShape();
-
         }
 
         removeFullLines();
@@ -276,7 +275,7 @@ public class GameLogicManager {
 
     private void feverMode(int numFullLines) {
         // 한 번에 5개 이상의 줄을 제거했는지 체크
-        if (numFullLines >= 5) {
+        if (numFullLines >= 4) {
             // Fever Mode 활성화
             inFeverMode = true;
             feverModeLinesCleared = 0;

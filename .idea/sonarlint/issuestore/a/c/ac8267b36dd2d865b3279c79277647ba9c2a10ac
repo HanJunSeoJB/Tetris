@@ -1,8 +1,8 @@
 
 6
 java:S1700"Rename field "board"(©àÙ¥úÿÿÿÿ8…Ã¹Ù¾1
-v	java:S116"URename this field "BoardWidth" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥ÆÂÀþÿÿÿÿ8ãÄ¹Ù¾1
-w	java:S116"VRename this field "BoardHeight" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ñ–ä†ýÿÿÿÿ8ãÄ¹Ù¾1
+v	java:S116"URename this field "BoardWidth" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚÔ÷§þÿÿÿÿ8ãÄ¹Ù¾1
+r	java:S116"VRename this field "BoardHeight" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰Öï™8ãÄ¹Ù¾1
 M
 java:S1948"+Make "uiManager" transient or serializable.(›éÏ¥ûÿÿÿÿ8ãÄ¹Ù¾1
 O

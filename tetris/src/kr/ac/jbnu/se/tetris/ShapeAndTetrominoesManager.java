@@ -77,4 +77,6 @@ public class ShapeAndTetrominoesManager {
     public void setCurrentShape(Shape shape) {
         this.currentShape = shape;
     }
+
+
 }

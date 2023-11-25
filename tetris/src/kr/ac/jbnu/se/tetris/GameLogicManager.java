@@ -18,9 +18,9 @@ public class GameLogicManager {
     private int level = 1;
 
     private int score = 0;
-   private int delay = 400;
+    private int delay = 400;
 
-    public int BoardWidth;
+    private int BoardWidth;
     private int BoardHeight;
     private Shape curPiece;
     private Shape nextPiece;
@@ -85,6 +85,10 @@ public class GameLogicManager {
 
     public boolean isStarted() {
         return isStarted;
+    }
+
+    public int getBoardWidth(){
+        return BoardWidth;
     }
 
     //*
@@ -295,10 +299,23 @@ public class GameLogicManager {
 
     //* 블럭 좌,우 이동 함수
     public boolean tryMove(Shape newPiece, int newX, int newY) {
-        for (int i = 0; i < 4; ++i) {
+        int blockWidth = newPiece.maxX() - newPiece.minX() - 1;
+
+        for (int i = 0; i < 4; ++i){
             int x = newX + newPiece.x(i);
             int y = newY - newPiece.y(i);
-            if (x < 0 || x >= BoardWidth || y < 0 || y >= BoardHeight)
+
+            // 왼쪽을 벗어나면 가장 오른쪽에 위치하도록 조정
+            if (x < 0) {
+                newX += (BoardWidth + x);
+            }
+
+            // 오른쪽을 벗어나면 가장 왼쪽에 위치하도록 조정
+            if (x >= BoardWidth) {
+                newX = (x - BoardWidth + 1);
+            }
+
+            if (y < 0 || y >= BoardHeight)
                 return false;
             if (shapeAt(x, y) != Tetrominoes.NoShape)
                 return false;

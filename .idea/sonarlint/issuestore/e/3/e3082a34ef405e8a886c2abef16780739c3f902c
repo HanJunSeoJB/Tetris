@@ -1,4 +1,19 @@
 
+<<<<<<< HEAD
+v	java:S116"URename this field "BoardWidth" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Û±Ï›ùÿÿÿÿ8´é­«À1
+w	java:S116"VRename this field "BoardHeight" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹æÔÕÿÿÿÿÿ8µé­«À1
+\
+java:S1117¤"9Rename "delay" which hides the field declared at line 21.(Öóã“ùÿÿÿÿ8Àé­«À1
+>	java:S131¥""Add a default case to this switch.(•Ø†e8Àé­«À1
+S
+java:S2209Ù"5Change this instance-reference to a static reference.(¯¼’8Ãé­«À1
+u
+java:S3776è"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(Ýþä¬ýÿÿÿÿ8Äé­«À1
+\
+java:S1854®">Remove this useless assignment to local variable "blockWidth".(†½˜”8Ã¢Ê«À1
+M
+java:S1481®"/Remove this unused "blockWidth" local variable.(†½˜”8Ä¢Ê«À1
+=======
 J
 java:S1604u"(Make this anonymous inner class a lambda(ýòÈÓúÿÿÿÿ8æÊð•¿1
 x
@@ -33,3 +48,4 @@ K
 java:S1068!")Remove this unused "blink" private field.(Ë„”Šýÿÿÿÿ8áè¯•¿1
 P
 java:S1068"".Remove this unused "boardArray" private field.(î•šæÿÿÿÿÿ8âè¯•¿1
+>>>>>>> 86fac27fc5d5c8679df4e0441c0435e1340686d0

@@ -53,8 +53,8 @@ public class ScoreManager {
         }
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(BEST_SCORE_FILE))) {
-            for (int i = 0; i < scores.length; i++) {
-                writer.write(String.valueOf(scores[i]));
+            for (int score : scores) {
+                writer.write(String.valueOf(score));
                 writer.newLine();
             }
             // 나머지 줄을 그대로 복사한다

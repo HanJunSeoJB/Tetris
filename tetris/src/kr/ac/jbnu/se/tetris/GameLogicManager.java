@@ -1,6 +1,10 @@
 package kr.ac.jbnu.se.tetris;
 
 import kr.ac.jbnu.se.tetris.Model.SoundModel;
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.SwingWorker;
 
 
 public class GameLogicManager {
@@ -26,6 +30,10 @@ public class GameLogicManager {
     private Shape nextPiece;
     private Shape holdPiece;
     private boolean isFallingFinished = false;
+    private boolean blink = false;
+    private Tetrominoes[] boardArray;
+    private Timer blinkTimer;
+    private BlinkWorker blinkWorker;
     //*
 
     //* 객체 초기화
@@ -109,6 +117,16 @@ public class GameLogicManager {
         this.BoardWidth= board.getBoardWidth();
         this.BoardHeight = board.getBoardHeight();
 
+        this.boardArray = board.getBoardArray();
+        blinkTimer = new Timer(500, new ActionListener() { // Adjust the delay for blinking speed
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (blinkWorker == null || blinkWorker.isDone()) {
+                    blinkWorker = new BlinkWorker();
+                    blinkWorker.execute();
+                }
+            }
+        });
     }
     //*
 
@@ -185,7 +203,7 @@ public class GameLogicManager {
 
     // 블럭이 바닥에 닿았나 확인하는 함수
     public void pieceDropped() {
-       Tetrominoes[] boardArray = board.getBoardArray();
+        Tetrominoes[] boardArray = board.getBoardArray();
         for (int i = 0; i < 4; ++i) {
             int x = curX + curPiece.x(i);
             int y =curY - curPiece.y(i);
@@ -204,7 +222,6 @@ public class GameLogicManager {
 
     //* 새 조각 생성 함수
     public void newPiece() {
-
         shapeAndTetrominoesManager.generateNewShape();
         curPiece = shapeAndTetrominoesManager.getCurrentShape();
         nextPiece = shapeAndTetrominoesManager.getNextShape();
@@ -216,7 +233,7 @@ public class GameLogicManager {
             timerManager.stopTimer();
             scoreManager.updateAndSaveScores(score);
             isStarted = false;
-           uiManager.updateStatusbar("game over");
+            uiManager.updateStatusbar("game over");
         }
 
         nextPiecePanel.updateMiniBoard(nextPiece);
@@ -233,6 +250,7 @@ public class GameLogicManager {
         int numFullLines = 0;
 
         Tetrominoes[] boardArray = board.getBoardArray();
+        boolean[] fullLines = new boolean[BoardHeight];
 
         for (int i = BoardHeight - 1; i >= 0; --i) {
             boolean lineIsFull = true;
@@ -244,15 +262,37 @@ public class GameLogicManager {
                 }
             }
 
+            fullLines[i] = lineIsFull;
+
             if (lineIsFull) {
                 ++numFullLines;
+
+                // Add blinking effect
+
+                /*
+                blinkLines(i);
+
                 for (int k = i; k < BoardHeight - 1; ++k) {
                     for (int j = 0; j < BoardWidth; ++j) {
                         boardArray[(k * BoardWidth) + j] = shapeAt(j, k + 1);
                     }
                 }
+                */
+            }
+        }
+
+        if (numFullLines > 0) {
+            blinkTimer.start(); // Start the blinking timer
+            board.repaint();
+
+            try {
+                Thread.sleep(100); // Adjust the sleep duration for blinking speed
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
 
+            blinkTimer.stop(); // Stop the blinking timer
+            board.repaint();
         }
 
         if (numFullLines > 0) {
@@ -277,6 +317,35 @@ public class GameLogicManager {
         }
     }
     //*
+
+    //깜빡이는 효과
+    private void blinkLines(int line) {
+        Tetrominoes[] boardArray = board.getBoardArray();
+
+        for (int i = 0; i < BoardWidth; ++i) {
+            if (line != -1) {
+                // Toggle between normal color and blinking color
+                if (boardArray[(line * BoardWidth) + i] == Tetrominoes.NoShape) {
+                    boardArray[(line * BoardWidth) + i] = Tetrominoes.SquareShape; // Use SquareShape or any other color you prefer
+                } else {
+                    boardArray[(line * BoardWidth) + i] = Tetrominoes.NoShape; // Use NoShape or any other color you prefer
+                }
+            } else {
+                // Reset to the normal color for all cells
+                for (int j = 0; j < BoardHeight; ++j) {
+                    boardArray[(j * BoardWidth) + i] = shapeAt(i, j);
+                }
+            }
+        }
+    }
+
+    private class BlinkWorker extends SwingWorker<Void, Void> {
+        @Override
+        protected Void doInBackground() throws Exception {
+            blinkLines(-1);
+            return null;
+        }
+    }
 
     private void feverMode(int numFullLines) {
         // 한 번에 5개 이상의 줄을 제거했는지 체크
@@ -378,7 +447,7 @@ public class GameLogicManager {
         return true;
     }
     public void reStart() {
-       board.reStart();
+        board.reStart();
     }
     public void hold() {
         // 현재 블록을 임시 변수에 저장합니다.
@@ -403,6 +472,4 @@ public class GameLogicManager {
         board.repaint();
         holdPiecePanel.repaint();
     }
-
-
 }

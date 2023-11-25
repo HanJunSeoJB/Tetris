@@ -1,0 +1,29 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(—¤¢«ýÿÿÿÿ
+E	java:S106""+Replace this use of System.out by a logger.(©þêÜúÿÿÿÿ
+E	java:S1063"+Replace this use of System.out by a logger.(©þêÜúÿÿÿÿ
+L
+java:S1117;"6Rename "ais" which hides the field declared at line 9.(©ƒ‰¾
+N
+java:S1117<"8Rename "clip" which hides the field declared at line 10.(Ÿ«…ü
+E	java:S106@"+Replace this use of System.out by a logger.(©þêÜúÿÿÿÿ
+L
+java:S1117G"6Rename "ais" which hides the field declared at line 9.(ÏÎ›ï
+N
+java:S1117H"8Rename "clip" which hides the field declared at line 10.(Ÿ«…ü
+E	java:S106L"+Replace this use of System.out by a logger.(©þêÜúÿÿÿÿ
+Q
+java:S1117S"6Rename "ais" which hides the field declared at line 9.(¶¹éèýÿÿÿÿ
+N
+java:S1117T"8Rename "clip" which hides the field declared at line 10.(Ÿ«…ü
+E	java:S106X"+Replace this use of System.out by a logger.(©þêÜúÿÿÿÿ
+Q
+java:S1117_"6Rename "ais" which hides the field declared at line 9.(µŒàÑýÿÿÿÿ
+N
+java:S1117`"8Rename "clip" which hides the field declared at line 10.(Ÿ«…ü
+E	java:S106d"+Replace this use of System.out by a logger.(©þêÜúÿÿÿÿ
+Q
+java:S1117k"6Rename "ais" which hides the field declared at line 9.(ø‘á¼üÿÿÿÿ
+N
+java:S1117l"8Rename "clip" which hides the field declared at line 10.(Ÿ«…ü
+E	java:S106p"+Replace this use of System.out by a logger.(©þêÜúÿÿÿÿ

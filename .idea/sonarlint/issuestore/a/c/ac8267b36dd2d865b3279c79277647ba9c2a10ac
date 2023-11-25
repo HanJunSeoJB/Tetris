@@ -1,8 +1,13 @@
 
 6
 java:S1700"Rename field "board"(©àÙ¥úÿÿÿÿ8…Ã¹Ù¾1
+<<<<<<< HEAD
 v	java:S116"URename this field "BoardWidth" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥ÆÂÀşÿÿÿÿ8ãÄ¹Ù¾1
 w	java:S116"VRename this field "BoardHeight" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ñ–ä†ıÿÿÿÿ8¦Û“©À1
+=======
+v	java:S116"URename this field "BoardWidth" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚÔ÷§şÿÿÿÿ8ãÄ¹Ù¾1
+r	java:S116"VRename this field "BoardHeight" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰Öï™8ò¼…À1
+>>>>>>> 86fac27fc5d5c8679df4e0441c0435e1340686d0
 M
 java:S1948"+Make "uiManager" transient or serializable.(›éÏ¥ûÿÿÿÿ8ãÄ¹Ù¾1
 O
@@ -16,6 +21,7 @@ java:S1948".Make "scoreManager" transient or serializable.(ŒòªÓ8ãÄ¹Ù¾1
 L
 java:S1948"/Make "configManager" transient or serializable.(§ŠÈ¯8ãÄ¹Ù¾1
 M
+<<<<<<< HEAD
 java:S11725"0Remove this unused method parameter "playerNum".(–´Ğô8¸Û“©À1
 N
 java:S24409",Remove this instantiation of "ScoreManager".(ËÏÛèÿÿÿÿÿ8¹Û“©À1
@@ -24,6 +30,16 @@ java:S2209i"5Change this instance-reference to a static reference.(Ş‡İ˜şÿÿÿÿ8Ä
 W
 java:S1161u":Add the "@Override" annotation above this method signature(¶øÂÁ8ÇÛ“©À1
 ]	java:S125{"<This block of commented-out lines of code should be removed.(”ÇúŠıÿÿÿÿ8ÉÛ“©À1
+=======
+java:S11725"0Remove this unused method parameter "playerNum".(–´Ğô8ªò¼…À1
+N
+java:S24409",Remove this instantiation of "ScoreManager".(ËÏÛèÿÿÿÿÿ8®ò¼…À1
+W
+java:S2209i"5Change this instance-reference to a static reference.(Ş‡İ˜şÿÿÿÿ8®ò¼…À1
+W
+java:S1161u":Add the "@Override" annotation above this method signature(¶øÂÁ8®ò¼…À1
+]	java:S125{"<This block of commented-out lines of code should be removed.(”ÇúŠıÿÿÿÿ8®ò¼…À1
+>>>>>>> 86fac27fc5d5c8679df4e0441c0435e1340686d0
 X
 java:S1128"6Remove this unused import 'java.awt.event.KeyAdapter'.(ä’£åşÿÿÿÿ8¾˜òÚ¾1
 Q

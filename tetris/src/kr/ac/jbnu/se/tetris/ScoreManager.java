@@ -12,7 +12,6 @@ public class ScoreManager {
     private ScoreManager() {
         throw new IllegalStateException("Utility class");
     }
-
     public static int loadBestScore() {
         File file = new File(BEST_SCORE_FILE);
         if (file.exists()) {

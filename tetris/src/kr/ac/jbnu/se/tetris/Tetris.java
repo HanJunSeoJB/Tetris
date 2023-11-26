@@ -5,7 +5,6 @@ import kr.ac.jbnu.se.tetris.Model.SoundModel;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.logging.Level;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -16,13 +15,12 @@ public class Tetris extends JFrame implements KeyListener {
 	final int executionHeight;
 	int playerNum;
 
-	private boolean isMultiplayer;
+	private final boolean isMultiplayer;
 
 
 	JLabel statusbar;
 
 	private JPanel player1Panel;
-	private JPanel player2Panel;
 	NextPiecePanel nextPiecePanel;
 	HoldPiecePanel holdPiecePanel;
 	LevelPanel levelPanel;
@@ -65,8 +63,8 @@ public class Tetris extends JFrame implements KeyListener {
 
 		statusbar.setFont(new Font("",Font.PLAIN,20));
 		statusbar.setForeground(Color.BLACK);
-		statusbar.setVerticalAlignment(JLabel.CENTER);
-		statusbar.setHorizontalAlignment(JLabel.CENTER);
+		statusbar.setVerticalAlignment(SwingConstants.CENTER);
+		statusbar.setHorizontalAlignment(SwingConstants.CENTER);
 		Score.add(statusbar, BorderLayout.CENTER);
 
 		fillerPanelS.add(Score, BorderLayout.SOUTH);
@@ -107,8 +105,8 @@ public class Tetris extends JFrame implements KeyListener {
 		JLabel HoldTitle = new JLabel("Hold");
 		HoldTitle.setFont(new Font("",Font.PLAIN,16));
 		HoldTitle.setForeground(Color.BLACK);
-		HoldTitle.setVerticalAlignment(JLabel.CENTER);
-		HoldTitle.setHorizontalAlignment(JLabel.CENTER);
+		HoldTitle.setVerticalAlignment(SwingConstants.CENTER);
+		HoldTitle.setHorizontalAlignment(SwingConstants.CENTER);
 
 		TitlePanelH.add(HoldTitle,BorderLayout.NORTH);
 		fillerPanelW.add(HoldPanel, BorderLayout.EAST);
@@ -131,7 +129,7 @@ public class Tetris extends JFrame implements KeyListener {
 		fillerPanelE.setLayout(new BorderLayout());
 
 		JPanel NextPanel = new JPanel();
-		//NextPanel.setBorder(border);
+
 		NextPanel.setPreferredSize(new Dimension(200,200));
 		NextPanel.setBackground(Color.DARK_GRAY);
 		NextPanel.setLayout(new BorderLayout());
@@ -154,8 +152,8 @@ public class Tetris extends JFrame implements KeyListener {
 		JLabel NextTitle = new JLabel("Next");
 		NextTitle.setFont(new Font("",Font.PLAIN, 16));
 		NextTitle.setForeground(Color.BLACK);
-		NextTitle.setVerticalAlignment(JLabel.CENTER);
-		NextTitle.setHorizontalAlignment(JLabel.CENTER);
+		NextTitle.setVerticalAlignment(SwingConstants.CENTER);
+		NextTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		TitlePanelN.add(NextTitle);
 
 		fillerPanelE.add(NextPanel, BorderLayout.WEST);
@@ -205,7 +203,7 @@ public class Tetris extends JFrame implements KeyListener {
 	public void multiPlay() {
 		playerNum = 2;
 		player1Panel = createPlayerPanel(1);
-		player2Panel = createPlayerPanel(2);
+		JPanel player2Panel = createPlayerPanel(2);
 
 
 		JPanel multiplayerPanel = new JPanel(new GridLayout(1, 2));
@@ -227,7 +225,8 @@ public class Tetris extends JFrame implements KeyListener {
 		BestScorePanel bestScorePanel = new BestScorePanel();
 
 		// Board
-		Board board = new Board(nextPiecePanel, holdPiecePanel, levelPanel, bestScorePanel, statusbar, playerNum);
+		ScoreManager scoreManager = null;
+		Board board = new Board(nextPiecePanel, holdPiecePanel, levelPanel, bestScorePanel, statusbar, scoreManager);
 		if (playerNum == 1)
 			board1 = board;
 		else
@@ -280,24 +279,16 @@ public class Tetris extends JFrame implements KeyListener {
 	}
 
 	private String convertKeycodeToAction(int keycode) {
-		switch (keycode) {
-			case KeyEvent.VK_LEFT: return "left";
-			case KeyEvent.VK_RIGHT: return "right";
-			case KeyEvent.VK_DOWN: return "oneLineDown";
-			case KeyEvent.VK_UP: return "rotateLeft";
-			case KeyEvent.VK_SPACE: return "dropDown";
-			case 'd':
-			case 'D':
-				return "hold";
-			case KeyEvent.VK_R: return "re";
-			case KeyEvent.VK_J: return "left";
-			case KeyEvent.VK_L: return "right";
-			case KeyEvent.VK_U: return "oneLineDown";
-			case KeyEvent.VK_K: return "rotateLeft";
-			case KeyEvent.VK_I: return "dropDown";
-			default:
-				return null;
-		}
+        return switch (keycode) {
+            case KeyEvent.VK_LEFT, KeyEvent.VK_J -> "left";
+            case KeyEvent.VK_RIGHT, KeyEvent.VK_L -> "right";
+            case KeyEvent.VK_DOWN, KeyEvent.VK_U -> "oneLineDown";
+            case KeyEvent.VK_UP, KeyEvent.VK_K -> "rotateLeft";
+            case KeyEvent.VK_SPACE, KeyEvent.VK_I -> "dropDown";
+            case 'd', 'D' -> "hold";
+            case KeyEvent.VK_R -> "re";
+            default -> null;
+        };
 	}
 
 	@Override

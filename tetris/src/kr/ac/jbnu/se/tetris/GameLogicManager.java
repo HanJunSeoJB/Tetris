@@ -2,10 +2,7 @@ package kr.ac.jbnu.se.tetris;
 
 import kr.ac.jbnu.se.tetris.Model.SoundModel;
 import javax.swing.Timer;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.SwingWorker;
-
 
 public class GameLogicManager {
 
@@ -15,24 +12,21 @@ public class GameLogicManager {
     private boolean inFeverMode = false;
     private int feverModeLinesCleared = 0;
 
-    private int numLinesRemoved = 0;
+    public static final int NUM_LINES_REMOVED = 0;
     private int curX = 0;
     private int curY = 0;
 
     private int level = 1;
 
     private int score = 0;
-    private int delay = 400;
 
-    private int BoardWidth;
-    private int BoardHeight;
+    private final int BoardWidth;
+    private final int BoardHeight;
     private Shape curPiece;
     private Shape nextPiece;
     private Shape holdPiece;
     private boolean isFallingFinished = false;
-    private boolean blink = false;
-    private Tetrominoes[] boardArray;
-    private Timer blinkTimer;
+    private final Timer blinkTimer;
     private BlinkWorker blinkWorker;
     //*
 
@@ -65,10 +59,6 @@ public class GameLogicManager {
         return curPiece;
     }
 
-    public Shape getNextPiece() {
-        return nextPiece;
-    }
-
     public boolean isFallingFinished() {
         return isFallingFinished;
     }
@@ -88,15 +78,11 @@ public class GameLogicManager {
 
 
     public int getNumLinesRemoved() {
-        return numLinesRemoved;
+        return NUM_LINES_REMOVED;
     }
 
     public boolean isStarted() {
         return isStarted;
-    }
-
-    public int getBoardWidth(){
-        return BoardWidth;
     }
 
     //*
@@ -113,18 +99,16 @@ public class GameLogicManager {
         this.nextPiece = new Shape();
         this.uiManager = board.getUIManager();
         this.shapeAndTetrominoesManager = new ShapeAndTetrominoesManager();
+        int delay = 400;
         this.timerManager = new TimerManager(board, delay);
         this.BoardWidth= board.getBoardWidth();
         this.BoardHeight = board.getBoardHeight();
 
-        this.boardArray = board.getBoardArray();
-        blinkTimer = new Timer(500, new ActionListener() { // Adjust the delay for blinking speed
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (blinkWorker == null || blinkWorker.isDone()) {
-                    blinkWorker = new BlinkWorker();
-                    blinkWorker.execute();
-                }
+        // Adjust the delay for blinking speed
+        blinkTimer = new Timer(500, e -> {
+            if (blinkWorker == null || blinkWorker.isDone()) {
+                blinkWorker = new BlinkWorker();
+                blinkWorker.execute();
             }
         });
     }
@@ -144,18 +128,13 @@ public class GameLogicManager {
 
     // 레벨에 따른 점수 배수를 반환하는 메서드
     public int getScoreMultiplier(int level) {
-        switch (level) {
-            case 2:
-                return 20;
-            case 3:
-                return 50;
-            case 4:
-                return 100;
-            case 5:
-                return 500;
-            default:
-                return 10;  // 기본 점수 배수는 10입니다.
-        }
+        return switch (level) {
+            case 2 -> 20;
+            case 3 -> 50;
+            case 4 -> 100;
+            case 5 -> 500;
+            default -> 10;  // 기본 점수 배수는 10입니다.
+        };
     }
 
     //* 레벨 관리 함수
@@ -179,24 +158,14 @@ public class GameLogicManager {
     //*
 
     public void adjustSpeed(int level) {
-        int delay = 400;  // Default delay
-        switch(level) {
-            case 2:
-                delay = 300;
-                break;
-            case 3:
-                delay = 200;
-                break;
-            case 4:
-                delay = 150;
-                break;
-            case 5:
-                delay = 100;
-                break;
-            case 6:
-                delay = 50;
-                break;
-        }
+        int delay = switch (level) {
+            case 2 -> 300;
+            case 3 -> 200;
+            case 4 -> 150;
+            case 5 -> 100;
+            case 6 -> 50;
+            default -> 400;  // Default delay
+        };
         timerManager.setDelay(delay);
     }
 
@@ -231,7 +200,7 @@ public class GameLogicManager {
         if (!tryMove(curPiece, curX, curY)) {
             curPiece.setShape(Tetrominoes.NoShape);
             timerManager.stopTimer();
-            scoreManager.updateAndSaveScores(score);
+            ScoreManager.updateAndSaveScores(score);
             isStarted = false;
             uiManager.updateStatusbar("game over");
         }
@@ -249,7 +218,6 @@ public class GameLogicManager {
     public void removeFullLines() {
         int numFullLines = 0;
 
-        Tetrominoes[] boardArray = board.getBoardArray();
         boolean[] fullLines = new boolean[BoardHeight];
 
         for (int i = BoardHeight - 1; i >= 0; --i) {
@@ -285,12 +253,6 @@ public class GameLogicManager {
             blinkTimer.start(); // Start the blinking timer
             board.repaint();
 
-            try {
-                Thread.sleep(100); // Adjust the sleep duration for blinking speed
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
             blinkTimer.stop(); // Stop the blinking timer
             board.repaint();
         }
@@ -318,32 +280,33 @@ public class GameLogicManager {
     }
     //*
 
-    //깜빡이는 효과
-    private void blinkLines(int line) {
-        Tetrominoes[] boardArray = board.getBoardArray();
-
-        for (int i = 0; i < BoardWidth; ++i) {
-            if (line != -1) {
-                // Toggle between normal color and blinking color
-                if (boardArray[(line * BoardWidth) + i] == Tetrominoes.NoShape) {
-                    boardArray[(line * BoardWidth) + i] = Tetrominoes.SquareShape; // Use SquareShape or any other color you prefer
-                } else {
-                    boardArray[(line * BoardWidth) + i] = Tetrominoes.NoShape; // Use NoShape or any other color you prefer
-                }
-            } else {
-                // Reset to the normal color for all cells
-                for (int j = 0; j < BoardHeight; ++j) {
-                    boardArray[(j * BoardWidth) + i] = shapeAt(i, j);
-                }
-            }
-        }
-    }
-
     private class BlinkWorker extends SwingWorker<Void, Void> {
         @Override
-        protected Void doInBackground() throws Exception {
+        protected Void doInBackground() {
             blinkLines(-1);
             return null;
+        }
+
+
+        //깜빡이는 효과
+        private void blinkLines(int line) {
+            Tetrominoes[] boardArray = board.getBoardArray();
+
+            for (int i = 0; i < BoardWidth; ++i) {
+                if (line != -1) {
+                    // Toggle between normal color and blinking color
+                    if (boardArray[(line * BoardWidth) + i] == Tetrominoes.NoShape) {
+                        boardArray[(line * BoardWidth) + i] = Tetrominoes.SquareShape; // Use SquareShape or any other color you prefer
+                    } else {
+                        boardArray[(line * BoardWidth) + i] = Tetrominoes.NoShape; // Use NoShape or any other color you prefer
+                    }
+                } else {
+                    // Reset to the normal color for all cells
+                    for (int j = 0; j < BoardHeight; ++j) {
+                        boardArray[(j * BoardWidth) + i] = shapeAt(i, j);
+                    }
+                }
+            }
         }
     }
 
@@ -368,7 +331,6 @@ public class GameLogicManager {
 
     //* 블럭 좌,우 이동 함수
     public boolean tryMove(Shape newPiece, int newX, int newY) {
-        int blockWidth = newPiece.maxX() - newPiece.minX() - 1;
 
         for (int i = 0; i < 4; ++i){
             int x = newX + newPiece.x(i);
@@ -429,7 +391,7 @@ public class GameLogicManager {
             uiManager.updateStatusbar("paused");
         } else {
             timerManager.startTimer();
-            uiManager.updateStatusbar(String.valueOf(numLinesRemoved));
+            uiManager.updateStatusbar(String.valueOf(NUM_LINES_REMOVED));
         }
         board.repaint();
     }

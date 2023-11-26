@@ -1,7 +1,6 @@
 
-r	java:S117V"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ç—ãúüÿÿÿÿ8ÎàÆ©À1
 ‚
-java:S1488^"`Immediately return this expression instead of assigning it to the temporary variable "curWidth".(ÿ¿…ßøÿÿÿÿ8ÏàÆ©À1
+java:S1488^"`Immediately return this expression instead of assigning it to the temporary variable "curWidth".(±í©ùÿÿÿÿ8ÏàÆ©À1
 
 java:S4144?"]Update this method so that its implementation is not identical to "getPieceShape" on line 18.(Óêªıÿÿÿÿ8…áÆ©À1
 w

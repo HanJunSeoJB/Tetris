@@ -1,8 +1,0 @@
-
-6
-java:S1700"Rename field "board"(©àÙ¥úÿÿÿÿ8šñØÀ1
-v	java:S116"URename this field "BoardWidth" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚÔ÷§şÿÿÿÿ8íóØÀ1
-r	java:S116"VRename this field "BoardHeight" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰Öï™8íóØÀ1
-M
-java:S11722"0Remove this unused method parameter "playerNum".(–´Ğô8÷óØÀ1
-]	java:S125y"<This block of commented-out lines of code should be removed.(”ÇúŠıÿÿÿÿ8„ôØÀ1

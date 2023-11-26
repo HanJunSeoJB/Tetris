@@ -8,9 +8,6 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class Board extends JPanel implements ActionListener {
-	boolean isStarted = false; // 게임시작 여부 변수
-	boolean isPaused = false; // 마찬가지
-	JLabel statusbar; // 점수바
 	Tetrominoes[] board; // 보드 객체 초기화
 
 	//* 필요한 클래스 초기화
@@ -19,7 +16,6 @@ public class Board extends JPanel implements ActionListener {
 	private final transient GameLogicManager gameLogicManager;
 	private final transient RenderingManager renderingManager;
 	private final transient EventManager eventManager;
-	private transient ScoreManager scoreManager;
 
 	ConfigurationManager configManager = new ConfigurationManager();
 	BestScorePanel bestScorePanel;
@@ -47,7 +43,7 @@ public class Board extends JPanel implements ActionListener {
 	//*
 
 
-	public Board(NextPiecePanel nextPiecePanel, HoldPiecePanel holdPiecePanel,LevelPanel levelPanel, BestScorePanel bestScorePanel, JLabel statusbar, int playerNum) {
+	public Board(NextPiecePanel nextPiecePanel, HoldPiecePanel holdPiecePanel, LevelPanel levelPanel, BestScorePanel bestScorePanel, JLabel statusbar, ScoreManager scoreManager) {
 
 		//* 객체 초기화
 		this.uiManager = new UIManager(statusbar);
@@ -128,8 +124,8 @@ public class Board extends JPanel implements ActionListener {
 
 		// 보드판 실선
 		for(int i = 0; i < this.BoardHeight; ++i) {
-			int x = boardTop + i * this.squareHeight();
-			g.fillRect(0, x, size.width, 1);
+			int Top = boardTop + i * this.squareHeight();
+			g.fillRect(0, Top, size.width, 1);
 		}
 
 		for(int i = 0; i < this.BoardWidth + 1; ++i) {

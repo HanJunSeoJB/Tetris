@@ -10,7 +10,7 @@ public class NextPiecePanel extends JPanel {
     Tetrominoes[] miniBoard;
     final int MiniBoardWidth;
     final int MiniBoardHeight;
-    private ConfigurationManager configurationManager;
+    private final ConfigurationManager configurationManager;
 
     public NextPiecePanel() {
         this.configurationManager = new ConfigurationManager();
@@ -54,7 +54,7 @@ public class NextPiecePanel extends JPanel {
 
 
     public void drawSquare(Graphics g, int x, int y, Tetrominoes shape) {
-        Color colors[] = {new Color(0, 0, 0), new Color(204, 102, 102), new Color(102, 204, 102),
+        Color[] colors = {new Color(0, 0, 0), new Color(204, 102, 102), new Color(102, 204, 102),
                 new Color(102, 102, 204), new Color(204, 204, 102), new Color(204, 102, 204), new Color(102, 204, 204),
                 new Color(218, 170, 0)};
 
@@ -71,6 +71,8 @@ public class NextPiecePanel extends JPanel {
         g.drawLine(x + 1, y + squareHeight() - 1, x + squareWidth() - 1, y + squareHeight() - 1);
         g.drawLine(x + squareWidth() - 1, y + squareHeight() - 1, x + squareWidth() - 1, y + 1);
     }
+
+    @Override
     public void paint(Graphics g) {
         super.paint(g);
 

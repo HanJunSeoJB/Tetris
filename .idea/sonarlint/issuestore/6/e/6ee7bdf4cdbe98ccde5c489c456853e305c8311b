@@ -1,8 +1,7 @@
 
-n	java:S116	"YRename this field "MiniBoardWidth" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡ö—‹
-s	java:S116
-"YRename this field "MiniBoarHeight" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚Ùêèøÿÿÿÿ
-H
-java:S1135"2Complete the task associated to this TODO comment.(Ü—±˜
-M
-java:S1135""2Complete the task associated to this TODO comment.(ß¸ÀÕûÿÿÿÿ
+u	java:S116"YRename this field "MiniBoardWidth" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆ˜éö8ŸÔ×À1
+z	java:S116"YRename this field "MiniBoarHeight" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕÎ¶âıÿÿÿÿ8ŸÔ×À1
+O
+java:S1135"2Complete the task associated to this TODO comment.(Ü—±˜8¢Ô×À1
+T
+java:S1135$"2Complete the task associated to this TODO comment.(ß¸ÀÕûÿÿÿÿ8¢Ô×À1

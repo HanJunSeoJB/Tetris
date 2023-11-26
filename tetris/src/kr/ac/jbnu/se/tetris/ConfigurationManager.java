@@ -1,19 +1,21 @@
 package kr.ac.jbnu.se.tetris;
 
+import java.io.Serializable;
+
 // 상수 관리 클래스
-public class ConfigurationManager {
+public class ConfigurationManager implements Serializable {
 
-    private int boardWidth;
-    private int boardHeight;
+    private final int boardWidth;
+    private final int boardHeight;
 
-    private int MiniBoardWidth;
-    private int MiniBoarHeight;
-    private int holdBoardWidth;
-    private int holdBoarHeight;
+    private final int MiniBoardWidth;
+    private final int MiniBoarHeight;
+    private final int holdBoardWidth;
+    private final int holdBoarHeight;
+    private final int delay;
 
-    private int delay;
 
-    public ConfigurationManager() {
+    public ConfigurationManager()  {
         // 기본 설정 값으로 초기화
         this.boardWidth = 10;
         this.boardHeight = 20;
@@ -24,7 +26,7 @@ public class ConfigurationManager {
         this.holdBoarHeight = 4;
     }
 
-    // 게임 설정을 로드하는 메소드 (예: 파일에서 불러오기)
+//     게임 설정을 로드하는 메소드 (예: 파일에서 불러오기)
     public void loadConfiguration() {
         // TODO: 설정 파일에서 설정 값을 불러오는 로직을 구현
     }

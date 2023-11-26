@@ -5,9 +5,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
 import javax.swing.*;
 
 public class Board extends JPanel implements ActionListener {
@@ -18,12 +15,12 @@ public class Board extends JPanel implements ActionListener {
 
 	//* 필요한 클래스 초기화
 
-	private final UIManager uiManager;
-	private final GameLogicManager gameLogicManager;
-	private final RenderingManager renderingManager;
-	private final EventManager eventManager;
+	private final transient UIManager uiManager;
+	private final transient GameLogicManager gameLogicManager;
+	private final transient RenderingManager renderingManager;
+	private final transient EventManager eventManager;
+	private transient ScoreManager scoreManager;
 
-	private final ScoreManager scoreManager;
 	ConfigurationManager configManager = new ConfigurationManager();
 	BestScorePanel bestScorePanel;
 	//*
@@ -54,7 +51,6 @@ public class Board extends JPanel implements ActionListener {
 
 		//* 객체 초기화
 		this.uiManager = new UIManager(statusbar);
-		this.scoreManager = new ScoreManager();
 		this.gameLogicManager = new GameLogicManager(this, nextPiecePanel, holdPiecePanel, levelPanel, scoreManager);
 		this.renderingManager = new RenderingManager(this);
 		this.eventManager = new EventManager(this.gameLogicManager);
@@ -102,7 +98,7 @@ public class Board extends JPanel implements ActionListener {
 		clearBoard();
 
 		gameLogicManager.newPiece();
-		bestScorePanel.updateBestScore(scoreManager.loadBestScore());
+		bestScorePanel.updateBestScore(ScoreManager.loadBestScore());
 		gameLogicManager.startTimer();
 	}
 
@@ -114,6 +110,8 @@ public class Board extends JPanel implements ActionListener {
 
 
 	// 보드에 그리는 함수
+
+	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 

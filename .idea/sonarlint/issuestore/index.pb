@@ -22,3 +22,11 @@ Y
 )tetris/src/kr/ac/jbnu/se/tetris/Main.java,f\b\fb8e7d806128cce82c59191f124f9c9ba4743071
 e
 5tetris/src/kr/ac/jbnu/se/tetris/GameLogicManager.java,e\3\e3082a34ef405e8a886c2abef16780739c3f902c
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+[
++tetris/src/kr/ac/jbnu/se/tetris/Tetris.java,a\b\abbb5b425bdc9d975760ae65f000090de194bc92
+a
+1tetris/src/kr/ac/jbnu/se/tetris/ScoreManager.java,8\0\8057f7dd7d334dabbef3345cffd08bf1ac41c40a
+c
+3tetris/src/kr/ac/jbnu/se/tetris/View/IntroView.java,8\8\883633530847c1d066a290fa9984b1e6dbb9683b

@@ -1,8 +1,10 @@
 package kr.ac.jbnu.se.tetris;
 
-public class  EventManager {
+import java.io.Serializable;
+
+public class EventManager implements Serializable {
     //* 객체 초기화
-    private final GameLogicManager gameLogicManager;
+    private final transient GameLogicManager gameLogicManager;
     public EventManager(GameLogicManager gameLogicManager) {
         this.gameLogicManager = gameLogicManager;
     }
@@ -17,7 +19,7 @@ public class  EventManager {
 
         int currentX = gameLogicManager.getCurX();
         int currentY = gameLogicManager.getCurY();
-        int lenth = gameLogicManager.getCurPiece().getWidth();
+
         switch (action) {
             case "pause":
                 gameLogicManager.pause();

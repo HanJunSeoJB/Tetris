@@ -17,23 +17,20 @@ public class Tetris extends JFrame implements KeyListener {
 
 	private final boolean isMultiplayer;
 
-
-	JLabel statusbar;
+	private JLabel statusbar;
 
 	private JPanel player1Panel;
-	NextPiecePanel nextPiecePanel;
-	HoldPiecePanel holdPiecePanel;
-	LevelPanel levelPanel;
-	BestScorePanel bestScorePanel;
-	Board board1;
-	Board board2;
+	private HoldPiecePanel holdPiecePanel;
+	private LevelPanel levelPanel;
+	private BestScorePanel bestScorePanel;
+	private Board board1;
+	private Board board2;
 
 
 	public Tetris(boolean isMultiPlayer, SoundModel soundModel) {
 		addKeyListener(this);
 		setFocusable(true);
 		this.isMultiplayer = isMultiPlayer;
-		// 멀티플레이 모드인 경우 화면의 너비를 두 배로 설정합니다.
 		this.executionWidth = isMultiplayer ? 1600 : 800;
 		this.executionHeight = 800;
 
@@ -51,139 +48,136 @@ public class Tetris extends JFrame implements KeyListener {
 	}
 
 	private JPanel createFillerPanelS(JLabel statusbar) {
-		this.statusbar = statusbar;
+		this.statusbar = new JLabel(" 0");
 		JPanel fillerPanelS = new JPanel();
 		fillerPanelS.setPreferredSize(new Dimension(isMultiplayer ? executionWidth / 2 : executionWidth, (executionHeight - 400) / 2));
 		fillerPanelS.setBackground(Color.black);
 
-		JPanel Score = new JPanel();
-		Score.setPreferredSize(new Dimension(isMultiplayer ? (executionWidth - 400) / 4 : (executionWidth - 400) / 2, 40));
-		Score.setLayout(new BorderLayout());
-		Score.setBackground(Color.LIGHT_GRAY);
+		JPanel scorePanel = new JPanel();
+		scorePanel.setPreferredSize(new Dimension(isMultiplayer ? (executionWidth - 400) / 4 : (executionWidth - 400) / 2, 40));
+		scorePanel.setLayout(new BorderLayout());
+		scorePanel.setBackground(Color.LIGHT_GRAY);
 
-		statusbar.setFont(new Font("",Font.PLAIN,20));
+		statusbar.setFont(new Font("", Font.PLAIN, 20));
 		statusbar.setForeground(Color.BLACK);
 		statusbar.setVerticalAlignment(SwingConstants.CENTER);
 		statusbar.setHorizontalAlignment(SwingConstants.CENTER);
-		Score.add(statusbar, BorderLayout.CENTER);
+		scorePanel.add(this.statusbar, BorderLayout.CENTER);
 
-		fillerPanelS.add(Score, BorderLayout.SOUTH);
+		fillerPanelS.add(scorePanel, BorderLayout.SOUTH);
 		return fillerPanelS;
 	}
 
 	private JPanel createFillerPanelW(EtchedBorder border, HoldPiecePanel holdPiecePanel) {
-		this.holdPiecePanel = holdPiecePanel;
+		this.holdPiecePanel = new HoldPiecePanel();
 		JPanel fillerPanelW = new JPanel();
 		fillerPanelW.setPreferredSize(new Dimension(isMultiplayer ? (executionWidth - 200) / 4 : (executionWidth - 200) / 2, 400));
 		fillerPanelW.setBackground(Color.BLACK);
 		fillerPanelW.setLayout(new BorderLayout());
 
 		//Hold 블럭 칸
-		JPanel HoldPanel = new JPanel();
-		HoldPanel.setBorder(border);
-		HoldPanel.setPreferredSize(new Dimension(200,175)); //아래의 jPanelW(여백) 패널과 함께 크기 조절
-		HoldPanel.setBackground(Color.DARK_GRAY);
-		HoldPanel.setLayout(new BorderLayout());
+		JPanel holdPanel = new JPanel();
+		holdPanel.setBorder(border);
+		holdPanel.setPreferredSize(new Dimension(200,175)); //아래의 jPanelW(여백) 패널과 함께 크기 조절
+		holdPanel.setBackground(Color.DARK_GRAY);
+		holdPanel.setLayout(new BorderLayout());
 
-		JPanel TitlePanelH = new JPanel();
-		TitlePanelH.setPreferredSize(new Dimension(200,30));
-		TitlePanelH.setBackground(Color.LIGHT_GRAY);
-		TitlePanelH.setLayout(new BorderLayout());
-		TitlePanelH.setBorder(border);
+		JPanel titlePanelH = new JPanel();
+		titlePanelH.setPreferredSize(new Dimension(200,30));
+		titlePanelH.setBackground(Color.LIGHT_GRAY);
+		titlePanelH.setLayout(new BorderLayout());
+		titlePanelH.setBorder(border);
 
 		// Hold 블럭 칸에 holdPiecePanel을 추가하는 JPanel 객체 생성
-		JPanel HoldBlock = new JPanel();
-		HoldBlock.setBorder(border);
-		HoldBlock.setPreferredSize(new Dimension(200, 100));  // 너비와 높이는 필요에 따라 조정
-		HoldBlock.setBackground(Color.DARK_GRAY);
-		HoldBlock.add(holdPiecePanel);  // holdPiecePanel을 HoldBlock에 추가
+		JPanel holdBlockPanel = new JPanel();
+		holdBlockPanel.setBorder(border);
+		holdBlockPanel.setPreferredSize(new Dimension(200, 100));  // 너비와 높이는 필요에 따라 조정
+		holdBlockPanel.setBackground(Color.DARK_GRAY);
+		holdBlockPanel.add(holdPiecePanel);  // holdPiecePanel을 HoldBlock에 추가
 
-		// HoldPanel의 중앙에 HoldBlock 추가
-		HoldPanel.add(HoldBlock, BorderLayout.EAST); //Hold 패널 위치
-		HoldPanel.add(TitlePanelH, BorderLayout.NORTH);
+		// HoldPanel의 중앙에 holdBlockPanel 추가
+		holdPanel.add(holdBlockPanel, BorderLayout.EAST); //Hold 패널 위치
+		holdPanel.add(titlePanelH, BorderLayout.NORTH);
 
-		JLabel HoldTitle = new JLabel("Hold");
-		HoldTitle.setFont(new Font("",Font.PLAIN,16));
-		HoldTitle.setForeground(Color.BLACK);
-		HoldTitle.setVerticalAlignment(SwingConstants.CENTER);
-		HoldTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel holdTitleLabel = new JLabel("Hold");
+		holdTitleLabel.setFont(new Font("",Font.PLAIN,16));
+		holdTitleLabel.setForeground(Color.BLACK);
+		holdTitleLabel.setVerticalAlignment(SwingConstants.CENTER);
+		holdTitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-		TitlePanelH.add(HoldTitle,BorderLayout.NORTH);
-		fillerPanelW.add(HoldPanel, BorderLayout.EAST);
+		titlePanelH.add(holdTitleLabel,BorderLayout.NORTH);
+		fillerPanelW.add(holdPanel, BorderLayout.EAST);
 
 		JPanel jPanelW = new JPanel();
-		jPanelW.setPreferredSize(new Dimension(100, 225)); //위의 HoldPanel 패널과 함께 크기 조절
+		jPanelW.setPreferredSize(new Dimension(100, 225)); //위의 holdPanel 패널과 함께 크기 조절
 		jPanelW.setBackground(Color.BLACK);
 
 		fillerPanelW.add(jPanelW, BorderLayout.SOUTH);
 		return fillerPanelW;
 	}
 
-	private JPanel createFillerPanelE(EtchedBorder border, NextPiecePanel nextPiecePanel, LevelPanel levelPanel, BestScorePanel bestScorePanel) {
-		this.nextPiecePanel = nextPiecePanel;
-		this.levelPanel = levelPanel;
-		this.bestScorePanel = bestScorePanel;
+	private JPanel createFillerPanelE(EtchedBorder border, NextPiecePanel nextPiecePanel) {
 		JPanel fillerPanelE = new JPanel();
 		fillerPanelE.setPreferredSize(new Dimension(isMultiplayer ? (executionWidth - 200) / 4 : (executionWidth - 200) / 2, 200));
 		fillerPanelE.setBackground(Color.black);
 		fillerPanelE.setLayout(new BorderLayout());
 
-		JPanel NextPanel = new JPanel();
+		JPanel nextPanel = new JPanel();
 
-		NextPanel.setPreferredSize(new Dimension(200,200));
-		NextPanel.setBackground(Color.DARK_GRAY);
-		NextPanel.setLayout(new BorderLayout());
+		nextPanel.setPreferredSize(new Dimension(200, 200));
+		nextPanel.setBackground(Color.DARK_GRAY);
+		nextPanel.setLayout(new BorderLayout());
 
-		JPanel TitlePanelN = new JPanel();
-		TitlePanelN.setPreferredSize(new Dimension(200, 30));
-		TitlePanelN.setBackground(Color.LIGHT_GRAY);
-		TitlePanelN.setLayout(new BorderLayout());
-		TitlePanelN.setBorder(border);
+		JPanel titlePanelN = new JPanel();
+		titlePanelN.setPreferredSize(new Dimension(200, 30));
+		titlePanelN.setBackground(Color.LIGHT_GRAY);
+		titlePanelN.setLayout(new BorderLayout());
+		titlePanelN.setBorder(border);
 
-		JPanel NextBlock = new JPanel();
-		NextBlock.setBorder(border);
-		NextBlock.setPreferredSize(new Dimension(200,100));
-		NextBlock.setBackground(Color.DARK_GRAY);
-		NextBlock.add(nextPiecePanel);
+		JPanel nextBlockPanel = new JPanel();
+		nextBlockPanel.setBorder(border);
+		nextBlockPanel.setPreferredSize(new Dimension(200, 100));
+		nextBlockPanel.setBackground(Color.DARK_GRAY);
+		nextBlockPanel.add(nextPiecePanel);
 
-		NextPanel.add(NextBlock, BorderLayout.CENTER);
-		NextPanel.add(TitlePanelN, BorderLayout.NORTH);
+		nextPanel.add(nextBlockPanel, BorderLayout.CENTER);
+		nextPanel.add(titlePanelN, BorderLayout.NORTH);
 
-		JLabel NextTitle = new JLabel("Next");
-		NextTitle.setFont(new Font("",Font.PLAIN, 16));
-		NextTitle.setForeground(Color.BLACK);
-		NextTitle.setVerticalAlignment(SwingConstants.CENTER);
-		NextTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		TitlePanelN.add(NextTitle);
+		JLabel nextTitleLabel = new JLabel("Next");
+		nextTitleLabel.setFont(new Font("", Font.PLAIN, 16));
+		nextTitleLabel.setForeground(Color.BLACK);
+		nextTitleLabel.setVerticalAlignment(SwingConstants.CENTER);
+		nextTitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titlePanelN.add(nextTitleLabel);
 
-		fillerPanelE.add(NextPanel, BorderLayout.WEST);
+		fillerPanelE.add(nextPanel, BorderLayout.WEST);
 
 		//Next 패널 아래(Level, TotalScore)
-		JPanel UnderNextPanel = new JPanel();
-		UnderNextPanel.setPreferredSize(new Dimension(100, 100));
-		UnderNextPanel.setBackground(Color.BLACK);
+		JPanel underNextPanel = new JPanel();
+		underNextPanel.setPreferredSize(new Dimension(100, 100));
+		underNextPanel.setBackground(Color.BLACK);
 
-		//Level 패널
-		JPanel LevelPanel = new JPanel();
-		LevelPanel.setPreferredSize(new Dimension(200, 50));
-		LevelPanel.setBackground(Color.WHITE);
-		LevelPanel.setLayout(new BorderLayout());
-		UnderNextPanel.add(levelPanel, BorderLayout.SOUTH);
+		// Level 패널
+		JPanel levelPanelLocal = new JPanel();
+		levelPanelLocal.setPreferredSize(new Dimension(200, 50));
+		levelPanelLocal.setBackground(Color.WHITE);
+		levelPanelLocal.setLayout(new BorderLayout());
+		underNextPanel.add(this.levelPanel, BorderLayout.SOUTH);
 
-		//Best Score 패널
-		JPanel BestScorePanel = new JPanel();
-		BestScorePanel.setPreferredSize(new Dimension(200,50));
-		BestScorePanel.setBackground(Color.DARK_GRAY);
-		BestScorePanel.setBorder(border);
+		// Best Score 패널
+		JPanel bestScorePanelLocal = new JPanel();
+		bestScorePanelLocal.setPreferredSize(new Dimension(200, 50));
+		bestScorePanelLocal.setBackground(Color.DARK_GRAY);
+		bestScorePanelLocal.setBorder(border);
 
-		JLabel BestScore = new JLabel("Best Score");
-		BestScore.setFont(new Font("",Font.BOLD,24));
-		BestScore.setForeground(Color.GRAY);
+		JLabel bestScoreLabel = new JLabel("Best Score");
+		bestScoreLabel.setFont(new Font("", Font.BOLD, 24));
+		bestScoreLabel.setForeground(Color.GRAY);
 
-		BestScorePanel.add(BestScore, BorderLayout.WEST);
-		UnderNextPanel.add(bestScorePanel, BorderLayout.CENTER);
+		bestScorePanel.add(bestScoreLabel, BorderLayout.WEST);
+		underNextPanel.add(this.bestScorePanel, BorderLayout.CENTER);
 
-		NextPanel.add(UnderNextPanel, BorderLayout.SOUTH);
+		nextPanel.add(underNextPanel, BorderLayout.SOUTH);
 		return fillerPanelE;
 	}
 
@@ -216,17 +210,15 @@ public class Tetris extends JFrame implements KeyListener {
 	private JPanel createPlayerPanel(int playerNum) {
 		JPanel playerPanel = new JPanel(new BorderLayout());
 
-
 		// components initialization
-		JLabel statusbar = new JLabel(" 0");
+		this.statusbar = new JLabel(" 0");
 		NextPiecePanel nextPiecePanel = new NextPiecePanel();
-		HoldPiecePanel holdPiecePanel = new HoldPiecePanel();
-		LevelPanel levelPanel = new LevelPanel();
-		BestScorePanel bestScorePanel = new BestScorePanel();
+		this.holdPiecePanel = new HoldPiecePanel();
+		this.levelPanel = new LevelPanel();
+		this.bestScorePanel = new BestScorePanel();
 
 		// Board
-		ScoreManager scoreManager = null;
-		Board board = new Board(nextPiecePanel, holdPiecePanel, levelPanel, bestScorePanel, statusbar, scoreManager);
+		Board board = new Board(nextPiecePanel, holdPiecePanel, levelPanel, bestScorePanel, statusbar, null);
 		if (playerNum == 1)
 			board1 = board;
 		else
@@ -242,7 +234,7 @@ public class Tetris extends JFrame implements KeyListener {
 		containerPanel.add(board, BorderLayout.CENTER);
 
 		containerPanel.add(createFillerPanelN(), BorderLayout.NORTH);
-		containerPanel.add(createFillerPanelE(border, nextPiecePanel, levelPanel, bestScorePanel), BorderLayout.EAST);
+		containerPanel.add(createFillerPanelE(border, nextPiecePanel), BorderLayout.EAST);
 		containerPanel.add(createFillerPanelW(border, holdPiecePanel), BorderLayout.WEST);
 		containerPanel.add(createFillerPanelS(statusbar), BorderLayout.SOUTH);
 

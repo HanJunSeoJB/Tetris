@@ -1,4 +1,5 @@
 
+r	java:S117V"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ç—ãúüÿÿÿÿ8ÍœÊˆÁ1
 ‚
 java:S1488^"`Immediately return this expression instead of assigning it to the temporary variable "curWidth".(±í©ùÿÿÿÿ8ÏàÆ©À1
 

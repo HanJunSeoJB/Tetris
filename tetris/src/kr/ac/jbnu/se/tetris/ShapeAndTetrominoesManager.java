@@ -37,7 +37,7 @@ public class ShapeAndTetrominoesManager {
 
     // Shape 객체를 인자로 받아 회전시키는 메서드
     public Shape rotateLeft(Shape shape) {
-        if (shape.getShape() == Tetrominoes.SquareShape)
+        if (shape.getShape() == Tetrominoes.SQUARE_SHAPE)
             return shape;
 
         Shape result = new Shape();
@@ -53,7 +53,7 @@ public class ShapeAndTetrominoesManager {
     }
 
     public Shape rotateRight(Shape shape) {
-        if (shape.getShape() == Tetrominoes.SquareShape)
+        if (shape.getShape() == Tetrominoes.SQUARE_SHAPE)
             return shape;
 
         Shape result = new Shape();

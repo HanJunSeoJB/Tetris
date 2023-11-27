@@ -1,0 +1,7 @@
+
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İ‹úÿÿÿÿ8“ÅàÀ1
+6
+java:S1700"Rename field "board"(©àÙ¥úÿÿÿÿ8“ÅàÀ1
+v	java:S116"URename this field "BoardWidth" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚÔ÷§şÿÿÿÿ8´ÅàÀ1
+r	java:S116"VRename this field "BoardHeight" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰Öï™8´ÅàÀ1
+]	java:S125u"<This block of commented-out lines of code should be removed.(”ÇúŠıÿÿÿÿ8ÑÅàÀ1

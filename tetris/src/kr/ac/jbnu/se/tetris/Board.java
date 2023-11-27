@@ -138,12 +138,12 @@ public class Board extends JPanel implements ActionListener {
 		for (int i = 0; i < BoardHeight; ++i) {
 			for (int j = 0; j < BoardWidth; ++j) {
 				Tetrominoes shape = gameLogicManager.shapeAt(j, BoardHeight - i - 1);
-				if (shape != Tetrominoes.NoShape)
+				if (shape != Tetrominoes.NO_SHAPE)
 					renderingManager.drawSquare(g, j * squareWidth(), boardTop + i * squareHeight(), shape);
 			}
 		}
 
-		if (curPiece.getShape() != Tetrominoes.NoShape) {
+		if (curPiece.getShape() != Tetrominoes.NO_SHAPE) {
 			for (int i = 0; i < 4; ++i) {
 				int x = gameLogicManager.getCurX() + curPiece.x(i);
 				int y = gameLogicManager.getCurY() - curPiece.y(i);
@@ -177,7 +177,7 @@ public class Board extends JPanel implements ActionListener {
 	// 보드 초기화 함수
 	public void clearBoard() {
 		for (int i = 0; i < BoardHeight * BoardWidth; ++i)
-			board[i] = Tetrominoes.NoShape;
+			board[i] = Tetrominoes.NO_SHAPE;
 	}
 
 	// 게임 멈춤 여부 확인 함수

@@ -21,7 +21,7 @@ public class HoldPiecePanel extends JPanel {
     }
 
     public void clearHoldBoard() {
-        Arrays.fill(holdBoard, Tetrominoes.NoShape);
+        Arrays.fill(holdBoard, Tetrominoes.NO_SHAPE);
     }
 
     public void updateHoldBoard(Shape holdPiece) {
@@ -80,7 +80,7 @@ public class HoldPiecePanel extends JPanel {
             for (int j = 0; j < holdBoardWidth; ++j) {
                 Tetrominoes shape = holdShapeAt(j, holdBoardHeight - i - 1);
 
-                if (shape != Tetrominoes.NoShape)
+                if (shape != Tetrominoes.NO_SHAPE)
                     drawSquare(g, j * squareWidth(), holdBoardTop + i * squareHeight() , shape);
             }
         }

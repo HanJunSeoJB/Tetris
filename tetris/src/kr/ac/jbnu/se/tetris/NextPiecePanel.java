@@ -23,7 +23,7 @@ public class NextPiecePanel extends JPanel {
     }
 
     public void clearMiniBoard() {
-        Arrays.fill(miniBoard, Tetrominoes.NoShape);
+        Arrays.fill(miniBoard, Tetrominoes.NO_SHAPE);
     }
 
     public void updateMiniBoard(Shape nextPiece) {
@@ -83,7 +83,7 @@ public class NextPiecePanel extends JPanel {
             for (int j = 0; j < MiniBoardWidth; ++j) {
                 Tetrominoes shape = miniShapeAt(j, MiniBoardHeight - i - 1);
 
-                if (shape != Tetrominoes.NoShape)
+                if (shape != Tetrominoes.NO_SHAPE)
                     drawSquare(g, j * squareWidth(), MiniboardTop + i * squareHeight() , shape);
             }
         }

@@ -198,7 +198,7 @@ public class GameLogicManager {
         curY = BoardHeight - 1 + curPiece.minY();
 
         if (!tryMove(curPiece, curX, curY)) {
-            curPiece.setShape(Tetrominoes.NoShape);
+            curPiece.setShape(Tetrominoes.NO_SHAPE);
             timerManager.stopTimer();
             ScoreManager.updateAndSaveScores(score);
             isStarted = false;
@@ -224,7 +224,7 @@ public class GameLogicManager {
             boolean lineIsFull = true;
 
             for (int j = 0; j < BoardWidth; ++j) {
-                if (shapeAt(j, i) == Tetrominoes.NoShape) {
+                if (shapeAt(j, i) == Tetrominoes.NO_SHAPE) {
                     lineIsFull = false;
                     break;
                 }
@@ -264,7 +264,7 @@ public class GameLogicManager {
             updateLevel(score);
             uiManager.updateScore(score);
             isFallingFinished = true;
-            curPiece.setShape(Tetrominoes.NoShape);
+            curPiece.setShape(Tetrominoes.NO_SHAPE);
             board.repaint();
             feverMode(numFullLines);
 
@@ -295,10 +295,10 @@ public class GameLogicManager {
             for (int i = 0; i < BoardWidth; ++i) {
                 if (line != -1) {
                     // Toggle between normal color and blinking color
-                    if (boardArray[(line * BoardWidth) + i] == Tetrominoes.NoShape) {
-                        boardArray[(line * BoardWidth) + i] = Tetrominoes.SquareShape; // Use SquareShape or any other color you prefer
+                    if (boardArray[(line * BoardWidth) + i] == Tetrominoes.NO_SHAPE) {
+                        boardArray[(line * BoardWidth) + i] = Tetrominoes.SQUARE_SHAPE; // Use SquareShape or any other color you prefer
                     } else {
-                        boardArray[(line * BoardWidth) + i] = Tetrominoes.NoShape; // Use NoShape or any other color you prefer
+                        boardArray[(line * BoardWidth) + i] = Tetrominoes.NO_SHAPE; // Use NoShape or any other color you prefer
                     }
                 } else {
                     // Reset to the normal color for all cells
@@ -348,7 +348,7 @@ public class GameLogicManager {
 
             if (y < 0 || y >= BoardHeight)
                 return false;
-            if (shapeAt(x, y) != Tetrominoes.NoShape)
+            if (shapeAt(x, y) != Tetrominoes.NO_SHAPE)
                 return false;
         }
 
@@ -403,7 +403,7 @@ public class GameLogicManager {
             int y = newY - newPiece.y(i);
             if (x < 0 || x >= BoardWidth || y < 0 || y >= BoardHeight)
                 return false;
-            if (shapeAt(x, y) != Tetrominoes.NoShape)
+            if (shapeAt(x, y) != Tetrominoes.NO_SHAPE)
                 return false;
         }
         return true;

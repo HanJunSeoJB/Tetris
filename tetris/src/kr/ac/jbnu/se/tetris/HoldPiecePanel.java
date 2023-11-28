@@ -33,7 +33,7 @@ public class HoldPiecePanel extends JPanel {
 
             // holdBoard의 범위 내에 있는지 확인합니다.
             if (x >= 0 && x < holdBoardWidth && y >= 0 && y < holdBoardHeight) {
-                holdBoard[(y * holdBoardWidth) + x] = holdPiece.getShape();
+                holdBoard[(y * holdBoardWidth) + x] = holdPiece.getPieceShape();
             }
         }
     }

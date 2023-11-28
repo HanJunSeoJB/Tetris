@@ -143,12 +143,12 @@ public class Board extends JPanel implements ActionListener {
 			}
 		}
 
-		if (curPiece.getShape() != Tetrominoes.NO_SHAPE) {
+		if (curPiece.getPieceShape() != Tetrominoes.NO_SHAPE) {
 			for (int i = 0; i < 4; ++i) {
 				int x = gameLogicManager.getCurX() + curPiece.x(i);
 				int y = gameLogicManager.getCurY() - curPiece.y(i);
 				renderingManager.drawSquare(g, x * squareWidth(), boardTop + (BoardHeight - y - 1) * squareHeight(),
-						curPiece.getShape());
+						curPiece.getPieceShape());
 				renderGhostPiece(g);
 			}
 		}

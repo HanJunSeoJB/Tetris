@@ -36,7 +36,7 @@ public class NextPiecePanel extends JPanel {
 
             // miniBoard의 범위 내에 있는지 확인합니다.
             if (x >= 0 && x < miniBoardSize && y >= 0 && y < miniBoardSize) {
-                miniBoard[(y * miniBoardSize) + x] = nextPiece.getShape();
+                miniBoard[(y * miniBoardSize) + x] = nextPiece.getPieceShape();
             }
         }
 

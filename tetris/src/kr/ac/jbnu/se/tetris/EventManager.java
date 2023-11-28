@@ -13,7 +13,7 @@ public class EventManager implements Serializable {
     //* 각 키의 액션에 대한 동작처리 함수
     public void handleKeyAction(String action) {
 
-        if (!gameLogicManager.isStarted() || gameLogicManager.getCurPiece().getShape() == Tetrominoes.NO_SHAPE) {
+        if (!gameLogicManager.isStarted() || gameLogicManager.getCurPiece().getPieceShape() == Tetrominoes.NO_SHAPE) {
             return;
         }
 

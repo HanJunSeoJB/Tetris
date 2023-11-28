@@ -6,8 +6,8 @@ public class Shape {
 
 	//* 객체 초기화
 	private Tetrominoes pieceShape;
-	private int coords[][];
-	private int[][][] coordsTable;
+	private final int[][] coords;
+	private final Random random = new Random();
 
 	public Shape() {
 		coords = new int[4][2];
@@ -15,26 +15,17 @@ public class Shape {
 	}
 	//*
 
-	public Tetrominoes getPieceShape() {
-		return pieceShape;
-	}
-
 	//* 도형 생성 함수
 	public void setShape(Tetrominoes shape) {
-
-		coordsTable = new int[][][] { { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } },
+		int[][][] coordsTable = new int[][][] { { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } },
 				{ { 0, -1 }, { 0, 0 }, { -1, 0 }, { -1, 1 } }, { { 0, -1 }, { 0, 0 }, { 1, 0 }, { 1, 1 } },
 				{ { 0, -1 }, { 0, 0 }, { 0, 1 }, { 0, 2 } }, { { -1, 0 }, { 0, 0 }, { 1, 0 }, { 0, 1 } },
 				{ { 0, 0 }, { 1, 0 }, { 0, 1 }, { 1, 1 } }, { { -1, -1 }, { 0, -1 }, { 0, 0 }, { 0, 1 } },
 				{ { 1, -1 }, { 0, -1 }, { 0, 0 }, { 0, 1 } } };
-
 		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 2; ++j) {
-				coords[i][j] = coordsTable[shape.ordinal()][i][j];
-			}
+			System.arraycopy(coordsTable[shape.ordinal()][i], 0, coords[i], 0, 2);
 		}
 		pieceShape = shape;
-
 	}
 	//*
 
@@ -60,14 +51,13 @@ public class Shape {
 	//*
 
 	// 게터 함수
-	public Tetrominoes getShape() {
+	public Tetrominoes getPieceShape() {
 		return pieceShape;
 	}
 
 	//* 랜덤 블록 생성 함수
 	public void setRandomShape() {
-		Random r = new Random();
-		int x = Math.abs(r.nextInt()) % 7 + 1;
+		int x = random.nextInt(7) + 1;
 		Tetrominoes[] values = Tetrominoes.values();
 		setShape(values[x]);
 	}
@@ -83,16 +73,15 @@ public class Shape {
 	}
 
 	public int maxX() {
-		int M = coords[0][0];
+		int maxCoordinateX = coords[0][0];
 		for (int i = 0; i < 4; i++) {
-			M = Math.max(M, coords[i][0]);
+			maxCoordinateX = Math.max(maxCoordinateX, coords[i][0]);
 		}
-		return M;
+		return maxCoordinateX;
 	}
 
-	public int getWidth(){
-		int curWidth =  maxX() - minX() + 1;
-		return curWidth;
+	public int getWidth() {
+		return maxX() - minX() + 1;
 	}
 
 	public int minY() {

@@ -37,27 +37,26 @@ public class ShapeAndTetrominoesManager {
 
     // Shape 객체를 인자로 받아 회전시키는 메서드
     public Shape rotateLeft(Shape shape) {
-        if (shape.getShape() == Tetrominoes.SQUARE_SHAPE)
+        if (shape.getPieceShape() == Tetrominoes.SQUARE_SHAPE)
             return shape;
 
         Shape result = new Shape();
-        result.setShape(shape.getShape());
+        result.setShape(shape.getPieceShape());
 
         for (int i = 0; i < 4; ++i) {
             result.setX(i, shape.y(i));
             result.setY(i, -shape.x(i));
         }
         currentShape = result; // 현재 Shape를 업데이트
-        int curWidth = currentShape.getWidth();
         return result;
     }
 
     public Shape rotateRight(Shape shape) {
-        if (shape.getShape() == Tetrominoes.SQUARE_SHAPE)
+        if (shape.getPieceShape() == Tetrominoes.SQUARE_SHAPE)
             return shape;
 
         Shape result = new Shape();
-        result.setShape(shape.getShape());
+        result.setShape(shape.getPieceShape());
 
         for (int i = 0; i < 4; ++i) {
             result.setX(i, -shape.y(i));

@@ -176,7 +176,7 @@ public class GameLogicManager {
         for (int i = 0; i < 4; ++i) {
             int x = curX + curPiece.x(i);
             int y =curY - curPiece.y(i);
-            boardArray[(y * BoardWidth) + x] = curPiece.getShape();
+            boardArray[(y * BoardWidth) + x] = curPiece.getPieceShape();
 
         }
 

@@ -4,13 +4,13 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.*;
+import kr.ac.jbnu.se.tetris.MenuState;
 import kr.ac.jbnu.se.tetris.Model.IntroModel;
 import kr.ac.jbnu.se.tetris.ScoreManager;
 
 public class IntroView extends JPanel {
     /***************************************************************/
     // 멤버변수
-    private final IntroModel introModel;
     ImageIcon intro;
     ImageIcon multi_start;
     ImageIcon how_to_start;
@@ -23,8 +23,7 @@ public class IntroView extends JPanel {
 
     /***************************************************************/
     // IntroView 생성자
-    public IntroView(IntroModel introModel) {
-        this.introModel = introModel;
+    public IntroView() {
         intro = new ImageIcon("tetris/src/image/intro.png");
         ranking =new ImageIcon("tetris/src/image/ranking.png");
         sound = new ImageIcon("tetris/src/image/sound.png");
@@ -53,7 +52,7 @@ public class IntroView extends JPanel {
     public void drawMenu(Graphics g) {
         for (int i = 0; i < menu.length; i++)
             g.drawImage(menu[i].getImage(), IntroModel.MENU_X, IntroModel.MENU_Y + (i * IntroModel.MENU_INTERVAL), IntroModel.MENU_WIDTH, IntroModel.MENU_HEIGHT, null);
-        switch (introModel.getCheckEntered()) {
+        switch (IntroModel.getCheckEntered()) {
             case 1 -> g.drawImage(menu_click[0].getImage(), IntroModel.MENU_X, IntroModel.MENU_Y, IntroModel.MENU_WIDTH,
                     IntroModel.MENU_HEIGHT, null);
             case 2 -> g.drawImage(menu_click[1].getImage(), IntroModel.MENU_X,
@@ -66,7 +65,7 @@ public class IntroView extends JPanel {
                     null);
             default -> {}
         }
-        switch (introModel.getMenuState()) {
+        switch (IntroModel.getMenuState()) {
             case GAME_START -> g.drawImage(select_game[0].getImage(), IntroModel.MENU_X, IntroModel.MENU_Y,
                     IntroModel.MENU_WIDTH, IntroModel.MENU_HEIGHT * 3, null);
             case SINGLE_PLAY -> g.drawImage(select_game[1].getImage(), IntroModel.MENU_X, IntroModel.MENU_Y,
@@ -81,7 +80,7 @@ public class IntroView extends JPanel {
                 drawNumber(ScoreManager.loadScores(), g);
             }
         }
-        if (introModel.getCheckMulti() == 1)
+        if (IntroModel.getCheckMulti() == 1)
             g.drawImage(multi_start.getImage(), 300, 680, 200, 50, null);
     }
 

@@ -25,11 +25,13 @@ public class Tetris extends JFrame implements KeyListener {
 	private BestScorePanel bestScorePanel;
 	private Board board1;
 	private Board board2;
+	private UIManager uiManager;
 
 
 	public Tetris(boolean isMultiPlayer, SoundModel soundModel) {
 		addKeyListener(this);
 		setFocusable(true);
+		this.uiManager = new UIManager();
 		this.isMultiplayer = isMultiPlayer;
 		this.executionWidth = isMultiplayer ? 1600 : 800;
 		this.executionHeight = 800;
@@ -48,7 +50,7 @@ public class Tetris extends JFrame implements KeyListener {
 	}
 
 	private JPanel createFillerPanelS(JLabel statusbar) {
-		this.statusbar = new JLabel(" 0");
+		this.statusbar = statusbar;
 		JPanel fillerPanelS = new JPanel();
 		fillerPanelS.setPreferredSize(new Dimension(isMultiplayer ? executionWidth / 2 : executionWidth, (executionHeight - 400) / 2));
 		fillerPanelS.setBackground(Color.black);
@@ -211,14 +213,13 @@ public class Tetris extends JFrame implements KeyListener {
 		JPanel playerPanel = new JPanel(new BorderLayout());
 
 		// components initialization
-		this.statusbar = new JLabel(" 0");
 		NextPiecePanel nextPiecePanel = new NextPiecePanel();
 		this.holdPiecePanel = new HoldPiecePanel();
 		this.levelPanel = new LevelPanel();
 		this.bestScorePanel = new BestScorePanel();
 
 		// Board
-		Board board = new Board(nextPiecePanel, holdPiecePanel, levelPanel, bestScorePanel, statusbar, null);
+		Board board = new Board(nextPiecePanel, holdPiecePanel, levelPanel, bestScorePanel, uiManager, null);
 		if (playerNum == 1)
 			board1 = board;
 		else
@@ -236,7 +237,7 @@ public class Tetris extends JFrame implements KeyListener {
 		containerPanel.add(createFillerPanelN(), BorderLayout.NORTH);
 		containerPanel.add(createFillerPanelE(border, nextPiecePanel), BorderLayout.EAST);
 		containerPanel.add(createFillerPanelW(border, holdPiecePanel), BorderLayout.WEST);
-		containerPanel.add(createFillerPanelS(statusbar), BorderLayout.SOUTH);
+		containerPanel.add(createFillerPanelS(uiManager.getStatusbar()), BorderLayout.SOUTH);
 
 		playerPanel.add(containerPanel, BorderLayout.CENTER);
 

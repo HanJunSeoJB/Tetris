@@ -22,9 +22,6 @@ public class GameLogicManager {
 
     private final int BoardWidth;
     private final int BoardHeight;
-    private Shape curPiece;
-    private Shape nextPiece;
-    private Shape holdPiece;
     private boolean isFallingFinished = false;
     private final Timer blinkTimer;
     private BlinkWorker blinkWorker;
@@ -56,7 +53,7 @@ public class GameLogicManager {
 
 
     public Shape getCurPiece() {
-        return curPiece;
+        return shapeAndTetrominoesManager.getCurrentShape();
     }
 
     public boolean isFallingFinished() {
@@ -88,16 +85,14 @@ public class GameLogicManager {
     //*
 
     //* 클래스 초기화
-    public GameLogicManager(Board board, NextPiecePanel nextPiecePanel, HoldPiecePanel holdPiecePanel, LevelPanel levelPanel, ScoreManager scoreManager) {
+    public GameLogicManager(Board board, NextPiecePanel nextPiecePanel, HoldPiecePanel holdPiecePanel, LevelPanel levelPanel, ScoreManager scoreManager, UIManager uiManager) {
         this.scoreManager = scoreManager;
         this.soundModel = new SoundModel();
         this.board = board;
         this.nextPiecePanel = nextPiecePanel;
         this.holdPiecePanel = holdPiecePanel;
         this.levelPanel = levelPanel;
-        this.curPiece = new Shape();
-        this.nextPiece = new Shape();
-        this.uiManager = board.getUIManager();
+        this.uiManager = uiManager;
         this.shapeAndTetrominoesManager = new ShapeAndTetrominoesManager();
         int delay = 400;
         this.timerManager = new TimerManager(board, delay);
@@ -117,6 +112,7 @@ public class GameLogicManager {
     //* 블럭이 떨어지게 하는 함수
     public void dropDown() {
         int newY = curY;
+        Shape curPiece = shapeAndTetrominoesManager.getCurrentShape();
         while (newY > 0) {
             if (!tryMove(curPiece, curX, newY - 1))
                 break;
@@ -172,6 +168,7 @@ public class GameLogicManager {
 
     // 블럭이 바닥에 닿았나 확인하는 함수
     public void pieceDropped() {
+        Shape curPiece = shapeAndTetrominoesManager.getCurrentShape();
         Tetrominoes[] boardArray = board.getBoardArray();
         for (int i = 0; i < 4; ++i) {
             int x = curX + curPiece.x(i);
@@ -192,8 +189,8 @@ public class GameLogicManager {
     //* 새 조각 생성 함수
     public void newPiece() {
         shapeAndTetrominoesManager.generateNewShape();
-        curPiece = shapeAndTetrominoesManager.getCurrentShape();
-        nextPiece = shapeAndTetrominoesManager.getNextShape();
+        Shape curPiece = shapeAndTetrominoesManager.getCurrentShape();
+        Shape nextPiece = shapeAndTetrominoesManager.getNextShape();
         curX = BoardWidth / 2 + 1;
         curY = BoardHeight - 1 + curPiece.minY();
 
@@ -217,6 +214,8 @@ public class GameLogicManager {
     //* 줄 제거 함수
     public void removeFullLines() {
         int numFullLines = 0;
+        Shape curPiece = shapeAndTetrominoesManager.getCurrentShape();
+        Tetrominoes[] boardArray = board.getBoardArray();
 
         boolean[] fullLines = new boolean[BoardHeight];
 
@@ -234,18 +233,11 @@ public class GameLogicManager {
 
             if (lineIsFull) {
                 ++numFullLines;
-
-                // Add blinking effect
-
-                /*
-                blinkLines(i);
-
                 for (int k = i; k < BoardHeight - 1; ++k) {
                     for (int j = 0; j < BoardWidth; ++j) {
                         boardArray[(k * BoardWidth) + j] = shapeAt(j, k + 1);
                     }
                 }
-                */
             }
         }
 
@@ -259,26 +251,34 @@ public class GameLogicManager {
 
         if (numFullLines > 0) {
             soundModel.clearBlockPlay();
-            int scoreMultiplier = getScoreMultiplier(level);  // 레벨에 따른 점수 배수를 가져옵니다.
-            score += numFullLines * scoreMultiplier;  // 줄의 수와 점수 배수를 곱하여 점수를 업데이트합니다.
+            int scoreMultiplier = getScoreMultiplier(level);
+            if(!inFeverMode)// 레벨에 따른 점수 배수를 가져옵니다.
+                score += numFullLines * scoreMultiplier;// 줄의 수와 점수 배수를 곱하여 점수를 업데이트합니다.
+            else
+                score += numFullLines * scoreMultiplier * (feverModeLinesCleared+1);
             updateLevel(score);
             uiManager.updateScore(score);
             isFallingFinished = true;
             curPiece.setShape(Tetrominoes.NO_SHAPE);
-            board.repaint();
             feverMode(numFullLines);
+            board.repaint();
 
             if (inFeverMode) {
+                uiManager.changeColor(inFeverMode);
+
                 feverModeLinesCleared += numFullLines;
                 // Fever Mode 종료 조건 체크
                 if (feverModeLinesCleared >= 10) {
                     inFeverMode = false;
+                    System.out.println("Fever Mode Deactivated!");
+                    uiManager.changeColor(inFeverMode);
                     feverModeLinesCleared = 0;
                 }
             }
         }
     }
     //*
+
 
     private class BlinkWorker extends SwingWorker<Void, Void> {
         @Override
@@ -312,11 +312,14 @@ public class GameLogicManager {
 
     private void feverMode(int numFullLines) {
         // 한 번에 5개 이상의 줄을 제거했는지 체크
-        if (numFullLines >= 5) {
+        if (numFullLines >= 1) {
+            if (inFeverMode) {
+                return;
+            }
             // Fever Mode 활성화
             inFeverMode = true;
+            System.out.println("Fever Mode Activated!");
             feverModeLinesCleared = 0;
-
         }
     }
 
@@ -352,7 +355,6 @@ public class GameLogicManager {
                 return false;
         }
 
-        curPiece = newPiece;
         curX = newX;
         curY = newY;
         board.repaint();
@@ -362,6 +364,7 @@ public class GameLogicManager {
 
     //* 블럭이 한 줄 떨어지게 하는 함수
     public void oneLineDown() {
+        Shape curPiece = shapeAndTetrominoesManager.getCurrentShape();
         if (!tryMove(curPiece, curX, curY - 1))
             pieceDropped();
     }
@@ -412,23 +415,25 @@ public class GameLogicManager {
         board.reStart();
     }
     public void hold() {
+        Shape curPiece = shapeAndTetrominoesManager.getCurrentShape();
         // 현재 블록을 임시 변수에 저장합니다.
         Shape tempPiece = curPiece;
+        Shape holdPiece = shapeAndTetrominoesManager.getHoldShape();
 
         // 현재 블록을 홀드 영역에 저장합니다.
         if (holdPiece == null) {
-            holdPiece = tempPiece;
+            shapeAndTetrominoesManager.setHoldShape(tempPiece);
             newPiece();
 
         } else {
             curPiece = holdPiece;
-            holdPiece = tempPiece;
+            shapeAndTetrominoesManager.setHoldShape(tempPiece);
             shapeAndTetrominoesManager.setCurrentShape(curPiece);
             // 현재 블록의 위치를 초기화합니다.
             curX = BoardWidth / 2 + 1;
             curY = BoardHeight - 1 + curPiece.minY();
         }
-        holdPiecePanel.updateHoldBoard(holdPiece);
+        holdPiecePanel.updateHoldBoard(shapeAndTetrominoesManager.getHoldShape());
 
         // 보드를 업데이트하여 현재 블록을 지웁니다.
         board.repaint();

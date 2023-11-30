@@ -27,7 +27,7 @@ public class IntroController implements MouseListener, MouseMotionListener {
     // IntroController 생성자
     public IntroController(JFrame frame, Container contentPane, SoundModel soundModel) {
         this.introModel = new IntroModel();
-        this.introView = new IntroView(introModel);
+        this.introView = new IntroView();
         contentPane.add(introView);
         introView.addMouseListener(this);
         introView.addMouseMotionListener(this);

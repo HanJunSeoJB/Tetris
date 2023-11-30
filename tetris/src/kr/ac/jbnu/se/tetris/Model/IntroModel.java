@@ -22,15 +22,15 @@ public class IntroModel {
     public static final int SELECT_GAME_WIDTH = 320;
     public static final int SELECT_GAME_HEIGHT = 80;
     public static final int SELECT_GAME_INTERVAL = 30;
-    private int checkEntered = 0;
-    private int checkClicked = 0;
+    private static int checkEntered = 0;
+    private static int checkClicked = 0;
     public static final float VOLUME = 1.0f;
-    private MenuState menuState = MenuState.NONE;
-    private int checkMulti = 0;
+    private static MenuState menuState = MenuState.NONE;
+    private static int checkMulti = 0;
 
     /***************************************************************/
     // getter & setter
-    public int getCheckEntered() { return checkEntered; }
+    public static int getCheckEntered() { return checkEntered; }
     public void setCheckEntered(int checkEntered) {
         this.checkEntered = checkEntered;
     }
@@ -39,7 +39,7 @@ public class IntroModel {
         this.checkClicked = checkClicked;
     }
 
-    public MenuState getMenuState() {
+    public static MenuState getMenuState() {
         return menuState;
     }
 
@@ -47,7 +47,7 @@ public class IntroModel {
         this.menuState = menuState;
     }
 
-    public int getCheckMulti() {
+    public static int getCheckMulti() {
         return checkMulti;
     }
 }

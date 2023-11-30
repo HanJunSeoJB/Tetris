@@ -1,5 +1,6 @@
 package kr.ac.jbnu.se.tetris;
 
+import java.awt.Color;
 import javax.swing.JLabel;
 
 
@@ -19,5 +20,18 @@ public class UIManager {
 
     public void updateScore(int score) {
         updateStatusbar("Score: " + score);
+    }
+    public JLabel getStatusbar() {
+        return statusbar;
+    }
+    public UIManager() {
+        this.statusbar = new JLabel(" 0");
+    }
+    public void changeColor(boolean isFeverMode) {
+        if(isFeverMode)
+            statusbar.setForeground(Color.RED);
+        else if(!isFeverMode) {
+            statusbar.setForeground(Color.BLACK);
+        }
     }
 }

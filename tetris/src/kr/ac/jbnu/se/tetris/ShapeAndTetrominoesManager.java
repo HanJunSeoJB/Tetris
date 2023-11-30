@@ -4,6 +4,7 @@ public class ShapeAndTetrominoesManager {
 
     private Shape currentShape;
     private Shape nextShape;
+    private Shape holdShape;
 
     public ShapeAndTetrominoesManager() {
         generateNewShape();
@@ -75,6 +76,15 @@ public class ShapeAndTetrominoesManager {
     // 현재 Shape를 설정하는 메서드
     public void setCurrentShape(Shape shape) {
         this.currentShape = shape;
+    }
+    public void setCurrentShape(Tetrominoes shape) {
+        this.currentShape.setShape(shape);
+    }
+    public Shape getHoldShape() {
+        return holdShape;
+    }
+    public void setHoldShape(Shape shape) {
+        this.holdShape = shape;
     }
 
 

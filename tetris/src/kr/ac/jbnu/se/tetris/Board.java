@@ -11,8 +11,6 @@ public class Board extends JPanel implements ActionListener {
 	Tetrominoes[] board; // 보드 객체 초기화
 
 	//* 필요한 클래스 초기화
-
-	private final transient UIManager uiManager;
 	private final transient GameLogicManager gameLogicManager;
 	private final transient RenderingManager renderingManager;
 	private final transient EventManager eventManager;
@@ -29,10 +27,6 @@ public class Board extends JPanel implements ActionListener {
 		return board;
 	}
 
-	public UIManager getUIManager() {
-		return this.uiManager;
-	}
-
 	public int getBoardWidth() {
 		return BoardWidth;
 	}
@@ -43,11 +37,10 @@ public class Board extends JPanel implements ActionListener {
 	//*
 
 
-	public Board(NextPiecePanel nextPiecePanel, HoldPiecePanel holdPiecePanel, LevelPanel levelPanel, BestScorePanel bestScorePanel, JLabel statusbar, ScoreManager scoreManager) {
+	public Board(NextPiecePanel nextPiecePanel, HoldPiecePanel holdPiecePanel, LevelPanel levelPanel, BestScorePanel bestScorePanel, UIManager uiManager, ScoreManager scoreManager) {
 
 		//* 객체 초기화
-		this.uiManager = new UIManager(statusbar);
-		this.gameLogicManager = new GameLogicManager(this, nextPiecePanel, holdPiecePanel, levelPanel, scoreManager);
+		this.gameLogicManager = new GameLogicManager(this, nextPiecePanel, holdPiecePanel, levelPanel, scoreManager, uiManager);
 		this.renderingManager = new RenderingManager(this);
 		this.eventManager = new EventManager(this.gameLogicManager);
 		this.bestScorePanel = bestScorePanel;
@@ -90,7 +83,6 @@ public class Board extends JPanel implements ActionListener {
 
 		gameLogicManager.setStarted(true);
 		gameLogicManager.setFallingFinished(false);
-		uiManager.updateStatusbar(String.valueOf(gameLogicManager.getNumLinesRemoved()));
 		clearBoard();
 
 		gameLogicManager.newPiece();

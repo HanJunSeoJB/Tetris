@@ -1,4 +1,7 @@
 
-p	java:S116"URename this field "BoardWidth" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†≈»E8Ä• à¡1
-r	java:S116"VRename this field "BoardHeight" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ı£÷8Ä• à¡1
-^	java:S125Ò"<This block of commented-out lines of code should be removed.(˚ò≠≥˝ˇˇˇˇ8Ö• à¡1
+u
+java:S3776Œ"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(›˛‰¨˝ˇˇˇˇ8Ü—ü ¬1
+P
+java:S1128".Remove this unused import 'javax.swing.Timer'.(—ûºË¯ˇˇˇˇ8Áæ£ ¬1
+V
+java:S1128"4Remove this unused import 'javax.swing.SwingWorker'.(—ë•üˇˇˇˇˇ8Áæ£ ¬1
